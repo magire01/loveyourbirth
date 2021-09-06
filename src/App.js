@@ -11,9 +11,21 @@ import Prenatal from './components/Prenatal';
 import Labor from './components/Labor';
 import Newborn from './components/Newborn';
 import Contact from './components/Contact';
-
+ 
 
 function App() {
+  const scrollToRef = (ref) => window.scrollTo({
+    behavior: "smooth",
+    top: ref.current.offsetTop
+  })
+  const HomeRef = useRef()
+  const ContactRef = useRef()
+  const AboutRef = useRef()
+  const PrenatalRef = useRef()
+  const LaborRef = useRef()
+  const NewbornRef = useRef()
+  const scroll = [HomeRef, AboutRef, PrenatalRef, LaborRef, NewbornRef, ContactRef]
+  const page = ["Home", "About", "Prenatal", "Labor", "Newborn", "Contact"]
 
   const [openNav, setOpenNav] = useState(false);
   const [pageSelect, setPageSelect] = useState("home")
@@ -21,19 +33,16 @@ function App() {
   const openDrawer = (e) => {
     e.preventDefault();
     setOpenNav(!openNav);
-    console.log(openNav);
   }
 
   const openPage = (e, page) => {
     e.preventDefault();
-    setPageSelect(page);
-    setOpenNav(false)
-    console.log(page);
+    setOpenNav(!openNav)
+    scrollToRef(page);
   }
 
-  const page = ["Contact", "About", "Prenatal", "Labor and Birth", "Newborn"]
-  const pageColor = ["#FFD4FD", "#FAACF7", "#FC8DF8", "#FC6AF7", "#FF1CF7", "#FFDEFE" ]
-  const borderThick = "10px"
+  const pageColor = ["#FFD4FD", "#FAACF7", "#FC8DF8", "#FC6AF7", "#FF1CF7", "#FFDEFE"]
+
   const style = {
     banner: {
       width: "65%",
@@ -83,7 +92,7 @@ function App() {
   }
   return (
     <div className="App">
-      <Grid container style={{ paddingTop: "8%" }}>
+      <Grid container style={{ paddingTop: "3%" }}>
         <Grid md="1" xs="1">
           <IconButton onClick={openDrawer}>
               <MenuIcon style={{ position: "fixed", backgroundColor: "pink" }}/>
@@ -91,33 +100,32 @@ function App() {
         </Grid>
 
         <Grid md="10" xs="10">
-          <Grid item md="12" xs="12">
+          <Grid item md="12" xs="12" ref={HomeRef}>
             <div>
               <img src={lybLogo} style={style.banner}/>
             </div>
           </Grid>
-          
-          <Grid item md="12" xs="12" style={style.page}>
+          <Grid item md="12" xs="12" style={style.page}ref={AboutRef}>
             <Paper style={style.page1}>
               <About />
             </Paper>
           </Grid>
-          <Grid item md="12" xs="12" style={style.page}>
+          <Grid item md="12" xs="12" style={style.page} ref={PrenatalRef}>
             <Paper style={style.page2}>
               <Prenatal />
             </Paper>
           </Grid>
-          <Grid item md="12" xs="12" style={style.page}>
+          <Grid item md="12" xs="12" style={style.page} ref={LaborRef}>
             <Paper style={style.page3}>
               <Labor />
             </Paper>
           </Grid>
-          <Grid item md="12" xs="12" style={style.page}>
+          <Grid item md="12" xs="12" style={style.page} ref={NewbornRef}>
             <Paper style={style.page4}>
               <Newborn />
             </Paper>
           </Grid>
-          <Grid item md="12" xs="12" style={style.page}>
+          <Grid item md="12" xs="12" style={style.page} ref={ContactRef}>
             <Paper style={style.page5}>
               <Contact />
             </Paper>
@@ -135,9 +143,9 @@ function App() {
             <IconButton onClick={openDrawer}>
                 <ChevronLeftIcon />
             </IconButton>
-            {page.map((item) => (
+            {page.map((item, index) => (
               <ListItem> 
-                <Button onClick={e => openPage(e, item)}>{item}</Button>
+                <Button onClick={e => openPage(e, scroll[index])}>{item}</Button>
               </ListItem>
             ))}
           </List>

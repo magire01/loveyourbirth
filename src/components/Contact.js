@@ -8,6 +8,17 @@ const Contact = () => {
         <>
             <Typography variant="h5">Contact</Typography>
             <Typography>test blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah test</Typography>
+            <Typography>test blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah test</Typography>
+            <Typography>test blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah test</Typography>
+            <Typography>test blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah test</Typography>
+            <Typography>test blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah test</Typography>
+            <Typography>test blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah test</Typography>
+            <Typography>test blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah test</Typography>
+            <Typography>test blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah test</Typography>
+            <Typography>test blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah test</Typography>
+            <Typography>test blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah test</Typography>
+            <Typography>test blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah test</Typography>
+        
         </>
     )
 }

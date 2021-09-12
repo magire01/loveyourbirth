@@ -28,7 +28,7 @@ function App() {
   const page = ["Home", "About", "Prenatal", "Labor", "Newborn", "Contact"]
 
   const [openNav, setOpenNav] = useState(false);
-
+  
   const openDrawer = (e) => {
     e.preventDefault();
     setOpenNav(!openNav);

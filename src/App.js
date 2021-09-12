@@ -4,7 +4,7 @@ import { Paper, Grid, Button, Drawer, List, ListItem, Typography, IconButton } f
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import '@fontsource/roboto';
-import lybLogo from "./lybLogo2.png";
+import lybLogo from "./lybLogo3.png";
 
 import About from "./components/About";
 import Prenatal from './components/Prenatal';
@@ -28,7 +28,6 @@ function App() {
   const page = ["Home", "About", "Prenatal", "Labor", "Newborn", "Contact"]
 
   const [openNav, setOpenNav] = useState(false);
-  const [pageSelect, setPageSelect] = useState("home")
 
   const openDrawer = (e) => {
     e.preventDefault();
@@ -41,11 +40,11 @@ function App() {
     scrollToRef(page);
   }
 
-  const pageColor = ["#FFD4FD", "#FAACF7", "#FC8DF8", "#FC6AF7", "#FF1CF7", "#FFDEFE"]
+  const pageColor = ["#E4FBFF", "#E4FBFF", "#E4FBFF", "#E4FBFF", "#E4FBFF", "#E4FBFF"]
 
   const style = {
     banner: {
-      width: "65%",
+      width: "60%",
       height: "auto"
     },
     page: {

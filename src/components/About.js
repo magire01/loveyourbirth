@@ -22,7 +22,9 @@ const About = () => {
         picture: {
             width: "80%",
             height: "auto",
-            marginTop: 40
+            marginTop: 40,
+            borderRadius: 180,
+            border: "3px solid #F6CBFF"
         },
         picture2: {
             width: "40%",

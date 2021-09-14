@@ -1,15 +1,13 @@
 import './App.css';
 import React, { useState, useRef } from "react";
-import { Paper, Grid, Button, Drawer, List, ListItem, Typography, IconButton } from "@material-ui/core";
+import { Paper, Grid, Button, Drawer, List, ListItem, Typography, IconButton, AppBar, Toolbar } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import '@fontsource/roboto';
 import lybLogo from "./lybLogo3.png";
 
 import About from "./components/About";
-import Prenatal from './components/Prenatal';
-import Labor from './components/Labor';
-import Newborn from './components/Newborn';
+import Services from './components/Services';
 import Contact from './components/Contact';
  
 
@@ -21,11 +19,9 @@ function App() {
   const HomeRef = useRef()
   const ContactRef = useRef()
   const AboutRef = useRef()
-  const PrenatalRef = useRef()
-  const LaborRef = useRef()
-  const NewbornRef = useRef()
-  const scroll = [HomeRef, AboutRef, PrenatalRef, LaborRef, NewbornRef, ContactRef]
-  const page = ["Home", "About", "Prenatal", "Labor", "Newborn", "Contact"]
+  const ServicesRef = useRef()
+  const scroll = [HomeRef, AboutRef, ServicesRef, ContactRef]
+  const page = ["Home", "About", "Services", "Contact"]
 
   const [openNav, setOpenNav] = useState(false);
   
@@ -36,7 +32,6 @@ function App() {
 
   const openPage = (e, page) => {
     e.preventDefault();
-    setOpenNav(!openNav)
     scrollToRef(page);
   }
 
@@ -44,7 +39,7 @@ function App() {
 
   const style = {
     banner: {
-      width: "60%",
+      width: "50%",
       height: "auto"
     },
     page: {
@@ -87,41 +82,44 @@ function App() {
       paddingRight: "5%",
       paddingLeft: "5%",
       backgroundColor: pageColor[4]
+    },
+    appbar: {
+      backgroundColor: "purple",
+      position: "fixex",
+      alignItems: "center"
+    },
+    navbutton: {
+      color: "white",
+      fontSize: 15
     }
+
   }
   return (
     <div className="App">
+      <AppBar position="fixed" style={style.appbar}>
+        <Toolbar>
+          <Button style={style.navbutton} onClick={e => openPage(e, scroll[1])}>About</Button>
+          <Button style={style.navbutton} onClick={e => openPage(e, scroll[2])}>Services</Button>
+          <Button style={style.navbutton} onClick={e => openPage(e, scroll[3])}>Contact</Button>
+          <Button style={style.navbutton}>New Patient</Button>
+          <Button style={style.navbutton}>Message</Button>
+        </Toolbar>
+      </AppBar>
       <Grid container style={{ paddingTop: "3%" }}>
-        <Grid md="1" xs="1">
-          <IconButton onClick={openDrawer}>
-              <MenuIcon style={{ position: "fixed", backgroundColor: "pink" }}/>
-          </IconButton>
-        </Grid>
-
-        <Grid md="10" xs="10">
+        <Grid md="12" xs="12">
           <Grid item md="12" xs="12" ref={HomeRef}>
             <div>
               <img src={lybLogo} style={style.banner}/>
             </div>
           </Grid>
+        <Grid md="1" xs="1">
+        </Grid>
           <Grid item md="12" xs="12" style={style.page}ref={AboutRef}>
             <About />
           </Grid>
-          {/* <Grid item md="12" xs="12" style={style.page} ref={PrenatalRef}>
-            <Paper style={style.page2}>
-              <Prenatal />
-            </Paper>
+          <Grid item md="12" xs="12" style={style.page}ref={ServicesRef}>
+            <Services />
           </Grid>
-          <Grid item md="12" xs="12" style={style.page} ref={LaborRef}>
-            <Paper style={style.page3}>
-              <Labor />
-            </Paper>
-          </Grid>
-          <Grid item md="12" xs="12" style={style.page} ref={NewbornRef}>
-            <Paper style={style.page4}>
-              <Newborn />
-            </Paper>
-          </Grid> */}
           <Grid item md="12" xs="12" style={style.page} ref={ContactRef}>
               <Contact />
           </Grid>
@@ -130,22 +128,6 @@ function App() {
         <Grid md="1" xs="1">
         </Grid>
       </Grid>
-      
-      
-      <Drawer anchor="left" open={openNav}>
-        <Grid container style={{ paddingTop: "20%", backgroundColor: "lightPink" }}>
-          <List>
-            <IconButton onClick={openDrawer}>
-                <ChevronLeftIcon />
-            </IconButton>
-            {page.map((item, index) => (
-              <ListItem> 
-                <Button onClick={e => openPage(e, scroll[index])}>{item}</Button>
-              </ListItem>
-            ))}
-          </List>
-        </Grid>
-      </Drawer>
     </div>
   );
 }

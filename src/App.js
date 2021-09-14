@@ -14,7 +14,7 @@ import Contact from './components/Contact';
 function App() {
   const scrollToRef = (ref) => window.scrollTo({
     behavior: "smooth",
-    top: ref.current.offsetTop
+    top: ref.current.offsetTop-50
   })
   const HomeRef = useRef()
   const ContactRef = useRef()
@@ -86,7 +86,8 @@ function App() {
     appbar: {
       backgroundColor: "purple",
       position: "fixex",
-      alignItems: "center"
+      alignItems: "center",
+      height: 60
     },
     navbutton: {
       color: "white",

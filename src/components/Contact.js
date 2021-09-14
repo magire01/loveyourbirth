@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Grid, Paper, Button, Drawer, List, ListItem, Typography, IconButton, Modal, Card, CardHeader } from "@material-ui/core";
 
 import ContactForm from "./ContactForm";
+import MessageForm from "./MessageForm";
 
 import '@fontsource/roboto';
 
 const Contact = () => {
     const [openForm, setOpenForm] = useState(false);
+    const [openMessage, setOpenMessage] = useState(false);
 
     const handleOpen = () => {
         setOpenForm(true);
@@ -14,6 +16,14 @@ const Contact = () => {
     
     const handleClose = () => {
     setOpenForm(false);
+    }
+
+    const messageOpen = () => {
+        setOpenMessage(true)
+    }
+
+    const messageClose = () => {
+        setOpenMessage(false)
     }
 
     return (
@@ -30,14 +40,14 @@ const Contact = () => {
                 </Modal>
             </Grid>
             <Grid item md="6" xs="12">
-                <Button onClick={handleOpen}>Send Message</Button>
+                <Button onClick={messageOpen}>Send Message</Button>
                 <Modal
-                    open={openForm}
-                    onClose={handleClose}
+                    open={openMessage}
+                    onClose={messageClose}
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
                     >
-                    <ContactForm />
+                    <MessageForm />
                 </Modal>
             </Grid>
             <Grid item md="12" xs="12">

@@ -105,11 +105,11 @@ function App() {
             </div>
           </Grid>
           <Grid item md="12" xs="12" style={style.page}ref={AboutRef}>
-            <Paper style={style.page1}>
+            {/* <Paper style={style.page1}> */}
               <About />
-            </Paper>
+            {/* </Paper> */}
           </Grid>
-          <Grid item md="12" xs="12" style={style.page} ref={PrenatalRef}>
+          {/* <Grid item md="12" xs="12" style={style.page} ref={PrenatalRef}>
             <Paper style={style.page2}>
               <Prenatal />
             </Paper>
@@ -123,11 +123,9 @@ function App() {
             <Paper style={style.page4}>
               <Newborn />
             </Paper>
-          </Grid>
+          </Grid> */}
           <Grid item md="12" xs="12" style={style.page} ref={ContactRef}>
-            <Paper style={style.page5}>
               <Contact />
-            </Paper>
           </Grid>
         </Grid>
 

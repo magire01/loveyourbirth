@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Paper, Button, Drawer, List, ListItem, Typography, IconButton, Modal } from "@material-ui/core";
+import { Grid, Paper, Button, Drawer, List, ListItem, Typography, IconButton, Modal, Card, CardHeader } from "@material-ui/core";
 
 import ContactForm from "./ContactForm";
 
@@ -17,22 +17,46 @@ const Contact = () => {
     }
 
     return (
-        <>
-            <Typography variant="h5">Contact</Typography>
-            <Button onClick={handleOpen}>Contact Me</Button>
-            <Modal
-                open={openForm}
-                onClose={handleClose}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-                >
-                <ContactForm />
-            </Modal>
-            <Typography>test blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah test</Typography>
-            <Typography>test blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah test</Typography>
-            <Typography>test blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah testtest blah blah blah test</Typography>
-        
-        </>
+        <Grid container direction="row">
+            <Grid item md="6" xs="12">
+                <Button onClick={handleOpen}>New Patient Form</Button>
+                <Modal
+                    open={openForm}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                    >
+                    <ContactForm />
+                </Modal>
+            </Grid>
+            <Grid item md="6" xs="12">
+                <Button onClick={handleOpen}>Send Message</Button>
+                <Modal
+                    open={openForm}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                    >
+                    <ContactForm />
+                </Modal>
+            </Grid>
+            <Grid item md="12" xs="12">
+                <Card>
+                    <CardHeader title="Contact" />
+                    <Grid container direction="row" alignItems="center">
+                        <Grid item md="4" xs="12">
+                            <Typography>Phone: 555-555-5555</Typography>
+                        </Grid>
+                        <Grid item md="4" xs="12">
+                            <Typography>Email: mag@gmail.yeet</Typography>
+                        </Grid>
+                        <Grid item md="4" xs="12">
+                            <Typography>PO Box: 123252</Typography>
+                        </Grid>
+                    </Grid>
+                </Card>
+            </Grid>
+        </Grid>
     )
 }
 

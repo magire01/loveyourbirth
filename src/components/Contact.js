@@ -13,30 +13,34 @@ const Contact = () => {
             backgroundColor: "purple",
             color: "white",
             width: "60%",
-            height: 80,
+            height: 70,
             fontSize: 20,
             fontWeight: "bold",
-            margin: 10
+            margin: 10,
+            borderRadius: 200,
+            border: "3px outset pink"
         },
         message: {
-            backgroundColor: "#FB76DE",
+            backgroundColor: "#F29AFF",
             color: "white",
             width: "60%",
-            height: 80,
+            height: 70,
             fontSize: 20,
             fontWeight: "bold",
-            margin: 10
+            margin: 10,
+            borderRadius: 200,
+            border: "3px outset pink"
         },
         card: {
-            marginTop: 40,
+            marginTop: 50,
             marginBottom: 60,
+            marginRight: "5%",
+            marginLeft: "5%",
             paddingTop: 20,
             paddingBottom: 40,
             backgroundColor: "#B80174",
             color: "white",
-            borderRadius: 30,
-            margin: 10,
-            marginTop: 30
+            borderRadius: 30
         }
     }
 

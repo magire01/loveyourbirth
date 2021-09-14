@@ -10,7 +10,7 @@ const About = () => {
 
     const style = {
         font: {
-            color: "#454545",
+            color: "black",
             margin: 20,
             fontSize: 25
         },
@@ -32,7 +32,7 @@ const About = () => {
         picture: {
             width: "80%",
             height: "auto",
-            marginTop: 80,
+            marginTop: 30,
             borderRadius: 180,
             border: "3px solid #F6CBFF"
         },
@@ -42,7 +42,7 @@ const About = () => {
         },
         title: {
             marginBottom: "5%",
-            color: "#454545"
+            color: "black"
         },
         section: {
             marginTop: "5%"
@@ -50,7 +50,8 @@ const About = () => {
         card: {
             padding: 50,
             backgroundColor: "#FFCFED",
-            marginBottom: 20
+            marginBottom: 20,
+            borderRadius: 20
         },
         card2: {
             padding: 10,
@@ -60,7 +61,7 @@ const About = () => {
     return (
         <Grid container direction="row">
             <Grid item md="12" xs="12">
-                <Card style={style.card}>
+                <Card style={style.card} elevation="3">
                     <Typography variant="h4" style={style.title}>Krystal Smith, MSN, APRN, CNM</Typography>
                     <CardMedia>
                         <img src={MidwifePic} style={style.picture2}/>

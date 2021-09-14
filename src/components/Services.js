@@ -13,19 +13,22 @@ const Services = () => {
             backgroundColor: "#FFCFED",
             color: "#630070",
             margin: "2%",
-            padding: "5%"
+            padding: "5%",
+            height: 250
         },
         labor: {
-            backgroundColor: "#630070",
-            color: "#FFCFED",
+            backgroundColor: "#EF78D1",
+            color: "white",
             margin: "2%",
-            padding: "5%"
+            padding: "5%",
+            height: 300
         },
         newborn: {
             backgroundColor: "#FFCFED",
             color: "#630070",
             margin:"2%",
-            padding: "5%"
+            padding: "5%",
+            height: 250
         }
     }
 

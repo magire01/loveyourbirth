@@ -48,7 +48,7 @@ function App() {
       height: "auto"
     },
     page: {
-      marginTop: "5%",
+      marginTop: "3%",
       marginBottom: "5%",
       marginLeft: "3%",
       marginRight: "3%"
@@ -105,9 +105,7 @@ function App() {
             </div>
           </Grid>
           <Grid item md="12" xs="12" style={style.page}ref={AboutRef}>
-            {/* <Paper style={style.page1}> */}
-              <About />
-            {/* </Paper> */}
+            <About />
           </Grid>
           {/* <Grid item md="12" xs="12" style={style.page} ref={PrenatalRef}>
             <Paper style={style.page2}>

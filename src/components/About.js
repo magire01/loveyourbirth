@@ -15,14 +15,24 @@ const About = () => {
             fontSize: 25
         },
         font2: {
-            color: "#454545",
+            color: "#630070",
             margin: 20,
-            fontSize: 15
+            fontSize: 18,
+
+        },
+        font3: {
+            color: "#630070",
+            fontSize: 30,
+            borderBottom: "3px solid #630070",
+            borderRight: "3px solid #630070",
+            backgroundColor: "lightpink",
+            margin: 20,
+            borderRadius: 5
         },
         picture: {
             width: "80%",
             height: "auto",
-            marginTop: 40,
+            marginTop: 80,
             borderRadius: 180,
             border: "3px solid #F6CBFF"
         },
@@ -39,7 +49,8 @@ const About = () => {
         },
         card: {
             padding: 50,
-            backgroundColor: "#E4FBFF"
+            backgroundColor: "#FFCFED",
+            marginBottom: 20
         },
         card2: {
             padding: 10,
@@ -76,7 +87,7 @@ const About = () => {
             </Grid> */}
             <Grid item md="6" xs="12" style={style.section}>
                 <div style={style.card2}>
-                    <Typography variant="h6" style={style.font}>Experience</Typography>
+                    <Typography variant="h6" style={style.font3}>Experience</Typography>
                     <Typography style={style.font2}>Master’s degree in the Science of Nurse-Midwifery</Typography>
                     <Typography style={style.font2}>Registered Nurse in Labor &amp; Delivery and Postpartum for 5.5 years</Typography>
                     <Typography style={style.font2}>Midwifery Clinical experience in the home setting</Typography>
@@ -84,7 +95,7 @@ const About = () => {
                     <Typography style={style.font2}>BLS CPR certified</Typography>
                 </div>
                 <div style={style.card2}>
-                    <Typography variant="h6" style={style.font}>Interests</Typography>
+                    <Typography variant="h6" style={style.font3}>Interests</Typography>
                     <Typography style={style.font2}>Supporting physiologic birth</Typography>
                     <Typography style={style.font2}>Breastfeeding</Typography>
                     <Typography style={style.font2}>Shared decision making</Typography>

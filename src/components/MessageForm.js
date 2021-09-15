@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Paper, Button, Drawer, List, ListItem, Typography, IconButton, Card } from "@material-ui/core";
 
 import '@fontsource/roboto';
 
 const MessageForm = () => {
+
+      //Nav Rendering for Smartphone vs Laptop
+  const [isDesktop, setDesktop] = useState(window.innerWidth > 1000);
+
+  const updateMedia = () => {
+    setDesktop(window.innerWidth > 1000);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
+  });
 
     const style = {
         card: {
@@ -11,8 +23,9 @@ const MessageForm = () => {
             justifyContent:'center', 
             alignItems:'center',
             height: 600,
-            width: "auto",
-            margin: 100,
+            width: (!isDesktop) ? "100%" : "auto",
+            margin: (!isDesktop) ? 0 : 100,
+            marginTop: (!isDesktop) ? "20%" : 100,
             textAlign: "center"
         },
         title: {

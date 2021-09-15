@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useRef, useEffect } from "react";
-import { Paper, Grid, Button, Drawer, List, ListItem, Typography, IconButton, AppBar, Toolbar, useScrollTrigger, Slide } from "@material-ui/core";
+import { Paper, Grid, Button, Drawer, List, ListItem, Typography, IconButton, AppBar, Toolbar, useScrollTrigger, Slide, Modal } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import EmailIcon from '@material-ui/icons/Email';
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -10,6 +10,8 @@ import lybLogo from "./lybLogo3.png";
 import About from "./components/About";
 import Services from './components/Services';
 import Contact from './components/Contact';
+import ContactForm from './components/ContactForm';
+import MessageForm from './components/MessageForm';
  
 
 function App() {
@@ -42,6 +44,26 @@ function App() {
     window.addEventListener("resize", updateMedia);
     return () => window.removeEventListener("resize", updateMedia);
   });
+
+  //Open Form and Message Functions
+  const [openForm, setOpenForm] = useState(false);
+    const [openMessage, setOpenMessage] = useState(false);
+
+    const handleOpen = () => {
+        setOpenForm(true);
+      }
+    
+    const handleClose = () => {
+    setOpenForm(false);
+    }
+
+    const messageOpen = () => {
+        setOpenMessage(true)
+    }
+
+    const messageClose = () => {
+        setOpenMessage(false)
+    }
 
 
 
@@ -96,8 +118,8 @@ function App() {
                 </IconButton>
               </Grid>
               <Grid item xs="10" sm="10" md="10">
-                <Button style={style.navbuttonSmall}>New Patient</Button>
-                <Button style={style.navbuttonSmall}>Message</Button>
+                <Button style={style.navbuttonSmall} onClick={handleOpen}>New Patient</Button>
+                <Button style={style.navbuttonSmall} onClick={messageOpen}>Message</Button>
               </Grid>
             </>
           : <>
@@ -105,13 +127,13 @@ function App() {
           <Button style={style.navbutton} onClick={e => openPage(e, scroll[1])}>About</Button>
           <Button style={style.navbutton} onClick={e => openPage(e, scroll[2])}>Services</Button>
           <Button style={style.navbutton} onClick={e => openPage(e, scroll[3])}>Contact</Button>
-          <Button style={style.navbutton}>New Patient</Button>
-          <Button style={style.navbutton}>Message</Button>
+          <Button style={style.navbutton} onClick={handleOpen}>New Patient</Button>
+          <Button style={style.navbutton} onClick={messageOpen}>Message</Button>
           </>}
           
         </Toolbar>
       </AppBar>
-  
+      
       <Grid container style={{ paddingTop: "3%" }}>
         <Grid md="12" xs="12">
           <Grid item md="12" xs="12" ref={HomeRef}>
@@ -130,6 +152,22 @@ function App() {
           </Grid>
         </Grid>
       </Grid>
+      <Modal
+        open={openForm}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        >
+        <ContactForm />
+      </Modal>
+      <Modal
+        open={openMessage}
+        onClose={messageClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        >
+        <MessageForm />
+      </Modal>
     </div>
   );
 }

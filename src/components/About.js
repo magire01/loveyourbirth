@@ -22,41 +22,43 @@ const About = () => {
 
     const style = {
         font2: {
-            color: "#0671B7",
+            color: "#730099",
             margin: 20,
             fontSize: 18
         },
         font3: {
-            color: "#0671B7",
+            color: "white",
             fontSize: 30,
-            borderBottom: "3px solid #67A3D9",
-            borderRight: "3px solid #67A3D9",
-            backgroundColor: "#F6D2E0",
-            margin: 20,
-            borderRadius: 5
+            borderBottom: "3px solid #730099",
+            borderRight: "3px solid #730099",
+            backgroundColor: "#E68FAE",
+            margin: "auto",
+            borderRadius: 5,
+            width: "60%"
         },
         picture: {
-            width: "60%",
+            width: "80%",
             height: "auto",
-            marginTop: (!isDesktop) ? 20 : 100,
+            marginTop: (!isDesktop) ? 20 : 20,
             borderRadius: 60,
-            border: "5px solid #F6D2E0"
+            border: "2px solid #730099"
         },
         picture2: {
             width: (!isDesktop) ? "100%" : "30%",
             height: "auto"
         },
         title: {
-            fontSize: (!isDesktop) ? 25 : 35,
-            marginBottom: "5%",
-            color: "#0671B7"
+            fontSize: (!isDesktop) ? 30 : 40,
+            color: "#730099"
         },
         section: {
             marginTop: "0%"
         },
         card: {
-            padding: 50,
-            backgroundColor: "#FFCFED",
+            padding: 20,
+            margin: "5%",
+            width: "auto%",
+            height: "auto",
             marginBottom: 20,
             borderRadius: 20
         },
@@ -66,19 +68,21 @@ const About = () => {
         }
     }
     return (
-        <Grid container direction="row">
-            <Grid item md="12" xs="12">
-            {(!isDesktop)
-                    ?
-                    <>
-                        <Typography variant="h4" style={style.title}>Krystal Smith,</Typography>
-                        <Typography variant="h4" style={style.title}>MSN, APRN, CNM</Typography>
-                    </>
-                    : <Typography variant="h4" style={style.title}>Krystal Smith, MSN, APRN, CNM</Typography>
-                        }
-            </Grid>
+        <Grid container direction="row" alignItems="center">
             <Grid item md="6" xs="12" style={style.section}>
-                <img src={ProfilePic} style={style.picture}/>
+                <div style={style.card}>
+                    {(!isDesktop)
+                        ?
+                        <>
+                            <Typography variant="h4" style={style.title}>Krystal Smith,</Typography>
+                            <Typography variant="h4" style={style.title}>MSN, APRN, CNM</Typography>
+                        </>
+                        : <Typography variant="h4" style={style.title}>Krystal Smith, MSN, APRN, CNM</Typography>
+                    }
+                    <CardMedia>
+                        <img src={ProfilePic} style={style.picture}/>
+                    </CardMedia>
+                </div>
             </Grid>
             <Grid item md="6" xs="12" style={style.section}>
                 <div style={style.card2}>

@@ -38,7 +38,8 @@ const Home = () => {
             borderRight: "3px solid #630070",
             backgroundColor: "lightpink",
             margin: 20,
-            borderRadius: 5
+            borderRadius: 5,
+            width: "60%"
         },
         picture: {
             width: "60%",
@@ -60,10 +61,10 @@ const Home = () => {
             marginTop: "5%"
         },
         card: {
-            padding: 50,
-            backgroundColor: "#C8E7F5",
-            marginBottom: 20,
-            borderRadius: 20
+            padding: (!isDesktop) ? 20 : 40,
+            backgroundColor: "#E1F0FA",
+            marginBottom: 5,
+            marginTop: 5
         },
         card2: {
             padding: 10,
@@ -73,16 +74,13 @@ const Home = () => {
     return (
         <Grid container direction="row">
             <Grid item md="12" xs="12">
-                <Card style={style.card} elevation="3">
+                <Paper style={style.card} elevation="3">
                     
-                    <Typography style={style.font}>My mission is to support physiologic pregnancy and birth by providing safe and evidence-based midwifery care in the home setting.</Typography> 
-                    <Typography style={style.font}>Pregnancy and birth bring forth sacred and beautiful physiologic moments for which should be protected through physical and emotional support.</Typography>
-                    <Typography style={style.font}>We will work together through informed consent and shared decision making so you can feel confident in the decisions about your pregnancy and birth.</Typography> 
-                    <Typography style={style.font}>My hope is for you to feel supported, empowered, and to ultimately love your birth experience.</Typography>
+                    <Typography style={style.font}>My mission is to support physiologic pregnancy and birth by providing safe and evidence-based midwifery care in the home setting. Pregnancy and birth bring forth sacred and beautiful physiologic moments for which should be protected through physical and emotional support. We will work together through informed consent and shared decision making so you can feel confident in the decisions about your pregnancy and birth. My hope is for you to feel supported, empowered, and to ultimately love your birth experience.</Typography>
                     <CardMedia>
                         <img src={MidwifePic} style={style.picture2}/>
                     </CardMedia>
-                </Card>   
+                </Paper>   
             </Grid>
         </Grid>
     )

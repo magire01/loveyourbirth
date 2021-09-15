@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useRef, useEffect } from "react";
-import { Paper, Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, useScrollTrigger, Slide, Modal } from "@material-ui/core";
+import { Paper, Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, useScrollTrigger, Slide, Modal, colors } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import EmailIcon from '@material-ui/icons/Email';
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -79,9 +79,11 @@ function App() {
   };
   //colors
   const colorScheme = {
-    navbar: "#67A3D9",
+    navbar: "#A9D1EA",
     navbutton: "white",
-    background1: "#E5COC8"
+    background1: "#E5COC8",
+    newPatient: "#d9b3ff",
+    message: "#FDB7C2"
 
   }
   //style
@@ -94,8 +96,6 @@ function App() {
     page: {
       marginTop: "3%",
       marginBottom: "5%",
-      marginLeft: "1%",
-      marginRight: "1%"
     },
     appbar: {
       backgroundColor: colorScheme.navbar,
@@ -129,26 +129,26 @@ function App() {
       backgroundColor: "white"
     },
     newPatient: {
-      backgroundColor: "purple",
+      backgroundColor: colorScheme.newPatient,
       color: "white",
-      width: "60%",
-      height: 70,
-      fontSize: 20,
+      width: "55%",
+      height: 50,
+      fontSize: (!isDesktop) ? 10 : 20,
       fontWeight: "bold",
       margin: 10,
       borderRadius: 200,
-      border: "3px outset pink"
+      border: "3px outset #E1F0FA"
     },
     message: {
-        backgroundColor: "#F29AFF",
-        color: "white",
-        width: "60%",
-        height: 70,
-        fontSize: 20,
-        fontWeight: "bold",
-        margin: 10,
-        borderRadius: 200,
-        border: "3px outset pink"
+      backgroundColor: colorScheme.message,
+      color: "white",
+      width: "55%",
+      height: 50,
+      fontSize: (!isDesktop) ? 10 : 20,
+      fontWeight: "bold",
+      margin: 10,
+      borderRadius: 200,
+      border: "3px outset #F7E0E3"
     }
   }
   return (
@@ -162,7 +162,7 @@ function App() {
                   <MenuIcon style={style.menuicon} onClick={menuOpen}/>
                 </IconButton>
               </Grid>
-              <Grid item xs="10" sm="10" md="10">
+              <Grid item xs="10" sm="10">
                 <Button style={style.navbuttonSmall} onClick={handleOpen}>New Patient</Button>
                 <Button style={style.navbuttonSmall} onClick={messageOpen}>Message</Button>
               </Grid>
@@ -193,17 +193,8 @@ function App() {
         <Grid item md="12" xs="12">
             <img src={lybLogo} style={style.banner}/>
         </Grid>
-        <Grid item md="12" xs="12" style={style.page}ref={HomeRef}>
-          <Home />
-        </Grid>
-        <Grid item md="12" xs="12" style={style.page}ref={AboutRef}>
-          <About />
-        </Grid>
-        <Grid item md="12" xs="12" style={style.page}ref={ServicesRef}>
-          <Services />
-        </Grid>
-        <Grid item md="6" xs="12">
-          <Button onClick={handleOpen} style={style.newPatient}>New Patient Form</Button>
+        <Grid item md="6" xs="6">
+          <Button onClick={handleOpen} style={style.newPatient}>Schedule a Consultation</Button>
           <Modal
               open={openForm}
               onClose={handleClose}
@@ -213,7 +204,7 @@ function App() {
               <ContactForm />
             </Modal>
         </Grid>
-        <Grid item md="6" xs="12">
+        <Grid item md="6" xs="6">
           <Button onClick={messageOpen} style={style.message}>Send Message</Button>
           <Modal
               open={openMessage}
@@ -224,7 +215,18 @@ function App() {
               <MessageForm />
           </Modal>
         </Grid>
-        <Grid item md="12" xs="12" style={style.page} ref={ContactRef}>
+        <Grid item md="12" xs="12" style={style.page}ref={HomeRef}>
+          <Home />
+        </Grid>
+        <Grid item md="12" xs="12" style={style.page}ref={AboutRef}>
+          <About />
+        </Grid>
+        <Grid item md="12" xs="12" style={style.page}ref={ServicesRef}>
+          <Services />
+        </Grid>
+        <Grid item md="12" xs="12" style={{
+      marginTop: "3%", marginLeft: 0, marginRight:0
+    }} ref={ContactRef}>
           <Contact />
         </Grid>
       </Grid>

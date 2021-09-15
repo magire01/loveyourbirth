@@ -9,64 +9,21 @@ import '@fontsource/roboto';
 const Contact = () => {
 
     const style = {
-        newPatient: {
-            backgroundColor: "purple",
-            color: "white",
-            width: "60%",
-            height: 70,
-            fontSize: 20,
-            fontWeight: "bold",
-            margin: 10,
-            borderRadius: 200,
-            border: "3px outset pink"
-        },
-        message: {
-            backgroundColor: "#F29AFF",
-            color: "white",
-            width: "60%",
-            height: 70,
-            fontSize: 20,
-            fontWeight: "bold",
-            margin: 10,
-            borderRadius: 200,
-            border: "3px outset pink"
-        },
         card: {
-            marginTop: 50,
-            marginBottom: 60,
-            marginRight: "5%",
-            marginLeft: "5%",
+            marginTop: 5,
+            marginBottom: 0,
             paddingTop: 20,
             paddingBottom: 40,
-            backgroundColor: "#0671B7",
+            backgroundColor: "#A9D1EA",
             color: "white",
-            borderRadius: 30
+            borderRadius: 5
         }
-    }
-
-    const [openForm, setOpenForm] = useState(false);
-    const [openMessage, setOpenMessage] = useState(false);
-
-    const handleOpen = () => {
-        setOpenForm(true);
-      }
-    
-    const handleClose = () => {
-    setOpenForm(false);
-    }
-
-    const messageOpen = () => {
-        setOpenMessage(true)
-    }
-
-    const messageClose = () => {
-        setOpenMessage(false)
     }
 
     return (
         <Grid container direction="row">
             <Grid item md="12" xs="12">
-                <Card style={style.card}>
+                <Paper style={style.card}>
                     <CardHeader title="Contact" />
                     <Grid container direction="row" alignItems="center">
                         <Grid item md="4" xs="12">
@@ -79,7 +36,7 @@ const Contact = () => {
                             <Typography>PO Box: 123252</Typography>
                         </Grid>
                     </Grid>
-                </Card>
+                </Paper>
             </Grid>
         </Grid>
     )

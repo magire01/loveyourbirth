@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useRef, useEffect } from "react";
-import { Paper, Grid, Button, Drawer, List, ListItem, Typography, IconButton, AppBar, Toolbar, useScrollTrigger, Slide, Modal } from "@material-ui/core";
+import { Paper, Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, useScrollTrigger, Slide, Modal } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import EmailIcon from '@material-ui/icons/Email';
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -31,6 +31,7 @@ function App() {
   const openPage = (e, page) => {
     e.preventDefault();
     scrollToRef(page);
+    menuClose();
   }
 
   //Nav Rendering for Smartphone vs Laptop
@@ -65,6 +66,17 @@ function App() {
         setOpenMessage(false)
     }
 
+    //mobile menu
+    const [anchorEl, setAnchorEl] = useState(null);
+
+  const menuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const menuClose = () => {
+    setAnchorEl(null);
+  };
+
 
 
   // const pageColor = ["#E4FBFF", "#E4FBFF", "#E4FBFF", "#E4FBFF", "#E4FBFF", "#E4FBFF"]
@@ -89,20 +101,28 @@ function App() {
     },
     appbarSmall: {
       backgroundColor: "purple",
-      position: "fixed",
-      alignItems: "left",
-      height: 60
+      height: 50,
+      position: "flex",
+      paddingRight: 20
     },
     navbutton: {
       color: "white",
-      fontSize: 15
+      fontSize: 15,
+      marginRight: 10,
+      marginLeft: 10
     },
     navbuttonSmall: {
       color: "white",
-      fontSize: 10
+      fontSize: 10,
+      marginLeft: 30
     },
     menuicon: {
-      color: "white"
+      color: "white",
+      position: "flex",
+      alignItems: "left",
+    },
+    mobilemenu: {
+      backgroundColor: "white"
     }
 
   }
@@ -114,13 +134,26 @@ function App() {
           ? <>
               <Grid item xs="2" sm="2" md="2">
                 <IconButton>
-                  <MenuIcon style={style.menuicon}/>
+                  <MenuIcon style={style.menuicon} onClick={menuOpen}/>
                 </IconButton>
               </Grid>
               <Grid item xs="10" sm="10" md="10">
                 <Button style={style.navbuttonSmall} onClick={handleOpen}>New Patient</Button>
                 <Button style={style.navbuttonSmall} onClick={messageOpen}>Message</Button>
               </Grid>
+              <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={menuClose}
+        
+      >
+        <MenuItem style={style.mobilemenu} onClick={e => openPage(e, scroll[0])}>Home</MenuItem>
+        <MenuItem style={style.mobilemenu} onClick={e => openPage(e, scroll[1])}>About</MenuItem>
+        <MenuItem style={style.mobilemenu} onClick={e => openPage(e, scroll[2])}>Services</MenuItem>
+        <MenuItem style={style.mobilemenu} onClick={e => openPage(e, scroll[3])}>Contact</MenuItem>
+      </Menu>
             </>
           : <>
           <Button style={style.navbutton} onClick={e => openPage(e, scroll[0])}>Home</Button>

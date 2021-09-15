@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Paper, Button, Drawer, List, ListItem, Typography, IconButton, Card } from "@material-ui/core";
-
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import QuestionData from "../utilities/questions.json";
 
 import '@fontsource/roboto';
@@ -25,10 +26,11 @@ const ContactForm = () => {
             justifyContent:'center', 
             alignItems:'center',
             height: 600,
-            width: (!isDesktop) ? "100%" : "auto",
+            width: (!isDesktop) ? "97%" : "auto",
             margin: (!isDesktop) ? 0 : 100,
             marginTop: (!isDesktop) ? "20%" : 100,
-            textAlign: "center"
+            textAlign: "center",
+            border: "5px solid purple"
         },
         title: {
             marginTop: 20,
@@ -207,9 +209,12 @@ const ContactForm = () => {
                         <Typography style={style.title}>Please answer the following questions</Typography>
                     </Grid>
                     <Grid item md="1" xs="1">
+                        
                         {(questionNum === 0) 
-                        ? <p> - </p> 
-                        : <button onClick={prevQuestion}> - </button>}
+                        ? <ArrowBackIcon /> 
+                        : <IconButton> 
+                            <ArrowBackIcon onClick={prevQuestion} />
+                         </IconButton>}
                     </Grid>
                     <Grid item md="10" xs="10">
                         <Typography style={style.question}>{QuestionData.data[questionNum].question}</Typography>
@@ -217,8 +222,10 @@ const ContactForm = () => {
                     </Grid>
                     <Grid item md="1" xs="1">
                         {(questionNum === QuestionData.data.length - 1) 
-                        ? <p> + </p> 
-                        : <button onClick={nextQuestion}> + </button>}
+                        ? <ArrowForwardIcon /> 
+                        : <IconButton>
+                            <ArrowForwardIcon onClick={nextQuestion} />
+                          </IconButton>}
                     </Grid>
                     <Grid item md="12" xs="12">
                         {(questionNum === QuestionData.data.length - 1) 

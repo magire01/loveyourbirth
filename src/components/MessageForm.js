@@ -23,10 +23,11 @@ const MessageForm = () => {
             justifyContent:'center', 
             alignItems:'center',
             height: 600,
-            width: (!isDesktop) ? "100%" : "auto",
+            width: (!isDesktop) ? "97%" : "auto",
             margin: (!isDesktop) ? 0 : 100,
             marginTop: (!isDesktop) ? "20%" : 100,
-            textAlign: "center"
+            textAlign: "center",
+            border: "5px solid pink"
         },
         title: {
             marginTop: 20,

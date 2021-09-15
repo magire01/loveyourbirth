@@ -38,7 +38,7 @@ const Contact = () => {
             marginLeft: "5%",
             paddingTop: 20,
             paddingBottom: 40,
-            backgroundColor: "#B80174",
+            backgroundColor: "#0671B7",
             color: "white",
             borderRadius: 30
         }
@@ -65,28 +65,6 @@ const Contact = () => {
 
     return (
         <Grid container direction="row">
-            <Grid item md="6" xs="12">
-                <Button onClick={handleOpen} style={style.newPatient}>New Patient Form</Button>
-                <Modal
-                    open={openForm}
-                    onClose={handleClose}
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description"
-                    >
-                    <ContactForm />
-                </Modal>
-            </Grid>
-            <Grid item md="6" xs="12">
-                <Button onClick={messageOpen} style={style.message}>Send Message</Button>
-                <Modal
-                    open={openMessage}
-                    onClose={messageClose}
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description"
-                    >
-                    <MessageForm />
-                </Modal>
-            </Grid>
             <Grid item md="12" xs="12">
                 <Card style={style.card}>
                     <CardHeader title="Contact" />

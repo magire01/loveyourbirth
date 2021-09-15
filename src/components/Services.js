@@ -10,22 +10,22 @@ const Services = () => {
 
         },
         prenatal: {
-            backgroundColor: "#FFCFED",
-            color: "#630070",
+            backgroundColor: "#F6D2E0",
+            color: "black",
             margin: "2%",
             padding: "5%",
             height: 250
         },
         labor: {
-            backgroundColor: "#EF78D1",
-            color: "white",
+            backgroundColor: "#F8B7CD",
+            color: "black",
             margin: "2%",
             padding: "5%",
             height: 300
         },
         newborn: {
-            backgroundColor: "#FFCFED",
-            color: "#630070",
+            backgroundColor: "#F6D2E0",
+            color: "black",
             margin:"2%",
             padding: "5%",
             height: 250

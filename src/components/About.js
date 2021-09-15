@@ -21,22 +21,17 @@ const About = () => {
   });
 
     const style = {
-        font: {
-            color: "black",
-            margin: (!isDesktop) ? 3 : 20,
-            fontSize: (!isDesktop) ? 20 : 25
-        },
         font2: {
-            color: "#630070",
+            color: "#0671B7",
             margin: 20,
             fontSize: 18
         },
         font3: {
-            color: "#630070",
+            color: "#0671B7",
             fontSize: 30,
-            borderBottom: "3px solid #630070",
-            borderRight: "3px solid #630070",
-            backgroundColor: "lightpink",
+            borderBottom: "3px solid #67A3D9",
+            borderRight: "3px solid #67A3D9",
+            backgroundColor: "#F6D2E0",
             margin: 20,
             borderRadius: 5
         },
@@ -45,7 +40,7 @@ const About = () => {
             height: "auto",
             marginTop: (!isDesktop) ? 20 : 100,
             borderRadius: 60,
-            border: "5px solid #630070"
+            border: "5px solid #F6D2E0"
         },
         picture2: {
             width: (!isDesktop) ? "100%" : "30%",
@@ -54,10 +49,10 @@ const About = () => {
         title: {
             fontSize: (!isDesktop) ? 25 : 35,
             marginBottom: "5%",
-            color: "black"
+            color: "#0671B7"
         },
         section: {
-            marginTop: "5%"
+            marginTop: "0%"
         },
         card: {
             padding: 50,
@@ -73,8 +68,7 @@ const About = () => {
     return (
         <Grid container direction="row">
             <Grid item md="12" xs="12">
-                <Card style={style.card} elevation="3">
-                    {(!isDesktop)
+            {(!isDesktop)
                     ?
                     <>
                         <Typography variant="h4" style={style.title}>Krystal Smith,</Typography>
@@ -82,30 +76,10 @@ const About = () => {
                     </>
                     : <Typography variant="h4" style={style.title}>Krystal Smith, MSN, APRN, CNM</Typography>
                         }
-                    
-                    <CardMedia>
-                        <img src={MidwifePic} style={style.picture2}/>
-                    </CardMedia>
-                    <Typography style={style.font}>My mission is to support physiologic pregnancy and birth by providing safe and evidence-based midwifery care in the home setting.</Typography> 
-                    <Typography style={style.font}>Pregnancy and birth bring forth sacred and beautiful physiologic moments for which should be protected through physical and emotional support.</Typography>
-                    <Typography style={style.font}>We will work together through informed consent and shared decision making so you can feel confident in the decisions about your pregnancy and birth.</Typography> 
-                    <Typography style={style.font}>My hope is for you to feel supported, empowered, and to ultimately love your birth experience.</Typography>
-                </Card>
-                
             </Grid>
-            
-            <Grid item md="12" xs="12">
-                </Grid>
             <Grid item md="6" xs="12" style={style.section}>
                 <img src={ProfilePic} style={style.picture}/>
             </Grid>
-            {/* <Grid item md="6" xs="12" style={style.section}>
-                <Typography variant="h6" style={style.font}>What Care Is Provided?</Typography>
-                <Typography style={style.font}>-Antenatal home visits</Typography>
-                <Typography style={style.font}>Labor and birth care in the home</Typography>
-                <Typography style={style.font}>Postpartum care home visits</Typography>
-                <Typography style={style.font}>Newborn care home visits up to 28 days of life</Typography>
-            </Grid> */}
             <Grid item md="6" xs="12" style={style.section}>
                 <div style={style.card2}>
                     <Typography variant="h6" style={style.font3}>Experience</Typography>

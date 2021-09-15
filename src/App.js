@@ -7,6 +7,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import '@fontsource/roboto';
 import lybLogo from "./lybLogo3.png";
 
+import Home from './components/Home';
 import About from "./components/About";
 import Services from './components/Services';
 import Contact from './components/Contact';
@@ -76,11 +77,14 @@ function App() {
   const menuClose = () => {
     setAnchorEl(null);
   };
+  //colors
+  const colorScheme = {
+    navbar: "#67A3D9",
+    navbutton: "white",
+    background1: "#E5COC8"
 
-
-
-  // const pageColor = ["#E4FBFF", "#E4FBFF", "#E4FBFF", "#E4FBFF", "#E4FBFF", "#E4FBFF"]
-
+  }
+  //style
   const style = {
     banner: {
       width: (!isDesktop) ? "100%" : "45%",
@@ -94,37 +98,58 @@ function App() {
       marginRight: "1%"
     },
     appbar: {
-      backgroundColor: "purple",
+      backgroundColor: colorScheme.navbar,
       position: "fixed",
       alignItems: "center",
       height: 60
     },
     appbarSmall: {
-      backgroundColor: "purple",
+      backgroundColor: colorScheme.navbar,
       height: 50,
       position: "flex",
       paddingRight: 20
     },
     navbutton: {
-      color: "white",
+      color: colorScheme.navbutton,
       fontSize: 15,
       marginRight: 10,
       marginLeft: 10
     },
     navbuttonSmall: {
-      color: "white",
+      color: colorScheme.navbutton,
       fontSize: 10,
       marginLeft: 30
     },
     menuicon: {
-      color: "white",
+      color: colorScheme.navbutton,
       position: "flex",
       alignItems: "left",
     },
     mobilemenu: {
       backgroundColor: "white"
+    },
+    newPatient: {
+      backgroundColor: "purple",
+      color: "white",
+      width: "60%",
+      height: 70,
+      fontSize: 20,
+      fontWeight: "bold",
+      margin: 10,
+      borderRadius: 200,
+      border: "3px outset pink"
+    },
+    message: {
+        backgroundColor: "#F29AFF",
+        color: "white",
+        width: "60%",
+        height: 70,
+        fontSize: 20,
+        fontWeight: "bold",
+        margin: 10,
+        borderRadius: 200,
+        border: "3px outset pink"
     }
-
   }
   return (
     <div className="App">
@@ -132,7 +157,7 @@ function App() {
         <Toolbar>
           {(!isDesktop)
           ? <>
-              <Grid item xs="2" sm="2" md="2">
+              <Grid item>
                 <IconButton>
                   <MenuIcon style={style.menuicon} onClick={menuOpen}/>
                 </IconButton>
@@ -142,24 +167,21 @@ function App() {
                 <Button style={style.navbuttonSmall} onClick={messageOpen}>Message</Button>
               </Grid>
               <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={menuClose}
-        
-      >
-        <MenuItem style={style.mobilemenu} onClick={e => openPage(e, scroll[0])}>Home</MenuItem>
-        <MenuItem style={style.mobilemenu} onClick={e => openPage(e, scroll[1])}>About</MenuItem>
-        <MenuItem style={style.mobilemenu} onClick={e => openPage(e, scroll[2])}>Services</MenuItem>
-        <MenuItem style={style.mobilemenu} onClick={e => openPage(e, scroll[3])}>Contact</MenuItem>
-      </Menu>
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={menuClose}
+              >
+                {page.map((data, index) => (
+                    <MenuItem style={style.mobilemenu} onClick={e => openPage(e, scroll[index])}>{data}</MenuItem>
+                ))}
+              </Menu>
             </>
           : <>
-          <Button style={style.navbutton} onClick={e => openPage(e, scroll[0])}>Home</Button>
-          <Button style={style.navbutton} onClick={e => openPage(e, scroll[1])}>About</Button>
-          <Button style={style.navbutton} onClick={e => openPage(e, scroll[2])}>Services</Button>
-          <Button style={style.navbutton} onClick={e => openPage(e, scroll[3])}>Contact</Button>
+          {page.map((data, index) => (
+            <Button style={style.navbutton} onClick={e => openPage(e, scroll[index])}>{data}</Button>
+          ))}
           <Button style={style.navbutton} onClick={handleOpen}>New Patient</Button>
           <Button style={style.navbutton} onClick={messageOpen}>Message</Button>
           </>}
@@ -167,40 +189,45 @@ function App() {
         </Toolbar>
       </AppBar>
       
-      <Grid container style={{ paddingTop: "3%" }}>
-        <Grid md="12" xs="12">
-          <Grid item md="12" xs="12" ref={HomeRef}>
-            <div>
-              <img src={lybLogo} style={style.banner}/>
-            </div>
-          </Grid>
-          <Grid item md="12" xs="12" style={style.page}ref={AboutRef}>
-            <About />
-          </Grid>
-          <Grid item md="12" xs="12" style={style.page}ref={ServicesRef}>
-            <Services />
-          </Grid>
-          <Grid item md="12" xs="12" style={style.page} ref={ContactRef}>
-              <Contact />
-          </Grid>
+      <Grid container direction="row" alignItems="center" style={{ paddingTop: "3%" }}>
+        <Grid item md="12" xs="12">
+            <img src={lybLogo} style={style.banner}/>
+        </Grid>
+        <Grid item md="12" xs="12" style={style.page}ref={HomeRef}>
+          <Home />
+        </Grid>
+        <Grid item md="12" xs="12" style={style.page}ref={AboutRef}>
+          <About />
+        </Grid>
+        <Grid item md="12" xs="12" style={style.page}ref={ServicesRef}>
+          <Services />
+        </Grid>
+        <Grid item md="6" xs="12">
+          <Button onClick={handleOpen} style={style.newPatient}>New Patient Form</Button>
+          <Modal
+              open={openForm}
+              onClose={handleClose}
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description"
+              >
+              <ContactForm />
+            </Modal>
+        </Grid>
+        <Grid item md="6" xs="12">
+          <Button onClick={messageOpen} style={style.message}>Send Message</Button>
+          <Modal
+              open={openMessage}
+              onClose={messageClose}
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description"
+              >
+              <MessageForm />
+          </Modal>
+        </Grid>
+        <Grid item md="12" xs="12" style={style.page} ref={ContactRef}>
+          <Contact />
         </Grid>
       </Grid>
-      <Modal
-        open={openForm}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        >
-        <ContactForm />
-      </Modal>
-      <Modal
-        open={openMessage}
-        onClose={messageClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        >
-        <MessageForm />
-      </Modal>
     </div>
   );
 }

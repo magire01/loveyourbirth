@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Paper, Button, Drawer, List, ListItem, Typography, IconButton, Card, CardMedia } from "@material-ui/core";
 
 import '@fontsource/roboto';
@@ -8,17 +8,28 @@ import MidwifePic from "../midwife1.png";
 
 const About = () => {
 
+    //Nav Rendering for Smartphone vs Laptop
+  const [isDesktop, setDesktop] = useState(window.innerWidth > 1000);
+
+  const updateMedia = () => {
+    setDesktop(window.innerWidth > 1000);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
+  });
+
     const style = {
         font: {
             color: "black",
-            margin: 20,
-            fontSize: 25
+            margin: (!isDesktop) ? 3 : 20,
+            fontSize: (!isDesktop) ? 20 : 25
         },
         font2: {
             color: "#630070",
             margin: 20,
-            fontSize: 18,
-
+            fontSize: 18
         },
         font3: {
             color: "#630070",
@@ -30,17 +41,18 @@ const About = () => {
             borderRadius: 5
         },
         picture: {
-            width: "80%",
+            width: "60%",
             height: "auto",
-            marginTop: 30,
-            borderRadius: 180,
-            border: "3px solid #F6CBFF"
+            marginTop: (!isDesktop) ? 20 : 100,
+            borderRadius: 60,
+            border: "5px solid #630070"
         },
         picture2: {
-            width: "40%",
+            width: (!isDesktop) ? "100%" : "30%",
             height: "auto"
         },
         title: {
+            fontSize: (!isDesktop) ? 25 : 35,
             marginBottom: "5%",
             color: "black"
         },
@@ -62,7 +74,15 @@ const About = () => {
         <Grid container direction="row">
             <Grid item md="12" xs="12">
                 <Card style={style.card} elevation="3">
-                    <Typography variant="h4" style={style.title}>Krystal Smith, MSN, APRN, CNM</Typography>
+                    {(!isDesktop)
+                    ?
+                    <>
+                        <Typography variant="h4" style={style.title}>Krystal Smith,</Typography>
+                        <Typography variant="h4" style={style.title}>MSN, APRN, CNM</Typography>
+                    </>
+                    : <Typography variant="h4" style={style.title}>Krystal Smith, MSN, APRN, CNM</Typography>
+                        }
+                    
                     <CardMedia>
                         <img src={MidwifePic} style={style.picture2}/>
                     </CardMedia>

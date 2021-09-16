@@ -41,10 +41,13 @@ const Home = () => {
         <Grid container direction="row">
             <Grid item md="12" xs="12">
                 <Paper style={style.card} elevation="3">
-                    <Typography style={style.font}>My mission is to support physiologic pregnancy and birth by providing safe and evidence-based midwifery care in the home setting. Pregnancy and birth bring forth sacred and beautiful physiologic moments for which should be protected through physical and emotional support. We will work together through informed consent and shared decision making so you can feel confident in the decisions about your pregnancy and birth. My hope is for you to feel supported, empowered, and to ultimately love your birth experience.</Typography>
+                     <Typography style={style.font}>“You are a midwife, assisting at someone else’s birth. Do good without show or fuss. Facilitate what is happening rather than what you think ought to be happening. If you must take the lead, lead so that the mother is helped, yet still free and in charge. When the baby is born, the mother will rightly say, “We did it ourselves!”</Typography>
+                    <Typography style={style.font}>-Tao Te Ching</Typography>
                     <CardMedia>
                         <img src={MidwifePic} style={style.picture2}/>
                     </CardMedia>
+                    <Typography style={style.font}>My mission is to support physiologic pregnancy and birth by providing safe and evidence-based midwifery care in the home setting. Pregnancy and birth bring forth sacred and beautiful physiologic moments for which should be protected through physical and emotional support. We will work together through informed consent and shared decision making so you can feel confident in the decisions about your pregnancy and birth. My hope is for you to feel supported, empowered, and to ultimately love your birth experience.</Typography>
+                   
                 </Paper>   
             </Grid>
         </Grid>

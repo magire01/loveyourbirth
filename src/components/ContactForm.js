@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Button, Typography, IconButton, Card, LinearProgress } from "@material-ui/core";
+import { Grid, Button, Typography, IconButton, LinearProgress } from "@material-ui/core";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import QuestionData from "../utilities/questions.json";
@@ -23,10 +23,6 @@ const ContactForm = () => {
     //progress bar
     const point = 100/QuestionData.data.length
     const [progress, setProgress] = useState(point)
-    // useEffect(() => {
-    //     const point = 100/QuestionData.data.length
-    //     setProgress(progress + point)
-    // }, [questionNum])
 
     const nextQuestion = (e) => {
         e.preventDefault();

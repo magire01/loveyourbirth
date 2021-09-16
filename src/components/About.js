@@ -33,9 +33,9 @@ const About = () => {
             width: "60%"
         },
         picture: {
-            width: "80%",
+            width: (!isDesktop) ? "80%" : "65%",
             height: "auto",
-            marginTop: (!isDesktop) ? 20 : 20,
+            marginTop: (!isDesktop) ? 20 : 40,
             borderRadius: 60,
             border: "2px solid #730099"
         },
@@ -48,7 +48,8 @@ const About = () => {
             color: "#730099"
         },
         section: {
-            marginTop: "0%"
+            marginTop: 0,
+            height: (!isDesktop) ? "auto" : 400
         },
         card: {
             padding: 20,
@@ -59,7 +60,7 @@ const About = () => {
             borderRadius: 20
         },
         card2: {
-            padding: 10,
+            paddingTop: 40,
             margin: 15
         },
         cardMessage: {
@@ -95,9 +96,11 @@ const About = () => {
             <Grid item md="6" xs="12" style={style.section}>
                 <div style={style.card2}>
                     <Typography variant="h6" style={style.font3}>Experience</Typography>
-                    <Typography style={style.font2}>Master’s degree in the Science of Nurse-Midwifery</Typography>
-                    <Typography style={style.font2}>Registered Nurse in Labor &amp; Delivery and Postpartum for 5.5 years</Typography>
-                    <Typography style={style.font2}>Midwifery Clinical experience in the home setting</Typography>
+                    <Typography style={style.font2}>Master’s degree in the Science of Nurse-Midwifery (2021)</Typography>
+                    <Typography style={style.font2}>Registered Nurse in Labor &amp; Delivery and Postpartum for 5.5 years (2016)</Typography>
+                    <Typography style={style.font2}>Certified Nurse Midwife through AMCB (2021)</Typography>
+                    <Typography style={style.font2}>APRN Kentucky License (2021)</Typography>
+                    <Typography style={style.font2}>Midwifery Clinical Experience in the Home Setting (2020)</Typography>
                     <Typography style={style.font2}>Neonatal resuscitation certified</Typography>
                     <Typography style={style.font2}>BLS CPR certified</Typography>
                 </div>

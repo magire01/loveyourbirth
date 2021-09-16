@@ -15,7 +15,6 @@ import Contact from './components/Contact';
 import ContactForm from './components/ContactForm';
 import MessageForm from './components/MessageForm';
  
-
 const App = () => {
   //Scroll Nav
   const scrollToRef = (ref) => window.scrollTo({

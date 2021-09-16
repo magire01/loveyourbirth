@@ -1,10 +1,11 @@
 import './App.css';
 import React, { useState, useRef, useEffect } from "react";
-import { Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, Modal } from "@material-ui/core";
+import { Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, Modal, Card } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import EmailIcon from '@material-ui/icons/Email';
 import HomeIcon from '@material-ui/icons/Home';
+import CloseIcon from '@material-ui/icons/Close';
 import '@fontsource/roboto';
 import lybLogo from "./lybLogo3.png";
 import Home from './components/Home';
@@ -146,6 +147,35 @@ const App = () => {
         margin: 10,
         borderRadius: 200,
         border: "3px outset #F7E0E3"
+      },
+      contactCard: {
+        display: 'fixed',  
+        justifyContent:'center', 
+        alignItems:'center',
+        height: (!isDesktop) ? "60%" : "80%",
+        width: (!isDesktop) ? "97%" : "auto",
+        margin: (!isDesktop) ? 0 : 100,
+        marginTop: (!isDesktop) ? 0 : 100,
+        textAlign: "center",
+        border: "5px solid purple"
+      },
+      messageCard: {
+        display: 'fixed',  
+        justifyContent:'center', 
+        alignItems:'center',
+        height: (!isDesktop) ? "60%" : "80%",
+        width: (!isDesktop) ? "97%" : "auto",
+        margin: (!isDesktop) ? 0 : 100,
+        marginTop: (!isDesktop) ? 0 : 100,
+        textAlign: "center",
+        border: "5px solid pink",
+        backgroundColor: "white"
+      },
+      messageTitle: {
+        color: "#ff3399"
+      },
+      closeIcon: {
+        color: "black"
       }
     }
   return (
@@ -227,7 +257,18 @@ const App = () => {
               aria-labelledby="simple-modal-title"
               aria-describedby="simple-modal-description"
               >
-              <ContactForm />
+              <>
+              <Card style={style.contactCard}>
+                <Grid item md="11" xs="11">
+                </Grid>
+                <Grid item md="1" xs="1">
+                  <IconButton>
+                    <CloseIcon style={style.closeIcon} onClick={handleClose}/>
+                  </IconButton>
+                </Grid>
+                <ContactForm />
+              </Card>
+              </>
             </Modal>
         </Grid>
         <Grid item md="6" xs="6">
@@ -238,7 +279,17 @@ const App = () => {
               aria-labelledby="simple-modal-title"
               aria-describedby="simple-modal-description"
               >
-              <MessageForm />
+              <Card style={style.messageCard}>
+                <Grid item md="11" xs="11">
+                <Typography style={style.messageTitle}>Email Us</Typography>
+                </Grid>
+                <Grid item md="1" xs="1">
+                  <IconButton>
+                    <CloseIcon style={style.closeIcon} onClick={messageClose}/>
+                  </IconButton>
+                </Grid>
+                <MessageForm />
+              </Card>
           </Modal>
         </Grid>
         <Grid item md="12" xs="12" style={style.page}>

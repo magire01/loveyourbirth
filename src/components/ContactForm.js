@@ -118,16 +118,16 @@ const ContactForm = () => {
         question: {
             height: (!isDesktop) ? "50%" : "80%",
             marginTop: 20,
-            marginBottom: (!isDesktop) ? 40 : 10,
+            marginBottom: (!isDesktop) ? 15 : 10,
             color: "purple",
-            fontSize: (!isDesktop) ? 18 : 30,
+            fontSize: (!isDesktop) ? 15 : 30,
             fontWeight: "bold"
         },
         answerText: {
             marginTop: (!isDesktop) ? 10 : 20,
-            marginBottom: (!isDesktop) ? 20 : 10,
+            marginBottom: (!isDesktop) ? 10 : 10,
             color: "purple",
-            fontSize: (!isDesktop) ? 12 : 20,
+            fontSize: (!isDesktop) ? 10 : 20,
             fontWeight: "bold"
         },
         input: {
@@ -166,7 +166,7 @@ const ContactForm = () => {
         },
         largeInput: {
             width: (!isDesktop) ? "100%": 500,
-            height: (!isDesktop) ? "90%": 200
+            height: (!isDesktop) ? "70%": 200
         },
         progress: {
             margin: "5%",
@@ -222,7 +222,7 @@ const ContactForm = () => {
     
     return (
         <>
-            <Card style={style.card}>
+            
                 <Grid container direction="row" alignItems="center" justifyContent="center">
                     <Grid item md="12" xs="12">
                         <LinearProgress variant="determinate" value={progress} style={style.progress} />
@@ -253,7 +253,7 @@ const ContactForm = () => {
                         : <Button onClick={nextQuestion} style={style.submit}>Next</Button>}
                     </Grid>        
                 </Grid>
-            </Card>
+            
         </>
     )
 }

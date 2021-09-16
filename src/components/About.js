@@ -61,6 +61,18 @@ const About = () => {
         card2: {
             padding: 10,
             margin: 15
+        },
+        cardMessage: {
+            display: 'fixed',  
+            justifyContent:'center', 
+            alignItems:'center',
+            height: (!isDesktop) ? "60%" : "80%",
+            width: (!isDesktop) ? "97%" : "auto",
+            margin: (!isDesktop) ? 0 : 100,
+            marginTop: (!isDesktop) ? 0 : 100,
+            textAlign: "center",
+            border: "5px solid pink",
+            backgroundColor: "white"
         }
     }
     return (

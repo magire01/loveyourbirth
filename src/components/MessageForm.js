@@ -83,7 +83,7 @@ const MessageForm = () => {
         },
         largeInput: {
             width: (!isDesktop) ? "100%": 500,
-            height: (!isDesktop) ? 150 : 200
+            height: (!isDesktop) ? 100 : 200
         },
         label: {
             height: (!isDesktop) ? "50%" : "80%",
@@ -97,11 +97,7 @@ const MessageForm = () => {
     
     return (
         <>
-            <Card style={style.card}>
                 <Grid container direction="row" alignItems="center" justifyContent="center">
-                    <Grid item md="12" xs="12">
-                        <Typography style={style.title}>Email Us</Typography>
-                    </Grid>
                     <Grid item md="10" xs="10">
                         <Typography style={style.label}>Name</Typography>
                         <input style={style.smallInput} onChange={handleMessageName}/>
@@ -122,7 +118,6 @@ const MessageForm = () => {
                         <Button style={style.submit}>Send</Button>
                     </Grid>        
                 </Grid>
-            </Card>
         </>
     )
 }

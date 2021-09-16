@@ -7,31 +7,36 @@
       },
       {
          "id": 1,
+         "question": "Contact",
+         "type": "text"
+      },
+      {
+         "id": 2,
             "question": "Is this your first pregnancy?",
             "type": "choice" 
       },
       {
-         "id": 4,
+         "id": 3,
          "question": "How Do you Envision Your Birth?",
          "type": "text" 
       },
       {
-         "id": 5,
+         "id": 4,
          "question": "Why are you interested home birth",
          "type": "text" 
       },
       {
-         "id": 6,
+         "id": 5,
          "question": "What questions do you have about midwifery care, our role and responsibility, training and eduction?",
          "type": "text" 
       },
       {
-         "id": 7,
+         "id": 6,
          "question": "Do you have any fears, concerns, or questions you’d like to discuss?",
          "type": "text" 
       },
       {
-         "id": 8,
+         "id": 7,
          "question": "How did you hear about Love your Birth Midwifery, PLLC?",
          "type": "text" 
       }

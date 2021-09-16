@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Button, Typography, Card } from "@material-ui/core";
-
 import '@fontsource/roboto';
 
 const MessageForm = () => {
@@ -64,9 +63,6 @@ const MessageForm = () => {
             marginBottom: 20
         }
     }
-
-    
-
     
     return (
         <>

@@ -10,7 +10,9 @@ import '@fontsource/roboto';
 import lybLogo from "./lybLogo3.png";
 import Home from './components/Home';
 import About from "./components/About";
-import Services from './components/Services';
+import Prenatal from './components/Prenatal';
+import Birth from './components/Birth';
+import Newborn from './components/Newborn';
 import Contact from './components/Contact';
 import ContactForm from './components/ContactForm';
 import MessageForm from './components/MessageForm';
@@ -25,8 +27,13 @@ const App = () => {
   const ContactRef = useRef()
   const AboutRef = useRef()
   const ServicesRef = useRef()
+  const PrenatalRef = useRef();
+  const BirthRef = useRef();
+  const NewbornRef = useRef();
   const scroll = [HomeRef, AboutRef, ServicesRef, ContactRef]
-  const page = ["Home", "About", "Services", "Contact"]
+  const page = ["About", "Services", "Contact"]
+  const mobilePage = ["About", "Prenatal", "Birth", "Newborn", "Contact"]
+  const mobileScroll = [HomeRef, AboutRef, PrenatalRef, BirthRef, NewbornRef, ContactRef]
 
   const openPage = (e, page) => {
     e.preventDefault();
@@ -193,7 +200,7 @@ const App = () => {
               </Grid>
               <Grid item>
                 <IconButton>
-                  <EmailIcon style={style.menuicon} onClick={messageOpen}/>
+                  <HomeIcon style={style.menuicon} onClick={e => openPage(e, scroll[0])}/>
                 </IconButton>
               </Grid>
               <Grid item>
@@ -203,7 +210,7 @@ const App = () => {
               </Grid>
               <Grid item>
                 <IconButton>
-                  <HomeIcon style={style.menuicon} onClick={e => openPage(e, scroll[0])}/>
+                  <EmailIcon style={style.menuicon} onClick={messageOpen}/>
                 </IconButton>
               </Grid>
               <Menu
@@ -213,20 +220,20 @@ const App = () => {
                 open={Boolean(anchorEl)}
                 onClose={menuClose}
               >
-                {page.map((data, index) => (
-                    <MenuItem style={style.mobilemenu} onClick={e => openPage(e, scroll[index])}>{data}</MenuItem>
+                {mobilePage.map((data, index) => (
+                    <MenuItem style={style.mobilemenu} onClick={e => openPage(e, mobileScroll[index + 1])}>{data}</MenuItem>
                 ))}
               </Menu>
             </>
           : <>
           <Grid item md="12">
           {page.map((data, index) => (
-            <Button style={style.navbutton} onClick={e => openPage(e, scroll[index])}>{data}</Button>
+            <Button style={style.navbutton} onClick={e => openPage(e, scroll[index + 1])}>{data}</Button>
           ))}
           </Grid>
           <Grid item style={style.icons}>
             <IconButton>
-              <EmailIcon style={style.icons} onClick={messageOpen}/>
+              <HomeIcon style={style.icons} onClick={e => openPage(e, scroll[0])}/>
             </IconButton>
           </Grid>
           <Grid item style={style.icons}>
@@ -236,7 +243,7 @@ const App = () => {
           </Grid>
           <Grid item style={style.icons}>
             <IconButton>
-              <HomeIcon style={style.icons} onClick={e => openPage(e, scroll[0])}/>
+              <EmailIcon style={style.icons} onClick={messageOpen}/>
             </IconButton>
           </Grid>
           </>}
@@ -298,7 +305,17 @@ const App = () => {
           <About />
         </Grid>
         <Grid item md="12" xs="12" style={style.page}ref={ServicesRef}>
-          <Services />
+          <Grid container direction="row" alignItems="center" justifyContent="center">
+            <Grid item md="4" xs="12" ref={PrenatalRef}>
+              <Prenatal />
+            </Grid>
+            <Grid item md="4" xs="12" ref={BirthRef}>
+              <Birth />
+            </Grid>
+            <Grid item md="4" xs="12" ref={NewbornRef}>
+              <Newborn />
+            </Grid>
+          </Grid>
         </Grid>
         <Grid item md="12" xs="12" style={{
       marginTop: "3%", marginLeft: 0, marginRight:0

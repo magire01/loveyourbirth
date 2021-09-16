@@ -31,7 +31,6 @@ const Services = () => {
         newborn: {
             backgroundColor: colorScheme.newBornCard,
             color: "black",
-            margin:"1%",
             padding: "5%",
             height: 250
         },
@@ -54,15 +53,18 @@ const Services = () => {
             {/* <Grid item md="12" xs="12">
                 <Typography style={style.title}>Our Services</Typography>
             </Grid> */}
-            <Grid item md="4" xs="12" style={style.prenatal}>
+            <Grid item md="4" xs="12">
+                <div style={style.prenatal}>
                 <FavoriteIcon style={style.heart}/>
                 <Typography variant="subtitle1" style={style.subtitle}>Pregnancy</Typography>
                 <Typography>SomeTextHere</Typography>
                 <Typography>SomeTextHere</Typography>
                 <Typography>SomeTextHere</Typography>
                 <Typography>SomeTextHere</Typography>
+                </div>
             </Grid>
-            <Grid item md="4" xs="12" style={style.labor}>
+            <Grid item md="4" xs="12">
+                <div style={style.labor}>
                 <FavoriteIcon style={style.heart}/>
                 <Typography variant="subtitle1" style={style.subtitle}>Labor & Birth</Typography>
                 <Typography>SomeTextHere</Typography>
@@ -71,8 +73,10 @@ const Services = () => {
                 <Typography>SomeTextHere</Typography>
                 <Typography>SomeTextHere</Typography>
                 <Typography>SomeTextHere</Typography>
+                </div>
             </Grid>
-            <Grid item md="4" xs="12" style={style.newborn}>
+            <Grid item md="4" xs="12">
+                <div style={style.newborn}>
                 <FavoriteIcon style={style.heart}/>
                 <Typography variant="subtitle1" style={style.subtitle}>Postpartum & Newborn</Typography>
                 <Typography>SomeTextHere</Typography>
@@ -80,6 +84,7 @@ const Services = () => {
                 <Typography>SomeTextHere</Typography>
                 <Typography>SomeTextHere</Typography>
                 <Typography>SomeTextHere</Typography>
+                </div>
             </Grid>
         </Grid>
     )

@@ -2,6 +2,9 @@ import './App.css';
 import React, { useState, useRef, useEffect } from "react";
 import { Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, Modal } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import FacebookIcon from '@material-ui/icons/Facebook';
+import EmailIcon from '@material-ui/icons/Email';
+import HomeIcon from '@material-ui/icons/Home';
 import '@fontsource/roboto';
 import lybLogo from "./lybLogo3.png";
 import Home from './components/Home';
@@ -114,6 +117,11 @@ const App = () => {
         position: "flex",
         alignItems: "left",
       },
+      icons: {
+        color: colorScheme.navbutton,
+        position: "flex",
+        alignItems: "right",
+      },
       mobilemenu: {
         backgroundColor: "white"
       },
@@ -152,8 +160,22 @@ const App = () => {
                 </IconButton>
               </Grid>
               <Grid item xs="10" sm="10">
-                <Button style={style.navbuttonSmall} onClick={handleOpen}>New Patient</Button>
-                <Button style={style.navbuttonSmall} onClick={messageOpen}>Message</Button>
+                
+              </Grid>
+              <Grid item>
+                <IconButton>
+                  <EmailIcon style={style.menuicon} onClick={messageOpen}/>
+                </IconButton>
+              </Grid>
+              <Grid item>
+                <IconButton>
+                  <FacebookIcon style={style.menuicon}/>
+                </IconButton>
+              </Grid>
+              <Grid item>
+                <IconButton>
+                  <HomeIcon style={style.menuicon} onClick={e => openPage(e, scroll[0])}/>
+                </IconButton>
               </Grid>
               <Menu
                 id="simple-menu"
@@ -168,11 +190,26 @@ const App = () => {
               </Menu>
             </>
           : <>
+          <Grid item md="12">
           {page.map((data, index) => (
             <Button style={style.navbutton} onClick={e => openPage(e, scroll[index])}>{data}</Button>
           ))}
-          <Button style={style.navbutton} onClick={handleOpen}>New Patient</Button>
-          <Button style={style.navbutton} onClick={messageOpen}>Message</Button>
+          </Grid>
+          <Grid item style={style.icons}>
+            <IconButton>
+              <EmailIcon style={style.icons} onClick={messageOpen}/>
+            </IconButton>
+          </Grid>
+          <Grid item style={style.icons}>
+            <IconButton>
+              <FacebookIcon style={style.icons}/>
+            </IconButton>
+          </Grid>
+          <Grid item style={style.icons}>
+            <IconButton>
+              <HomeIcon style={style.icons} onClick={e => openPage(e, scroll[0])}/>
+            </IconButton>
+          </Grid>
           </>}
           
         </Toolbar>

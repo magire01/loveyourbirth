@@ -109,7 +109,7 @@ const ContactForm = () => {
             marginTop: (!isDesktop) ? 0 : 100,
             textAlign: "center",
             border: "5px solid purple",
-            backgroundColor: "#f7e0e3"
+            backgroundColor: "white"
         },
         title: {
             marginTop: 20,
@@ -124,19 +124,20 @@ const ContactForm = () => {
             fontWeight: "bold"
         },
         answerText: {
+            marginTop: (!isDesktop) ? 10 : 20,
+            marginBottom: (!isDesktop) ? 20 : 10,
             color: "purple",
-            marginTop: "5%"
+            fontSize: (!isDesktop) ? 12 : 20,
+            fontWeight: "bold"
         },
         input: {
             marginTop: 20,
             marginBottom: 20
         },
         button: {
-            marginTop: 20,
             marginBottom: 20
         },
         activeButton: {
-            marginTop: 20,
             marginBottom: 20,
             backgroundColor: "blue",
             color: "white"

@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import { Grid, Paper, Button, Drawer, List, ListItem, Typography, IconButton, Modal, Card, CardHeader } from "@material-ui/core";
-
-import ContactForm from "./ContactForm";
-import MessageForm from "./MessageForm";
-
 import '@fontsource/roboto';
 
 const Contact = () => {
-
+    //Style
     const style = {
         card: {
             marginTop: 5,
@@ -19,7 +15,6 @@ const Contact = () => {
             borderRadius: 5
         }
     }
-
     return (
         <Grid container direction="row">
             <Grid item md="12" xs="12">

@@ -34,8 +34,7 @@
             "id": 6,
             "question": "What questions do you have about midwifery care, our role and responsibility, training and eduction?",
             "type": "text" 
-         }
-         ,
+         },
          {
             "id": 7,
             "question": "Do you have any fears, concerns, or questions you’d like to discuss?",

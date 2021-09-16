@@ -5,18 +5,36 @@ import '@fontsource/roboto';
 
 const MessageForm = () => {
 
-      //Nav Rendering for Smartphone vs Laptop
-  const [isDesktop, setDesktop] = useState(window.innerWidth > 1000);
+    //Nav Rendering for Smartphone vs Laptop
+    const [isDesktop, setDesktop] = useState(window.innerWidth > 1000);
+    const updateMedia = () => {
+        setDesktop(window.innerWidth > 1000);
+    };
+    useEffect(() => {
+        window.addEventListener("resize", updateMedia);
+        return () => window.removeEventListener("resize", updateMedia);
+    });
 
-  const updateMedia = () => {
-    setDesktop(window.innerWidth > 1000);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", updateMedia);
-    return () => window.removeEventListener("resize", updateMedia);
-  });
-
+    //Send Email
+    const [message, setMessage] = useState({
+            name: "",
+            email: "",
+            phone: "",
+            text: ""
+        })
+    const handleMessageName = (e) => {
+        setMessage({ ...message, name: e.target.value })
+    }
+    const handleMessageEmail = (e) => {
+        setMessage({ ...message, email: e.target.value })
+    }
+    const handleMessagePhone = (e) => {
+        setMessage({ ...message, phone: e.target.value })
+    }
+    const handleMessageText = (e) => {
+        setMessage({ ...message, text: e.target.value })
+    }
+    //Style
     const style = {
         card: {
             display: 'absolute',  
@@ -47,25 +65,7 @@ const MessageForm = () => {
         }
     }
 
-    const [message, setMessage] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        text: ""
-    })
-
-    const handleMessageName = (e) => {
-        setMessage({ ...message, name: e.target.value })
-    }
-    const handleMessageEmail = (e) => {
-        setMessage({ ...message, email: e.target.value })
-    }
-    const handleMessagePhone = (e) => {
-        setMessage({ ...message, phone: e.target.value })
-    }
-    const handleMessageText = (e) => {
-        setMessage({ ...message, text: e.target.value })
-    }
+    
 
     
     return (

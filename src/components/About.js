@@ -9,17 +9,16 @@ import MidwifePic from "../midwife1.png";
 const About = () => {
 
     //Nav Rendering for Smartphone vs Laptop
-  const [isDesktop, setDesktop] = useState(window.innerWidth > 1000);
-
-  const updateMedia = () => {
-    setDesktop(window.innerWidth > 1000);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", updateMedia);
-    return () => window.removeEventListener("resize", updateMedia);
-  });
-
+    const [isDesktop, setDesktop] = useState(window.innerWidth > 1000);
+    const updateMedia = () => {
+        setDesktop(window.innerWidth > 1000);
+    };
+    useEffect(() => {
+        window.addEventListener("resize", updateMedia);
+        return () => window.removeEventListener("resize", updateMedia);
+    });
+    
+    //Style
     const style = {
         font2: {
             color: "#730099",

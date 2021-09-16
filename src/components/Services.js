@@ -4,7 +4,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import '@fontsource/roboto';
 
 const Services = () => {
-
+    //Colors
     const colorScheme = {
         prenatalCard: "white",
         laborCard: "white",
@@ -12,11 +12,8 @@ const Services = () => {
         title: "black",
         font: "black",
     }
-
+    //Style
     const style = {
-        body: {
-
-        },
         prenatal: {
             backgroundColor: colorScheme.prenatalCard,
             color: "black",
@@ -57,40 +54,33 @@ const Services = () => {
             {/* <Grid item md="12" xs="12">
                 <Typography style={style.title}>Our Services</Typography>
             </Grid> */}
-            <Grid item md="4" xs="12">
-                <div style={style.prenatal}>
-                    <FavoriteIcon style={style.heart}/>
-                    <Typography variant="subtitle1" style={style.subtitle}>Pregnancy</Typography>
-                    <Typography>SomeTextHere</Typography>
-                    <Typography>SomeTextHere</Typography>
-                    <Typography>SomeTextHere</Typography>
-                    <Typography>SomeTextHere</Typography>
-                </div>
+            <Grid item md="4" xs="12" style={style.prenatal}>
+                <FavoriteIcon style={style.heart}/>
+                <Typography variant="subtitle1" style={style.subtitle}>Pregnancy</Typography>
+                <Typography>SomeTextHere</Typography>
+                <Typography>SomeTextHere</Typography>
+                <Typography>SomeTextHere</Typography>
+                <Typography>SomeTextHere</Typography>
             </Grid>
-            <Grid item md="4" xs="12">
-                <div style={style.labor}>
-                    <FavoriteIcon style={style.heart}/>
-                    <Typography variant="subtitle1" style={style.subtitle}>Labor & Birth</Typography>
-                    <Typography>SomeTextHere</Typography>
-                    <Typography>SomeTextHere</Typography>
-                    <Typography>SomeTextHere</Typography>
-                    <Typography>SomeTextHere</Typography>
-                    <Typography>SomeTextHere</Typography>
-                    <Typography>SomeTextHere</Typography>
-                </div>
+            <Grid item md="4" xs="12" style={style.labor}>
+                <FavoriteIcon style={style.heart}/>
+                <Typography variant="subtitle1" style={style.subtitle}>Labor & Birth</Typography>
+                <Typography>SomeTextHere</Typography>
+                <Typography>SomeTextHere</Typography>
+                <Typography>SomeTextHere</Typography>
+                <Typography>SomeTextHere</Typography>
+                <Typography>SomeTextHere</Typography>
+                <Typography>SomeTextHere</Typography>
             </Grid>
-            <Grid item md="4" xs="12">
-                <div style={style.newborn}>
-                    <FavoriteIcon style={style.heart}/>
-                    <Typography variant="subtitle1" style={style.subtitle}>Postpartum & Newborn</Typography>
-                    <Typography>SomeTextHere</Typography>
-                    <Typography>SomeTextHere</Typography>
-                    <Typography>SomeTextHere</Typography>
-                    <Typography>SomeTextHere</Typography>
-                    <Typography>SomeTextHere</Typography>
-                </div>
+            <Grid item md="4" xs="12" style={style.newborn}>
+                <FavoriteIcon style={style.heart}/>
+                <Typography variant="subtitle1" style={style.subtitle}>Postpartum & Newborn</Typography>
+                <Typography>SomeTextHere</Typography>
+                <Typography>SomeTextHere</Typography>
+                <Typography>SomeTextHere</Typography>
+                <Typography>SomeTextHere</Typography>
+                <Typography>SomeTextHere</Typography>
             </Grid>
-            
         </Grid>
     )
 }

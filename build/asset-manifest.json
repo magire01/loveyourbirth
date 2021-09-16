@@ -1,29 +1,29 @@
 {
   "files": {
     "main.css": "/loveyourbirth/static/css/main.707a60c8.chunk.css",
-    "main.js": "/loveyourbirth/static/js/main.da7c979e.chunk.js",
-    "main.js.map": "/loveyourbirth/static/js/main.da7c979e.chunk.js.map",
-    "runtime-main.js": "/loveyourbirth/static/js/runtime-main.f49e73fa.js",
-    "runtime-main.js.map": "/loveyourbirth/static/js/runtime-main.f49e73fa.js.map",
+    "main.js": "/loveyourbirth/static/js/main.6848ae4a.chunk.js",
+    "main.js.map": "/loveyourbirth/static/js/main.6848ae4a.chunk.js.map",
+    "runtime-main.js": "/loveyourbirth/static/js/runtime-main.fd28f7bc.js",
+    "runtime-main.js.map": "/loveyourbirth/static/js/runtime-main.fd28f7bc.js.map",
     "static/css/2.5190be8e.chunk.css": "/loveyourbirth/static/css/2.5190be8e.chunk.css",
-    "static/js/2.b820e6b4.chunk.js": "/loveyourbirth/static/js/2.b820e6b4.chunk.js",
-    "static/js/2.b820e6b4.chunk.js.map": "/loveyourbirth/static/js/2.b820e6b4.chunk.js.map",
-    "static/js/3.63003661.chunk.js": "/loveyourbirth/static/js/3.63003661.chunk.js",
-    "static/js/3.63003661.chunk.js.map": "/loveyourbirth/static/js/3.63003661.chunk.js.map",
+    "static/js/2.2f37f047.chunk.js": "/loveyourbirth/static/js/2.2f37f047.chunk.js",
+    "static/js/2.2f37f047.chunk.js.map": "/loveyourbirth/static/js/2.2f37f047.chunk.js.map",
+    "static/js/3.bcd3e3e1.chunk.js": "/loveyourbirth/static/js/3.bcd3e3e1.chunk.js",
+    "static/js/3.bcd3e3e1.chunk.js.map": "/loveyourbirth/static/js/3.bcd3e3e1.chunk.js.map",
     "index.html": "/loveyourbirth/index.html",
     "static/css/2.5190be8e.chunk.css.map": "/loveyourbirth/static/css/2.5190be8e.chunk.css.map",
     "static/css/main.707a60c8.chunk.css.map": "/loveyourbirth/static/css/main.707a60c8.chunk.css.map",
-    "static/js/2.b820e6b4.chunk.js.LICENSE.txt": "/loveyourbirth/static/js/2.b820e6b4.chunk.js.LICENSE.txt",
+    "static/js/2.2f37f047.chunk.js.LICENSE.txt": "/loveyourbirth/static/js/2.2f37f047.chunk.js.LICENSE.txt",
     "static/media/krystal.3acbd75e.png": "/loveyourbirth/static/media/krystal.3acbd75e.png",
     "static/media/lybLogo3.5fad7b0a.png": "/loveyourbirth/static/media/lybLogo3.5fad7b0a.png",
     "static/media/midwife1.9d5fbdb3.png": "/loveyourbirth/static/media/midwife1.9d5fbdb3.png",
     "static/media/index.css": "/loveyourbirth/static/media/roboto-vietnamese-400-normal.c0bec65d.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.f49e73fa.js",
+    "static/js/runtime-main.fd28f7bc.js",
     "static/css/2.5190be8e.chunk.css",
-    "static/js/2.b820e6b4.chunk.js",
+    "static/js/2.2f37f047.chunk.js",
     "static/css/main.707a60c8.chunk.css",
-    "static/js/main.da7c979e.chunk.js"
+    "static/js/main.6848ae4a.chunk.js"
   ]
 }

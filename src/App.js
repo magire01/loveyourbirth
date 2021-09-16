@@ -179,7 +179,7 @@ const App = () => {
       </AppBar>
       
       <Grid container direction="row" alignItems="center" style={{ paddingTop: "3%" }}>
-        <Grid item md="12" xs="12">
+        <Grid item md="12" xs="12" ref={HomeRef}>
             <img src={lybLogo} style={style.banner}/>
         </Grid>
         <Grid item md="6" xs="6">
@@ -204,7 +204,7 @@ const App = () => {
               <MessageForm />
           </Modal>
         </Grid>
-        <Grid item md="12" xs="12" style={style.page}ref={HomeRef}>
+        <Grid item md="12" xs="12" style={style.page}>
           <Home />
         </Grid>
         <Grid item md="12" xs="12" style={style.page}ref={AboutRef}>

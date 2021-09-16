@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Paper, Button, Drawer, List, ListItem, Typography, IconButton, Card, CardMedia } from "@material-ui/core";
-
+import { Grid, Paper, Typography, CardMedia } from "@material-ui/core";
 import '@fontsource/roboto';
-
-import ProfilePic from "../krystal.png";
 import MidwifePic from "../midwife1.png";
 
 const Home = () => {
-
     //Nav Rendering for Smartphone vs Laptop
     const [isDesktop, setDesktop] = useState(window.innerWidth > 1000);
     const updateMedia = () => {

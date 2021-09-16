@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Paper, Button, Drawer, List, ListItem, Typography, IconButton, Card, CardMedia } from "@material-ui/core";
-
+import { Grid, Typography, CardMedia } from "@material-ui/core";
 import '@fontsource/roboto';
-
 import ProfilePic from "../krystal.png";
-import MidwifePic from "../midwife1.png";
 
 const About = () => {
 

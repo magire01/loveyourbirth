@@ -1,54 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Paper, Button, Drawer, List, ListItem, Typography, IconButton, Card } from "@material-ui/core";
+import { Grid, Button, Typography, IconButton, Card } from "@material-ui/core";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import QuestionData from "../utilities/questions.json";
-
 import '@fontsource/roboto';
 
 const ContactForm = () => {
+    //Nav Rendering for Smartphone vs Laptop
+    const [isDesktop, setDesktop] = useState(window.innerWidth > 1000);
+    const updateMedia = () => {
+        setDesktop(window.innerWidth > 1000);
+    };
+    useEffect(() => {
+        window.addEventListener("resize", updateMedia);
+        return () => window.removeEventListener("resize", updateMedia);
+    });
 
-      //Nav Rendering for Smartphone vs Laptop
-  const [isDesktop, setDesktop] = useState(window.innerWidth > 1000);
-
-  const updateMedia = () => {
-    setDesktop(window.innerWidth > 1000);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", updateMedia);
-    return () => window.removeEventListener("resize", updateMedia);
-  });
-
-    const style = {
-        card: {
-            display: 'absolute',  
-            justifyContent:'center', 
-            alignItems:'center',
-            height: 600,
-            width: (!isDesktop) ? "97%" : "auto",
-            margin: (!isDesktop) ? 0 : 100,
-            marginTop: (!isDesktop) ? "20%" : 100,
-            textAlign: "center",
-            border: "5px solid purple"
-        },
-        title: {
-            marginTop: 20,
-            marginBottom: 20
-        },
-        question: {
-            marginTop: 20,
-            marginBottom: 20
-        },
-        input: {
-            marginTop: 20,
-            marginBottom: 20
-        },
-        button: {
-            marginTop: 20,
-            marginBottom: 20
-        }
-    }
+    
 
     const [questionNum, setQuestionNum] = useState(0)
 
@@ -94,26 +62,6 @@ const ContactForm = () => {
             setQuestionNum(questionNum + 2)
         }
     }
-    const handleAnswerBirthComplications = (e, selection) => {
-        e.preventDefault();
-        setAnswer({ ...answer, birthComplications: selection })
-    }
-    const handleAnswerNewbornComplications = (e, selection) => {
-        e.preventDefault();
-        setAnswer({ ...answer, newbornComplications: selection })
-    }
-    const handleAnswerHomeBirth = (e, selection) => {
-        e.preventDefault();
-        setAnswer({ ...answer, homeBirth: selection })
-    }
-    const handleAnswerHealthConditions = (e, selection) => {
-        e.preventDefault();
-        setAnswer({ ...answer, healthConditions: selection })
-    }
-    const handleAnswerVBAC = (e, selection) => {
-        e.preventDefault();
-        setAnswer({ ...answer, VBAC: selection })
-    }
     const handleAnswerEnvision = (e) => {
         e.preventDefault();
         setAnswer({ ...answer, envision: e.target.value })
@@ -135,6 +83,37 @@ const ContactForm = () => {
         setAnswer({ ...answer, refer: e.target.value })
     }
 
+    //Style
+    const style = {
+        card: {
+            display: 'absolute',  
+            justifyContent:'center', 
+            alignItems:'center',
+            height: 600,
+            width: (!isDesktop) ? "97%" : "auto",
+            margin: (!isDesktop) ? 0 : 100,
+            marginTop: (!isDesktop) ? "20%" : 100,
+            textAlign: "center",
+            border: "5px solid purple"
+        },
+        title: {
+            marginTop: 20,
+            marginBottom: 20
+        },
+        question: {
+            marginTop: 20,
+            marginBottom: 20
+        },
+        input: {
+            marginTop: 20,
+            marginBottom: 20
+        },
+        button: {
+            marginTop: 20,
+            marginBottom: 20
+        }
+    }
+
     const handleAnswer = () => {
         switch(questionNum) {
             case 1:
@@ -143,48 +122,23 @@ const ContactForm = () => {
                     <button onClick={(e, value) => handleAnswerFirstBirth(e, "Yes")}>Yes</button>
                     <button onClick={(e, value) => handleAnswerFirstBirth(e, "No")}>No</button>
                 </>)
-            case 2: 
-                return (
-                <>
-                    <Typography>Have you ever experienced complications during pregnancy, birth, or postpartum?</Typography>
-                    <button onClick={(e, value) => handleAnswerBirthComplications(e, "Yes")}>Yes</button>
-                    <button onClick={(e, value) => handleAnswerBirthComplications(e, "No")}>No</button>
-                    <Typography>Were there any newborn complications with previous births?</Typography>
-                    <button onClick={(e, value) => handleAnswerNewbornComplications(e, "Yes")}>Yes</button>
-                    <button onClick={(e, value) => handleAnswerNewbornComplications(e, "No")}>No</button>
-                    <Typography>Have you had a home birth before?</Typography>
-                    <button onClick={(e, value) => handleAnswerHomeBirth(e, "Yes")}>Yes</button>
-                    <button onClick={(e, value) => handleAnswerHomeBirth(e, "No")}>No</button>
-                </>)
-            case 3:
-                return (
-                <>
-                    <Typography>Do you have any major health conditions?</Typography>
-                    <button onClick={(e, value) => handleAnswerHealthConditions(e, "Yes")}>Yes</button>
-                    <button onClick={(e, value) => handleAnswerHealthConditions(e, "No")}>No</button>
-                    <Typography>Are you anticipating a VBAC?</Typography>
-                    <button onClick={(e, value) => handleAnswerVBAC(e, "Yes")}>Yes</button>
-                    <button onClick={(e, value) => handleAnswerVBAC(e, "No")}>No</button>
-                    <button onClick={(e, value) => handleAnswerVBAC(e, "IDK")}>I don't know</button>
-                    
-                </>)
-            case 4:
+            case 2:
                 return (<>
                     <textarea onChange={handleAnswerEnvision}></textarea>
                 </>)
-            case 5:
+            case 3:
                 return (<>
                     <textarea onChange={handleAnswerWhy}></textarea>
                 </>)
-            case 6:
+            case 4:
                 return (<>
                     <textarea onChange={handleAnswerMidwifery}></textarea>
                 </>)
-            case 7:
+            case 5:
                 return (<>
                     <textarea onChange={handleAnswerConcerns}></textarea>
                 </>)
-            case 8:
+            case 6:
                 return (<>
                     <textarea onChange={handleAnswerRefer}></textarea>
                 </>)

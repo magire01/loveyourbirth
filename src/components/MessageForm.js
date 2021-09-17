@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Button, Typography, Card } from "@material-ui/core";
+import { Grid, Button, Typography, Card, IconButton } from "@material-ui/core";
 import '@fontsource/roboto';
 
-const MessageForm = () => {
+import CloseIcon from '@material-ui/icons/Close';
+
+const MessageForm = (props) => {
 
     //Nav Rendering for Smartphone vs Laptop
     const [isDesktop, setDesktop] = useState(window.innerWidth > 1000);
@@ -97,27 +99,27 @@ const MessageForm = () => {
     
     return (
         <>
-                <Grid container direction="row" alignItems="center" justifyContent="center">
-                    <Grid item md="10" xs="10">
-                        <Typography style={style.label}>Name</Typography>
-                        <input style={style.smallInput} onChange={handleMessageName}/>
-                    </Grid>
-                    <Grid item md="10" xs="10">
-                        <Typography style={style.label}>Email</Typography>
-                        <input style={style.smallInput} onChange={handleMessageEmail}/>
-                    </Grid>
-                    <Grid item md="10" xs="10">
-                        <Typography style={style.label}>Phone</Typography>
-                        <input style={style.smallInput} onChange={handleMessagePhone}/>
-                    </Grid>
-                    <Grid item md="10" xs="10">
-                        <Typography style={style.label}>Message</Typography>
-                        <textarea style={style.largeInput} onChange={handleMessageText}></textarea>
-                    </Grid>
-                    <Grid item md="12" xs="12">
-                        <Button style={style.submit}>Send</Button>
-                    </Grid>        
+            <Grid container direction="row" alignItems="center" justifyContent="center">
+                <Grid item md="10" xs="10">
+                    <Typography style={style.label}>Name</Typography>
+                    <input style={style.smallInput} onChange={handleMessageName}/>
                 </Grid>
+                <Grid item md="10" xs="10">
+                    <Typography style={style.label}>Email</Typography>
+                    <input style={style.smallInput} onChange={handleMessageEmail}/>
+                </Grid>
+                <Grid item md="10" xs="10">
+                    <Typography style={style.label}>Phone</Typography>
+                    <input style={style.smallInput} onChange={handleMessagePhone}/>
+                </Grid>
+                <Grid item md="10" xs="10">
+                    <Typography style={style.label}>Message</Typography>
+                    <textarea style={style.largeInput} onChange={handleMessageText}></textarea>
+                </Grid>
+                <Grid item md="12" xs="12">
+                    <Button onClick={props.closeMessage} style={style.submit}>Send</Button>
+                </Grid>        
+            </Grid>
         </>
     )
 }

@@ -294,7 +294,7 @@ const App = () => {
                     <CloseIcon style={style.closeIcon} onClick={messageClose}/>
                   </IconButton>
                 </Grid>
-                <MessageForm />
+                <MessageForm closeMessage={messageClose}/>
               </Card>
           </Modal>
         </Grid>

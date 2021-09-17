@@ -265,14 +265,7 @@ const App = () => {
               >
               <>
               <Card style={style.contactCard}>
-                <Grid item md="11" xs="11">
-                </Grid>
-                <Grid item md="1" xs="1">
-                  <IconButton>
-                    <CloseIcon style={style.closeIcon} onClick={handleClose}/>
-                  </IconButton>
-                </Grid>
-                <ContactForm />
+                <ContactForm closeForm={handleClose}/>
               </Card>
               </>
             </Modal>
@@ -286,14 +279,6 @@ const App = () => {
               aria-describedby="simple-modal-description"
               >
               <Card style={style.messageCard}>
-                <Grid item md="11" xs="11">
-                <Typography style={style.messageTitle}>Email Us</Typography>
-                </Grid>
-                <Grid item md="1" xs="1">
-                  <IconButton>
-                    <CloseIcon style={style.closeIcon} onClick={messageClose}/>
-                  </IconButton>
-                </Grid>
                 <MessageForm closeMessage={messageClose}/>
               </Card>
           </Modal>

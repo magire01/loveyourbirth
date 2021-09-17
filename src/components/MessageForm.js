@@ -63,8 +63,8 @@ const MessageForm = (props) => {
             marginBottom: 20
         },
         submit: { 
-            position: "absolute", 
-            bottom: (!isDesktop) ? "40%" : "10%",
+            // position: "absolute", 
+            // bottom: (!isDesktop) ? "40%" : "10%",
             color: "white",
             backgroundColor: "#FDB7C2"
         },
@@ -94,25 +94,26 @@ const MessageForm = (props) => {
             color: "#ff3399",
             fontSize: (!isDesktop) ? 12 : 20,
             fontWeight: "bold"
+        },
+        container: {
+            height: (!isDesktop) ? "15%" : "80%"
         }
     }
     
     return (
-        <>
-            <Grid container direction="row" alignItems="center" justifyContent="center">
-                <Grid item md="10" xs="10">
+        <Grid container alignItems="center" justifyContent="left">
+            <IconButton>
+                <CloseIcon onClick={props.closeMessage} />
+            </IconButton>
+            <Grid container alignItems="center" justifyContent="center">
+                <Grid item md="12" xs="12" style={style.container}>
+                    <Typography>Email Us</Typography>
                     <Typography style={style.label}>Name</Typography>
                     <input style={style.smallInput} onChange={handleMessageName}/>
-                </Grid>
-                <Grid item md="10" xs="10">
                     <Typography style={style.label}>Email</Typography>
                     <input style={style.smallInput} onChange={handleMessageEmail}/>
-                </Grid>
-                <Grid item md="10" xs="10">
                     <Typography style={style.label}>Phone</Typography>
                     <input style={style.smallInput} onChange={handleMessagePhone}/>
-                </Grid>
-                <Grid item md="10" xs="10">
                     <Typography style={style.label}>Message</Typography>
                     <textarea style={style.largeInput} onChange={handleMessageText}></textarea>
                 </Grid>
@@ -120,7 +121,7 @@ const MessageForm = (props) => {
                     <Button onClick={props.closeMessage} style={style.submit}>Send</Button>
                 </Grid>        
             </Grid>
-        </>
+        </Grid>
     )
 }
 

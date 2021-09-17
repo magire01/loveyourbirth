@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Grid, Button, Typography, IconButton, LinearProgress } from "@material-ui/core";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import CloseIcon from '@material-ui/icons/Close';
 import QuestionData from "../utilities/questions.json";
 import '@fontsource/roboto';
 
-const ContactForm = () => {
+const ContactForm = (props) => {
     //Nav Rendering for Smartphone vs Laptop
     const [isDesktop, setDesktop] = useState(window.innerWidth > 1000);
     const updateMedia = () => {
@@ -112,7 +113,7 @@ const ContactForm = () => {
             marginBottom: 20
         },
         question: {
-            height: (!isDesktop) ? "50%" : "80%",
+            height: (!isDesktop) ? 50 : 80,
             marginTop: 20,
             marginBottom: (!isDesktop) ? 15 : 10,
             color: "purple",
@@ -140,8 +141,8 @@ const ContactForm = () => {
 
         },
         submit: { 
-            position: "absolute", 
-            bottom: (!isDesktop) ? "40%" : "10%",
+            // position: "absolute", 
+            // bottom: (!isDesktop) ? "40%" : "10%",
             color: "white",
             backgroundColor: "#d9b3ff"
         },
@@ -150,7 +151,7 @@ const ContactForm = () => {
             marginBottom: 100
         },
         questionSection2: {
-            height: (!isDesktop) ? 100 : 100,
+            height: (!isDesktop) ? "50%" : "80%",
             marginBottom: "3%"
         },
         questionSection3: {
@@ -165,8 +166,9 @@ const ContactForm = () => {
             height: (!isDesktop) ? "70%": 200
         },
         progress: {
-            margin: "5%",
-            
+            marginLeft: "3%",
+            marginRight: "3%",
+            width: "100%"
         }
     }
 
@@ -219,10 +221,14 @@ const ContactForm = () => {
     return (
         <>
             
-                <Grid container direction="row" alignItems="center" justifyContent="center">
-                    <Grid item md="12" xs="12">
+                <Grid container direction="row" alignItems="left" justifyContent="left">
+        
+                    <IconButton>
+                        <CloseIcon onClick={props.closeForm} />
+                    </IconButton>
                         <LinearProgress variant="determinate" value={progress} style={style.progress} />
-                    </Grid>
+                </Grid>
+                <Grid container direction="row" alignItems="center" justifyContent="center">
                     <Grid item md="1" xs="1">
                         {(questionNum === 0) 
                         ? <ArrowBackIcon /> 
@@ -235,6 +241,11 @@ const ContactForm = () => {
                         <div style={style.questionSection3}>
                             {handleAnswer()}
                         </div>
+                        <Grid item md="12" xs="12">
+                            {(questionNum === QuestionData.data.length - 1) 
+                            ? <Button onClick={props.closeForm} style={style.submit}>Submit</Button> 
+                            : <Button onClick={nextQuestion} style={style.submit}>Next</Button>}
+                        </Grid> 
                     </Grid>
                     <Grid item md="1" xs="1">
                         {(questionNum === QuestionData.data.length - 1) 
@@ -243,11 +254,7 @@ const ContactForm = () => {
                             <ArrowForwardIcon onClick={nextQuestion} />
                           </IconButton>}
                     </Grid>
-                    <Grid item md="12" xs="12">
-                        {(questionNum === QuestionData.data.length - 1) 
-                        ? <Button style={style.submit}>Submit</Button> 
-                        : <Button onClick={nextQuestion} style={style.submit}>Next</Button>}
-                    </Grid>        
+                           
                 </Grid>
             
         </>

@@ -1,11 +1,10 @@
 import './App.css';
 import React, { useState, useRef, useEffect } from "react";
-import { Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, Modal, Card } from "@material-ui/core";
+import { Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, Modal, Card, Snackbar, SnackbarContent } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import EmailIcon from '@material-ui/icons/Email';
 import HomeIcon from '@material-ui/icons/Home';
-import CloseIcon from '@material-ui/icons/Close';
 import '@fontsource/roboto';
 import lybLogo from "./lybLogo3.png";
 import Home from './components/Home';
@@ -158,7 +157,7 @@ const App = () => {
         display: 'fixed',  
         justifyContent:'center', 
         alignItems:'center',
-        height: (!isDesktop) ? "60%" : "80%",
+        height: (!isDesktop) ? "80%" : "80%",
         width: (!isDesktop) ? "97%" : "auto",
         margin: (!isDesktop) ? 0 : 100,
         marginTop: (!isDesktop) ? 0 : 100,
@@ -169,7 +168,7 @@ const App = () => {
         display: 'fixed',  
         justifyContent:'center', 
         alignItems:'center',
-        height: (!isDesktop) ? "60%" : "80%",
+        height: (!isDesktop) ? "80%" : "80%",
         width: (!isDesktop) ? "97%" : "auto",
         margin: (!isDesktop) ? 0 : 100,
         marginTop: (!isDesktop) ? 0 : 100,
@@ -182,13 +181,38 @@ const App = () => {
       },
       closeIcon: {
         color: "black"
+      },
+      success: {
+        backgroundColor: "#8cd98c",
+        alignItems: "center",
+        color: 'white'
       }
+    }
+
+    //snackbar
+    const [openSnack, setOpenSnack] = useState({
+      message: false,
+      consult: false
+    });
+    const closeMessageSnack = () => {
+      setOpenSnack({ ...openSnack, message: false })
+    }
+    const messageSnack = () => {
+      setOpenSnack({ ...openSnack, message: true })
+    }
+    const closeConsultSnack = () => {
+      setOpenSnack({ ...openSnack, consult: false })
+    }
+    const consultSnack = () => {
+      setOpenSnack({ ...openSnack, consult: true })
     }
   return (
     <div className="App">
       <AppBar position="fixed" style={(!isDesktop) ? style.appbarSmall : style.appbar}>
         <Toolbar>
           {(!isDesktop)
+
+          // MOBILE APPBAR
           ? <>
               <Grid item>
                 <IconButton>
@@ -226,6 +250,8 @@ const App = () => {
               </Menu>
             </>
           : <>
+
+          {/* PC NAVBAR  */}
           <Grid item md="12">
           {page.map((data, index) => (
             <Button style={style.navbutton} onClick={e => openPage(e, scroll[index + 1])}>{data}</Button>
@@ -247,14 +273,16 @@ const App = () => {
             </IconButton>
           </Grid>
           </>}
-          
         </Toolbar>
       </AppBar>
       
+      {/* BANNER */}
       <Grid container direction="row" alignItems="center" style={{ paddingTop: "3%" }}>
         <Grid item md="12" xs="12" ref={HomeRef}>
             <img src={lybLogo} style={style.banner}/>
         </Grid>
+
+        {/* MODALS */}
         <Grid item md="6" xs="6">
           <Button onClick={handleOpen} style={style.newPatient}>Schedule a Consultation</Button>
           <Modal
@@ -265,7 +293,7 @@ const App = () => {
               >
               <>
               <Card style={style.contactCard}>
-                <ContactForm closeForm={handleClose}/>
+                <ContactForm closeForm={handleClose} successConsult={consultSnack}/>
               </Card>
               </>
             </Modal>
@@ -279,10 +307,29 @@ const App = () => {
               aria-describedby="simple-modal-description"
               >
               <Card style={style.messageCard}>
-                <MessageForm closeMessage={messageClose}/>
+                <MessageForm closeMessage={messageClose} successMessage={messageSnack}/>
               </Card>
           </Modal>
+
+          {/* SNACKBARS */}
+          <Snackbar
+            open={openSnack.message}
+            onClose={closeMessageSnack}
+            autoHideDuration={5000}
+          >
+              <SnackbarContent message="Email Message Sent Successfully!" style={style.success}/>
+          </Snackbar>
+          <Snackbar
+            open={openSnack.consult}
+            onClose={closeConsultSnack}
+            message="Consultation Request Sent Successfully!"
+            autoHideDuration={5000}
+          >
+              <SnackbarContent message="Consultation Request Sent Successfully!" style={style.success} />
+          </Snackbar>
         </Grid>
+
+        {/* CONTENT  */}
         <Grid item md="12" xs="12" style={style.page}>
           <Home />
         </Grid>

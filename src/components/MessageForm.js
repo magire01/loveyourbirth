@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Button, Typography, Card, IconButton } from "@material-ui/core";
 import '@fontsource/roboto';
-
+import emailjs from 'emailjs-com';
 import CloseIcon from '@material-ui/icons/Close';
 
 const MessageForm = (props) => {
@@ -35,7 +35,18 @@ const MessageForm = (props) => {
     const handleMessageText = (e) => {
         setMessage({ ...message, text: e.target.value })
     }
-    //Style
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+        emailjs.send('service_brv7il1', 'template_66y7sf6', { name: message.name, email: message.email, phone: message.phone, text: message.text}, 'user_VCNwVyQVStaLfnvdfDv4t')
+        .then((result) => {
+            console.log(result.text);
+            props.successMessage();
+        }, (error) => {
+            console.log(error.text);
+        });
+        props.closeMessage();
+    };
     //Style
     const style = {
         card: {
@@ -118,8 +129,8 @@ const MessageForm = (props) => {
                     <textarea style={style.largeInput} onChange={handleMessageText}></textarea>
                 </Grid>
                 <Grid item md="12" xs="12">
-                    <Button onClick={props.closeMessage} style={style.submit}>Send</Button>
-                </Grid>        
+                    <Button onClick={sendEmail} style={style.submit}>Send</Button>
+                </Grid>     
             </Grid>
         </Grid>
     )

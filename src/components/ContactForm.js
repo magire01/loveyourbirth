@@ -4,6 +4,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import CloseIcon from '@material-ui/icons/Close';
 import QuestionData from "../utilities/questions.json";
+import emailjs from 'emailjs-com';
 import '@fontsource/roboto';
 
 const ContactForm = (props) => {
@@ -94,6 +95,31 @@ const ContactForm = (props) => {
         setAnswer({ ...answer, refer: e.target.value })
     }
 
+    const sendEmail = (e) => {
+        e.preventDefault();
+        emailjs.send('service_brv7il1', 'template_aldpnbc', 
+        { 
+            name: answer.name, 
+            city: answer.city, 
+            phone: answer.phone,
+            email: answer.email, 
+            contact: answer.contact,
+            firstBirth: answer.firstBirth,
+            envision: answer.envision,
+            why: answer.why,
+            midwifery: answer.midwifery,
+            concerns: answer.concerns,
+            refer: answer.refer
+        }, 'user_VCNwVyQVStaLfnvdfDv4t')
+        .then((result) => {
+            console.log(result.text);
+            props.successConsult();
+        }, (error) => {
+            console.log(error.text);
+        });
+        props.closeForm();
+    };
+
     //Style
     const style = {
         card: {
@@ -151,11 +177,11 @@ const ContactForm = (props) => {
             marginBottom: 100
         },
         questionSection2: {
-            height: (!isDesktop) ? "50%" : "80%",
+            height: (!isDesktop) ? "50%" : "50%",
             marginBottom: "3%"
         },
         questionSection3: {
-            height: (!isDesktop) ? 200: 500
+            height: (!isDesktop) ? 200: 300
         },
         smallInput: {
             width: (!isDesktop) ? 200: 350,
@@ -243,7 +269,7 @@ const ContactForm = (props) => {
                         </div>
                         <Grid item md="12" xs="12">
                             {(questionNum === QuestionData.data.length - 1) 
-                            ? <Button onClick={props.closeForm} style={style.submit}>Submit</Button> 
+                            ? <Button onClick={sendEmail} style={style.submit}>Submit</Button> 
                             : <Button onClick={nextQuestion} style={style.submit}>Next</Button>}
                         </Grid> 
                     </Grid>

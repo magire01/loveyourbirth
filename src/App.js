@@ -31,7 +31,7 @@ const App = () => {
   const NewbornRef = useRef();
   const scroll = [HomeRef, AboutRef, ServicesRef, ContactRef]
   const page = ["About", "Services", "Contact"]
-  const mobilePage = ["About", "Prenatal", "Birth", "Newborn", "Contact"]
+  const mobilePage = ["About", "Pregnancy", "Labor & Birth", "Postpartum & Newborn", "Contact"]
   const mobileScroll = [HomeRef, AboutRef, PrenatalRef, BirthRef, NewbornRef, ContactRef]
 
   const openPage = (e, page) => {
@@ -129,7 +129,12 @@ const App = () => {
         alignItems: "right",
       },
       mobilemenu: {
-        backgroundColor: "white"
+      },
+      mobilemenuItem: {
+        backgroundColor: "lightblue",
+        color: "white",
+        fontSize: 10,
+        fontWeight: "bold"
       },
       newPatient: {
         backgroundColor: colorScheme.newPatient,
@@ -246,7 +251,7 @@ const App = () => {
                 onClose={menuClose}
               >
                 {mobilePage.map((data, index) => (
-                    <MenuItem style={style.mobilemenu} onClick={e => openPage(e, mobileScroll[index + 1])}>{data}</MenuItem>
+                    <MenuItem style={style.mobilemenuItem} onClick={e => openPage(e, mobileScroll[index + 1])}>{data}</MenuItem>
                 ))}
               </Menu>
             </>
@@ -351,7 +356,7 @@ const App = () => {
           </Grid>
         </Grid>
         <Grid item md="12" xs="12" style={{
-      marginTop: "3%", marginLeft: 0, marginRight:0
+      marginTop: "3%", marginLeft: 0, marginRight: 0
     }} ref={ContactRef}>
           <Contact />
         </Grid>

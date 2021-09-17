@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/loveyourbirth/static/css/main.707a60c8.chunk.css",
-    "main.js": "/loveyourbirth/static/js/main.e3a2a523.chunk.js",
-    "main.js.map": "/loveyourbirth/static/js/main.e3a2a523.chunk.js.map",
+    "main.js": "/loveyourbirth/static/js/main.a52e3f82.chunk.js",
+    "main.js.map": "/loveyourbirth/static/js/main.a52e3f82.chunk.js.map",
     "runtime-main.js": "/loveyourbirth/static/js/runtime-main.84bc7d8b.js",
     "runtime-main.js.map": "/loveyourbirth/static/js/runtime-main.84bc7d8b.js.map",
     "static/css/2.5190be8e.chunk.css": "/loveyourbirth/static/css/2.5190be8e.chunk.css",
@@ -24,6 +24,6 @@
     "static/css/2.5190be8e.chunk.css",
     "static/js/2.42e0626a.chunk.js",
     "static/css/main.707a60c8.chunk.css",
-    "static/js/main.e3a2a523.chunk.js"
+    "static/js/main.a52e3f82.chunk.js"
   ]
 }

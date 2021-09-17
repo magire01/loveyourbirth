@@ -119,6 +119,7 @@ const ContactForm = (props) => {
         });
         props.closeForm();
     };
+    
 
     //Style
     const style = {
@@ -139,7 +140,7 @@ const ContactForm = (props) => {
             marginBottom: 20
         },
         question: {
-            height: (!isDesktop) ? 50 : 80,
+            height: (!isDesktop) ? 60 : 80,
             marginTop: 20,
             marginBottom: (!isDesktop) ? 15 : 10,
             color: "purple",
@@ -177,8 +178,9 @@ const ContactForm = (props) => {
             marginBottom: 100
         },
         questionSection2: {
-            height: (!isDesktop) ? "50%" : "50%",
-            marginBottom: "3%"
+            height: (!isDesktop) ? 400 : 400,
+            marginBottom: "3%",
+            paddingLeft: (!isDesktop) ? 10: 0
         },
         questionSection3: {
             height: (!isDesktop) ? 200: 300
@@ -188,13 +190,20 @@ const ContactForm = (props) => {
             
         },
         largeInput: {
-            width: (!isDesktop) ? "100%": 500,
-            height: (!isDesktop) ? "70%": 200
+            width: (!isDesktop) ? "90%": 500,
+            height: (!isDesktop) ? "60%": 200,
+            margin: (!isDesktop) ? "5%": "5%"
         },
         progress: {
             marginLeft: "3%",
             marginRight: "3%",
             width: "100%"
+        },
+        nextButtonActive: {
+            color: "blue"
+        },
+        nextButtonDisabled: {
+            color: "white"
         }
     }
 
@@ -245,10 +254,9 @@ const ContactForm = (props) => {
     }
     
     return (
-        <>
-            
+        <div>
+            <Grid container direction="row" alignItems="center" justifyContent="center"  style={{ paddingLeft: 0, paddingRight: (!isDesktop) ? "4%" : 0 }}>
                 <Grid container direction="row" alignItems="left" justifyContent="left">
-        
                     <IconButton>
                         <CloseIcon onClick={props.closeForm} />
                     </IconButton>
@@ -257,9 +265,11 @@ const ContactForm = (props) => {
                 <Grid container direction="row" alignItems="center" justifyContent="center">
                     <Grid item md="1" xs="1">
                         {(questionNum === 0) 
-                        ? <ArrowBackIcon /> 
-                        : <IconButton> 
-                            <ArrowBackIcon onClick={prevQuestion} />
+                        ? <IconButton> 
+                            <ArrowBackIcon style={style.nextButtonDisabled}/>
+                        </IconButton>
+                        : <IconButton onClick={prevQuestion}> 
+                            <ArrowBackIcon style={style.nextButtonActive} />
                          </IconButton>}
                     </Grid>
                     <Grid item md="10" xs="10" style={style.questionSection2}>
@@ -275,15 +285,17 @@ const ContactForm = (props) => {
                     </Grid>
                     <Grid item md="1" xs="1">
                         {(questionNum === QuestionData.data.length - 1) 
-                        ? <ArrowForwardIcon /> 
-                        : <IconButton>
-                            <ArrowForwardIcon onClick={nextQuestion} />
+                        ? <IconButton>
+                            <ArrowForwardIcon style={style.nextButtonDisabled}/>
+                        </IconButton>
+                        : <IconButton onClick={nextQuestion}>
+                            <ArrowForwardIcon style={style.nextButtonActive}/>
                           </IconButton>}
                     </Grid>
                            
                 </Grid>
-            
-        </>
+            </Grid>
+        </div>
     )
 }
 

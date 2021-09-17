@@ -158,23 +158,24 @@ const App = () => {
         justifyContent:'center', 
         alignItems:'center',
         height: (!isDesktop) ? "80%" : "80%",
-        width: (!isDesktop) ? "97%" : "auto",
-        margin: (!isDesktop) ? 0 : 100,
+        width: (!isDesktop) ? "96%" : "auto",
+        margin: (!isDesktop) ? "0.5%" : 100,
         marginTop: (!isDesktop) ? 0 : 100,
         textAlign: "center",
-        border: "5px solid purple"
+        border: "5px solid purple",
+        overflowY: "auto"
       },
       messageCard: {
         display: 'fixed',  
         justifyContent:'center', 
         alignItems:'center',
         height: (!isDesktop) ? "80%" : "80%",
-        width: (!isDesktop) ? "97%" : "auto",
-        margin: (!isDesktop) ? 0 : 100,
+        width: (!isDesktop) ? "96%" : "auto",
+        margin: (!isDesktop) ? "0.5%" : 100,
         marginTop: (!isDesktop) ? 0 : 100,
         textAlign: "center",
         border: "5px solid pink",
-        backgroundColor: "white"
+        overflowY: "auto"
       },
       messageTitle: {
         color: "#ff3399"

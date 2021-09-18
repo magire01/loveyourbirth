@@ -18,7 +18,7 @@ const Contact = () => {
     return (
         <Grid container direction="row">
             <Grid item md="12" xs="12">
-                <Paper style={style.card}>
+                <Paper style={style.card} elevation="5">
                     <CardHeader title="Contact" />
                     <Grid container direction="row" alignItems="center">
                         <Grid item md="4" xs="12">

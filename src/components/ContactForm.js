@@ -243,11 +243,21 @@ const ContactForm = (props) => {
                 return (<>
                     <input style={style.smallInput} value={answer.refer} onChange={handleAnswerRefer} />
                 </>)
+            case 8:
+                return (<>
+                        <Typography style={style.answer}>What Day Of the Week Do you prefer for a consult?</Typography>
+                        <button>Monday</button> <button>Tuesday</button> <button>Wednesday</button> <button>Thursday</button> <button>Friday</button> <button> Saturday</button> <button>Sunday</button>
+                    
+                        <Typography style={style.answer}>Preferred Time of Day</Typography>
+                        <button>Morning</button><button>Afternoon</button><button>Evening</button>
+                        <Typography style={style.answer}>Do you Prefer In Person or Telephone Consult?</Typography>
+                        <button>In Person</button> <button>Phone</button>
+                </>)
             default:
                 return (
                 <>
                     <Typography style={style.answerText}>Name</Typography> <input style={style.smallInput} value={answer.name} onChange={handleAnswerName}/>
-                    <Typography style={style.answerText}>City/St</Typography> <input style={style.smallInput} value={answer.city} onChange={handleAnswerCity} />
+                    <Typography style={style.answerText}>City, State</Typography> <input style={style.smallInput} value={answer.city} onChange={handleAnswerCity} />
                 </>)
             
         }

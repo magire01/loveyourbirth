@@ -22,7 +22,7 @@
       },
       {
          "id": 4,
-         "question": "Why are you interested home birth",
+         "question": "Why are you interested home birth?",
          "type": "text" 
       },
       {
@@ -39,6 +39,14 @@
          "id": 7,
          "question": "How did you hear about Love your Birth Midwifery, PLLC?",
          "type": "text" 
+      },
+      {
+         "id": 8,
+         "question": "Availibility"
+      },
+      {
+         "id": 9,
+         "question": "Thank you for your submission. I will contact you to confirm an appointment"
       }
     ]
 } 

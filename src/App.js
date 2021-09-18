@@ -1,10 +1,12 @@
 import './App.css';
 import React, { useState, useRef, useEffect } from "react";
-import { Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, Modal, Card, Snackbar, SnackbarContent } from "@material-ui/core";
+import { Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, Modal, Card, Snackbar, SnackbarContent, colors } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import EmailIcon from '@material-ui/icons/Email';
 import HomeIcon from '@material-ui/icons/Home';
+
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import '@fontsource/roboto';
 import lybLogo from "./lybLogo3.png";
 import Home from './components/Home';
@@ -82,30 +84,31 @@ const App = () => {
       navbutton: "white",
       background1: "#E5COC8",
       newPatient: "#d9b3ff",
-      message: "#FDB7C2"
+      message: "#FDB7C2",
+      subheader: "#d9b3ff"
     }
     //style
     const style = {
       banner: {
-        width: (!isDesktop) ? "100%" : "45%",
+        width: (!isDesktop) ? "70%" : "45%",
         height: "auto",
         marginTop: (!isDesktop) ? 40 : 10
       },
       page: {
-        marginTop: "3%",
-        marginBottom: "5%",
+        marginTop: 0,
+        marginBottom: 0,
       },
       appbar: {
-        backgroundColor: colorScheme.navbar,
+        background: colorScheme.navbar,
         position: "fixed",
         alignItems: "center",
         height: 60
       },
       appbarSmall: {
-        backgroundColor: colorScheme.navbar,
+        background: colorScheme.navbar,
         height: 50,
-        position: "flex",
-        paddingRight: 20
+        position: "fixed",
+        paddingRight: 0
       },
       navbutton: {
         color: colorScheme.navbutton,
@@ -192,10 +195,26 @@ const App = () => {
         backgroundColor: "#8cd98c",
         alignItems: "center",
         color: 'white'
+      },
+      subheader: {
+        fontSize: 20,
+        backgroundColor: "#d9b3ff",
+        color: "white",
+        fontWeight: "bold",
+        marginTop: 10,
+        fontStyle: "italic"
+        // borderBottom: "1px solid #ff3399",
+        
+      },
+      heart: {
+          color: "#ff3399",
+          fontSize: 30,
+          marginBottom: 10,
+          marginTop: 25
       }
     }
 
-    //snackbar
+  //snackbar
     const [openSnack, setOpenSnack] = useState({
       message: false,
       consult: false
@@ -218,7 +237,7 @@ const App = () => {
         <Toolbar>
           {(!isDesktop)
 
-          // MOBILE APPBAR
+  // MOBILE APPBAR
           ? <>
               <Grid item>
                 <IconButton>
@@ -255,10 +274,11 @@ const App = () => {
                 ))}
               </Menu>
             </>
-          : <>
+           
 
-          {/* PC NAVBAR  */}
-          <Grid item md="12">
+  //PC APPBAR
+         : 
+         <> <Grid item md="12">
           {page.map((data, index) => (
             <Button style={style.navbutton} onClick={e => openPage(e, scroll[index + 1])}>{data}</Button>
           ))}
@@ -282,13 +302,13 @@ const App = () => {
         </Toolbar>
       </AppBar>
       
-      {/* BANNER */}
+  {/* BANNER */}
       <Grid container direction="row" alignItems="center" style={{ paddingTop: "3%" }}>
         <Grid item md="12" xs="12" ref={HomeRef}>
             <img src={lybLogo} style={style.banner}/>
         </Grid>
 
-        {/* MODALS */}
+  {/* MODALS */}
         <Grid item md="6" xs="6">
           <Button onClick={handleOpen} style={style.newPatient}>Schedule a Consultation</Button>
           <Modal
@@ -317,7 +337,7 @@ const App = () => {
               </Card>
           </Modal>
 
-          {/* SNACKBARS */}
+  {/* SNACKBARS */}
           <Snackbar
             open={openSnack.message}
             onClose={closeMessageSnack}
@@ -335,15 +355,21 @@ const App = () => {
           </Snackbar>
         </Grid>
 
-        {/* CONTENT  */}
+  {/* CONTENT  */}
         <Grid item md="12" xs="12" style={style.page}>
           <Home />
         </Grid>
-        <Grid item md="12" xs="12" style={style.page}ref={AboutRef}>
+        <Grid item md="12" xs="12">
+          <FavoriteIcon style={style.heart} />
+        </Grid>
+        <Grid item md="12" xs="12" style={style.page} ref={AboutRef}>
           <About />
         </Grid>
         <Grid item md="12" xs="12" style={style.page}ref={ServicesRef}>
           <Grid container direction="row" alignItems="center" justifyContent="center">
+            <Grid item m="12" xs="12">
+                <Typography variant='subtitle1' style={style.subheader}>Services</Typography>
+            </Grid>
             <Grid item md="4" xs="12" ref={PrenatalRef}>
               <Prenatal />
             </Grid>

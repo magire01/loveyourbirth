@@ -41,8 +41,8 @@ const Home = () => {
             fontSize: (!isDesktop) ? 14 : 20,
             textAlign: "center",
             marginTop: 20,
-            marginRight: (!isDesktop) ? 40 : 20,
-            marginLeft: (!isDesktop) ? 40 : 20
+            marginRight: (!isDesktop) ? 40 : 60,
+            marginLeft: (!isDesktop) ? 40 : 60
         },
         title: {
             fontSize: (!isDesktop) ? 25 : 35,
@@ -50,7 +50,7 @@ const Home = () => {
             color: "black"
         },
         picture2: {
-            width: (!isDesktop) ? 400 : "40%",
+            width: (!isDesktop) ? 300 : "40%",
             height: "auto",
             textAlign: "left",
             marginTop: 50
@@ -58,7 +58,8 @@ const Home = () => {
         card: {
             backgroundColor: "#A9D1EA",
             marginBottom: 5,
-            marginTop: 5
+            marginTop: 5,
+            paddingRight: 0
         },
         section: {
             marginTop: 30,

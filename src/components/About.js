@@ -47,9 +47,10 @@ const About = () => {
             height: "auto"
         },
         title: {
-            fontSize: (!isDesktop) ? 15 : 20,
+            fontSize: (!isDesktop) ? 20 : 20,
             color: "#730099",
-            marginBottom: 10
+            marginBottom: 10,
+            fontWeight: "bold"
         },
         section: {
             marginTop: 0,

@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useRef, useEffect } from "react";
-import { Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, Modal, Card, Snackbar, SnackbarContent, colors } from "@material-ui/core";
+import { Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, Modal, Card, Snackbar, SnackbarContent, colors, ListItemSecondaryAction } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import EmailIcon from '@material-ui/icons/Email';
@@ -142,9 +142,9 @@ const App = () => {
       newPatient: {
         backgroundColor: colorScheme.newPatient,
         color: "white",
-        width: "55%",
-        height: 50,
-        fontSize: (!isDesktop) ? 10 : 20,
+        width: (!isDesktop) ? 120 : "55%",
+        height: (!isDesktop) ? 35 : 50,
+        fontSize: (!isDesktop) ? 8 : 20,
         fontWeight: "bold",
         margin: 10,
         borderRadius: 200,
@@ -153,8 +153,8 @@ const App = () => {
       message: {
         backgroundColor: colorScheme.message,
         color: "white",
-        width: "55%",
-        height: 50,
+        width: (!isDesktop) ? 120 : "55%",
+        height: (!isDesktop) ? 35 : 50,
         fontSize: (!isDesktop) ? 10 : 20,
         fontWeight: "bold",
         margin: 10,

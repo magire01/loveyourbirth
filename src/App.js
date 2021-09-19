@@ -14,6 +14,7 @@ import About from "./components/About";
 import Prenatal from './components/Prenatal';
 import Birth from './components/Birth';
 import Newborn from './components/Newborn';
+import Resources from './components/Resources';
 import Contact from './components/Contact';
 import ContactForm from './components/ContactForm';
 import MessageForm from './components/MessageForm';
@@ -31,10 +32,11 @@ const App = () => {
   const PrenatalRef = useRef();
   const BirthRef = useRef();
   const NewbornRef = useRef();
-  const scroll = [HomeRef, AboutRef, ServicesRef, ContactRef]
-  const page = ["About", "Services", "Contact"]
-  const mobilePage = ["About", "Pregnancy", "Labor & Birth", "Postpartum & Newborn", "Contact"]
-  const mobileScroll = [HomeRef, AboutRef, PrenatalRef, BirthRef, NewbornRef, ContactRef]
+  const ResourceRef = useRef();
+  const scroll = [HomeRef, AboutRef, ServicesRef, ResourceRef, ContactRef]
+  const page = ["About", "Services", "Resources", "Contact"]
+  const mobilePage = ["About", "Pregnancy", "Labor & Birth", "Postpartum & Newborn", "Resources", "Contact"]
+  const mobileScroll = [HomeRef, AboutRef, PrenatalRef, BirthRef, NewbornRef, ResourceRef, ContactRef]
 
   const openPage = (e, page) => {
     e.preventDefault();
@@ -123,20 +125,25 @@ const App = () => {
       },
       menuicon: {
         color: "#ff3399",
-        position: "flex",
+        display: "flex",
         alignItems: "left",
       },
       otherIcon: {
         color: colorScheme.navbutton,
         position: "flex",
-        alignItems: "left",
+        alignItems: "right",
       },
       icons: {
         color: colorScheme.navbutton,
         position: "flex",
         alignItems: "right",
       },
-      mobilemenu: {
+      menuItem: {
+        backGroundColor: "#ff3399",
+        color: "white",
+        fontSize: 20,
+        fontWeight: "bold",
+        margin: 20
       },
       mobilemenuItem: {
         backgroundColor: "#ff3399",
@@ -245,16 +252,16 @@ const App = () => {
   // MOBILE APPBAR
           ? <>
               <Grid item>
-                <IconButton>
-                  <MenuIcon style={style.menuicon} onClick={menuOpen}/>
+                <IconButton onClick={menuOpen}>
+                  <MenuIcon style={style.menuicon}/>
                 </IconButton>
               </Grid>
               <Grid item xs="10" sm="10">
                 
               </Grid>
               <Grid item>
-                <IconButton>
-                  <HomeIcon style={style.otherIcon} onClick={e => openPage(e, scroll[0])}/>
+                <IconButton onClick={e => openPage(e, scroll[0])}>
+                  <HomeIcon style={style.otherIcon}/>
                 </IconButton>
               </Grid>
               <Grid item>
@@ -263,8 +270,8 @@ const App = () => {
                 </IconButton>
               </Grid>
               <Grid item>
-                <IconButton>
-                  <EmailIcon style={style.otherIcon} onClick={messageOpen}/>
+                <IconButton onClick={messageOpen}>
+                  <EmailIcon style={style.otherIcon}/>
                 </IconButton>
               </Grid>
               <Menu
@@ -278,6 +285,7 @@ const App = () => {
               >
                 {mobilePage.map((data, index) => (
                     <MenuItem style={style.mobilemenuItem} onClick={e => openPage(e, mobileScroll[index + 1])}>{data}</MenuItem>
+                    
                 ))}
               </Menu>
             </>
@@ -285,27 +293,44 @@ const App = () => {
 
   //PC APPBAR
          : 
-         <> <Grid item md="12">
-          {page.map((data, index) => (
-            <Button style={style.navbutton} onClick={e => openPage(e, scroll[index + 1])}>{data}</Button>
-          ))}
-          </Grid>
-          <Grid item style={style.icons}>
-            <IconButton>
-              <HomeIcon style={style.icons} onClick={e => openPage(e, scroll[0])}/>
-            </IconButton>
-          </Grid>
-          <Grid item style={style.icons}>
-            <IconButton>
-              <FacebookIcon style={style.icons}/>
-            </IconButton>
-          </Grid>
-          <Grid item style={style.icons}>
-            <IconButton>
-              <EmailIcon style={style.icons} onClick={messageOpen}/>
-            </IconButton>
-          </Grid>
-          </>}
+          <Grid container direction="row">
+            <Grid item xs="1">
+              <IconButton onClick={menuOpen}>
+                <MenuIcon style={style.menuicon}/>
+              </IconButton>
+            </Grid>
+            <Grid item xs="8" style={{ width: 1200 }}>
+            {/* Blank Space for App Bar */}
+            </Grid>
+            <Grid item xs="1">
+              <IconButton onClick={e => openPage(e, scroll[0])}>
+                <HomeIcon style={style.otherIcon}/>
+              </IconButton>
+            </Grid>
+            <Grid item xs="1">
+              <IconButton>
+                <FacebookIcon style={style.otherIcon}/>
+              </IconButton>
+            </Grid>
+            <Grid item xs="1">
+              <IconButton onClick={messageOpen}>
+                <EmailIcon style={style.otherIcon}/>
+              </IconButton>
+            </Grid>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={menuClose}
+              background="transparent"
+              style={{ opacity: 0.7 }}
+            >
+              {page.map((data, index) => (
+                  <MenuItem style={style.menuItem} onClick={e => openPage(e, scroll[index + 1])}>{data}</MenuItem>
+              ))}
+            </Menu>
+          </Grid>}
         </Toolbar>
       </AppBar>
       
@@ -388,8 +413,17 @@ const App = () => {
             </Grid>
           </Grid>
         </Grid>
+        <Grid item md="12" xs="12">
+          <FavoriteIcon style={style.heart} />
+        </Grid>
+        <Grid item md="12" xs="12" style={style.page} ref={ResourceRef}  style={{
+      marginBottom: (!isDesktop) ? "5%" : "5%", marginLeft: 0, marginRight: 0
+    }}>
+          <Typography variant='subtitle1' style={style.subheader}>Resources</Typography>
+          <Resources />
+        </Grid>
         <Grid item md="12" xs="12" style={{
-      marginTop: "3%", marginLeft: 0, marginRight: 0
+      marginTop: (!isDesktop) ? "5%" : 0, marginLeft: 0, marginRight: 0
     }} ref={ContactRef}>
           <Contact openMessage={messageOpen} openConsult={handleOpen}/>
         </Grid>

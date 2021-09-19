@@ -36,7 +36,7 @@ const Home = () => {
             textAlign: "center",
             fontWeight: "bold",
             marginBottom: 20,
-            marginTop: (!isDesktop) ? 0 : 15
+            marginTop: (!isDesktop) ? 10 : 15
         },
         missionFont: {
             fontSize: (!isDesktop) ? 14 : 20,

@@ -22,9 +22,9 @@ const Contact = (props) => {
     //Style
     const style = {
         card: {
-            marginTop: 5,
+            marginTop: 0,
             marginBottom: 0,
-            paddingTop: 20,
+            paddingTop: (!isDesktop) ? 0 : 20,
             paddingBottom: 40,
             backgroundColor: "#A9D1EA",
             color: "white",
@@ -60,14 +60,16 @@ const Contact = (props) => {
             color: "white",
             fontSize: (!isDesktop) ? 14 : 20,
             textDecoration: 'none',
-            marginTop: (!isDesktop) ? 80 : 50,
+            padding: (!isDesktop) ? 20 : 50,
+            fontWeight: "bold"
           },
           patientConsult: {
             color: "white", 
             fontSize: (!isDesktop) ? 14 : 20, 
             background: "none", 
             border: "none", 
-            marginTop: !(isDesktop) ? 20 : 15
+            paddingBottom: !(isDesktop) ? 50 : 15,
+            fontWeight: "bold"
             
           }
     }

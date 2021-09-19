@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Button, Typography, IconButton, LinearProgress } from "@material-ui/core";
+import { Grid, Button, Typography, IconButton, LinearProgress, Checkbox } from "@material-ui/core";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import CloseIcon from '@material-ui/icons/Close';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import Favorite from '@material-ui/icons/Favorite';
 import QuestionData from "../utilities/questions.json";
 import emailjs from 'emailjs-com';
 import '@fontsource/roboto';
@@ -18,6 +20,9 @@ const ContactForm = (props) => {
         return () => window.removeEventListener("resize", updateMedia);
     });
 
+    const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+    const day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    const time = ["Morning", "Afternoon", "Evening"]
 
     //question # state
     const [questionNum, setQuestionNum] = useState(0)
@@ -163,7 +168,7 @@ const ContactForm = (props) => {
         },
         activeButton: {
             marginBottom: 20,
-            backgroundColor: "blue",
+            backgroundColor: "purple",
             color: "white"
 
         },
@@ -204,6 +209,15 @@ const ContactForm = (props) => {
         },
         nextButtonDisabled: {
             color: "white"
+        },
+        checkbox: {
+            fontSize: (!isDesktop) ? 8 : 16,
+            alignText: "right"
+
+        },
+        checkitem: {
+            fontSize: (!isDesktop) ? 8 : 16,
+            alignText: "left"
         }
     }
 
@@ -219,18 +233,19 @@ const ContactForm = (props) => {
                 )
             case 2:
                 return (
-                <>
+                <div style={{ paddingTop: (!isDesktop) ? 40 : 40}}>
                     <Button onClick={(e, value) => handleAnswerFirstBirth(e, "Yes")} style={(answer.firstBirth === "Yes") ? style.activeButton : style.button}>Yes</Button>
                     <Button onClick={(e, value) => handleAnswerFirstBirth(e, "No")} style={(answer.firstBirth === "No") ? style.activeButton : style.button}>No</Button>
-                </>)
+                </div>)
             case 3:
-                return (<>
-                    <textarea style={style.largeInput} value={answer.envision} onChange={handleAnswerEnvision}></textarea>
-                </>)
-            case 4:
                 return (<>
                     <textarea style={style.largeInput} value={answer.why} onChange={handleAnswerWhy}></textarea>
                 </>)
+            case 4:
+                return (<>
+                    <textarea style={style.largeInput} value={answer.envision} onChange={handleAnswerEnvision}></textarea>
+                </>)
+            
             case 5:
                 return (<>
                     <textarea style={style.largeInput} value={answer.midwifery} onChange={handleAnswerMidwifery}></textarea>
@@ -243,15 +258,61 @@ const ContactForm = (props) => {
                 return (<>
                     <input style={style.smallInput} value={answer.refer} onChange={handleAnswerRefer} />
                 </>)
-            case 8:
+            case 8: 
                 return (<>
-                        <Typography style={style.answer}>What Day Of the Week Do you prefer for a consult?</Typography>
-                        <button>Monday</button> <button>Tuesday</button> <button>Wednesday</button> <button>Thursday</button> <button>Friday</button> <button> Saturday</button> <button>Sunday</button>
-                    
-                        <Typography style={style.answer}>Preferred Time of Day</Typography>
-                        <button>Morning</button><button>Afternoon</button><button>Evening</button>
-                        <Typography style={style.answer}>Do you Prefer In Person or Telephone Consult?</Typography>
-                        <button>In Person</button> <button>Phone</button>
+                    {day.map((result, key) => (
+                        <Grid
+                        container
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="center"
+                        >
+                            <Checkbox {...label} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                            <Typography style={style.checkitem}>{result}</Typography>
+                    </Grid>
+                    ))}
+                </>)
+            case 9:
+                return (<>
+                    {time.map((result, key) => (
+                        <Grid
+                        container
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="center"
+                        >
+                            <Checkbox {...label} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                            <Typography style={style.checkitem}>{result}</Typography>
+                    </Grid>
+                    ))}
+                </>)
+            case 10:
+                return (<>
+                    <Button>In-Person</Button><Button>Phone</Button>
+                
+                </>)
+            case 11:
+                return (<>
+                <>
+                    <Grid
+                        container
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="center"
+                        >
+                            <Typography style={style.answerText}> Name: </Typography>
+                            <Typography style={style.checkitem}>{answer.name}</Typography>
+                    </Grid>
+                    <Grid
+                        container
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="center"
+                        >
+                            <Typography style={style.answerText}> Email: </Typography>
+                            <Typography style={style.checkitem}>{answer.email}</Typography>
+                    </Grid>
+                </>
                 </>)
             default:
                 return (

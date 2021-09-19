@@ -99,7 +99,7 @@ const About = () => {
     return (
         <Grid container direction="row" alignItems="center">
             <Grid item m="12" xs="12">
-                <Typography variant='subtitle1' style={style.subheader}>Meet Your Midwife</Typography>
+                <Typography variant='subtitle1' style={style.subheader}>Meet the Midwife</Typography>
             </Grid>
             <Grid item md="6" xs="12" style={style.section}>
                 
@@ -118,14 +118,14 @@ const About = () => {
             <Grid item md="6" xs="12" style={style.section}>
                 
                 <div style={style.card2}>
-                    <Typography style={style.font2}>I have always had a passion for pregnancy and birth, but particularly after the birth of my second child. Although I had a hospital birth, I had an experience with limited intervention and was able to truly listen to my body. After such an empowering experience of an unmedicated birth, I envisioned myself providing similar opportunities to women. I live in Northern Kentucky with my two beautiful children. I enjoy playing piano, singing, kayaking, yoga, and enjoying nature. My dream is for everyone to have the birth experience they desire. I look forward to meeting you!</Typography>
+                    <Typography style={style.font2}>I have always had a passion for pregnancy and birth, but particularly after the birth of my second child. Although I had a hospital birth, I had an experience with limited intervention and was able to truly listen to my body. After such an empowering experience of an unmedicated birth, I envisioned myself providing similar opportunities to women. I live in Northern Kentucky with my two beautiful children. I enjoy playing piano, singing, kayaking, yoga, and being a mother. My dream is for everyone to have the birth experience they desire. I look forward to meeting you!</Typography>
                 </div>
                 <div style={style.card2}>
                     <Typography variant="h6" style={style.font3}>Experience</Typography>
                     <Typography style={style.font2}>Master’s Degree in the Science of Nurse-Midwifery (2021)</Typography>
-                    <Typography style={style.font2}>Registered Nurse in Labor &amp; Delivery and Postpartum (2016)</Typography>
                     <Typography style={style.font2}>Certified Nurse Midwife through AMCB (2021)</Typography>
                     <Typography style={style.font2}>APRN Kentucky License (2021)</Typography>
+                    <Typography style={style.font2}>Registered Nurse in Labor &amp; Delivery and Postpartum (2016)</Typography>
                     <Typography style={style.font2}>Midwifery Clinical Experience in the Home Setting </Typography>
                     <Typography style={style.font2}>Neonatal Resuscitation Certified</Typography>
                     <Typography style={style.font2}>BLS CPR Certified</Typography>

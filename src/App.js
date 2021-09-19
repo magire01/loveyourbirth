@@ -117,11 +117,16 @@ const App = () => {
         marginLeft: 10
       },
       navbuttonSmall: {
-        color: colorScheme.navbutton,
+        color: "#ff3399",
         fontSize: 10,
         marginLeft: 30
       },
       menuicon: {
+        color: "#ff3399",
+        position: "flex",
+        alignItems: "left",
+      },
+      otherIcon: {
         color: colorScheme.navbutton,
         position: "flex",
         alignItems: "left",
@@ -134,7 +139,7 @@ const App = () => {
       mobilemenu: {
       },
       mobilemenuItem: {
-        backgroundColor: "lightblue",
+        backgroundColor: "#ff3399",
         color: "white",
         fontSize: 10,
         fontWeight: "bold"
@@ -249,17 +254,17 @@ const App = () => {
               </Grid>
               <Grid item>
                 <IconButton>
-                  <HomeIcon style={style.menuicon} onClick={e => openPage(e, scroll[0])}/>
+                  <HomeIcon style={style.otherIcon} onClick={e => openPage(e, scroll[0])}/>
                 </IconButton>
               </Grid>
               <Grid item>
                 <IconButton>
-                  <FacebookIcon style={style.menuicon}/>
+                  <FacebookIcon style={style.otherIcon}/>
                 </IconButton>
               </Grid>
               <Grid item>
                 <IconButton>
-                  <EmailIcon style={style.menuicon} onClick={messageOpen}/>
+                  <EmailIcon style={style.otherIcon} onClick={messageOpen}/>
                 </IconButton>
               </Grid>
               <Menu
@@ -268,6 +273,8 @@ const App = () => {
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={menuClose}
+                background="transparent"
+                style={{ opacity: 0.7 }}
               >
                 {mobilePage.map((data, index) => (
                     <MenuItem style={style.mobilemenuItem} onClick={e => openPage(e, mobileScroll[index + 1])}>{data}</MenuItem>
@@ -384,7 +391,7 @@ const App = () => {
         <Grid item md="12" xs="12" style={{
       marginTop: "3%", marginLeft: 0, marginRight: 0
     }} ref={ContactRef}>
-          <Contact />
+          <Contact openMessage={messageOpen} openConsult={handleOpen}/>
         </Grid>
       </Grid>
     </div>

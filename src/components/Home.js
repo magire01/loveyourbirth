@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Grid, Paper, Typography, CardMedia } from "@material-ui/core";
 import '@fontsource/roboto';
 import MidwifePic from "../midwife1.png";
-
+import FavoriteIcon from '@material-ui/icons/Favorite';
 const Home = () => {
     //Nav Rendering for Smartphone vs Laptop
     const [isDesktop, setDesktop] = useState(window.innerWidth > 1000);
@@ -35,7 +35,8 @@ const Home = () => {
             fontSize: (!isDesktop) ? 12 : 20,
             textAlign: "center",
             fontWeight: "bold",
-            marginBottom: 40
+            marginBottom: 20,
+            marginTop: (!isDesktop) ? 0 : 15
         },
         missionFont: {
             fontSize: (!isDesktop) ? 14 : 20,
@@ -64,14 +65,23 @@ const Home = () => {
         section: {
             marginTop: 30,
             marginBottom: 50
+        },
+        heart: {
+            color: "#ff3399",
+            fontSize: 30,
+            marginBottom: 20,
+            marginTop: 0
         }
     }
     return (
         <Grid container direction="row" alignItems="center" justifyContent="center">
                     <Grid item md="12" xs="12">
                         <Typography style={style.quoteFont}>You are a midwife, assisting at someone else’s birth. Do good without show or fuss. Facilitate what is happening rather than what you think ought to be happening. If you must take the lead, lead so that the mother is helped, yet still free and in charge. When the baby is born, the mother will rightly say, 'We did it ourselves!'</Typography>
-                        <Typography style={style.quoteFont2}>-Tao Te Ching</Typography>
+                        <Typography style={style.quoteFont2}>Tao Te Ching</Typography>
                     </Grid>
+                    <Grid item md="12" xs="12">
+          <FavoriteIcon style={style.heart} />
+        </Grid>
             <Paper style={style.card} elevation="3">
                 <Grid item md="12" xs="12">
                     <CardMedia>

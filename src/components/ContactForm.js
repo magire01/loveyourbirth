@@ -255,6 +255,12 @@ const ContactForm = (props) => {
             fontSize: (!isDesktop) ? 10 : 20,
             fontWeight: "bold"
         },
+        answerTextBold: {
+            marginTop: (!isDesktop) ? 10 : 20,
+            marginBottom: (!isDesktop) ? 10 : 10,
+            color: "purple",
+            fontSize: (!isDesktop) ? 10 : 20,
+        },
         input: {
             marginTop: 20,
             marginBottom: 20
@@ -487,8 +493,8 @@ const ContactForm = (props) => {
                         justifyContent="center"
                         alignItems="center"
                         >
-                            <Typography style={style.answerText}> Name: </Typography>
-                            <Typography style={style.checkitem}>{answer.name}</Typography>
+                            <Typography style={style.answerTextBold}> Name: </Typography>
+                            <Typography style={style.answerText}>{answer.name}</Typography>
                     </Grid>
                     <Grid
                         container
@@ -496,9 +502,19 @@ const ContactForm = (props) => {
                         justifyContent="center"
                         alignItems="center"
                         >
-                            <Typography style={style.answerText}> Email: </Typography>
-                            <Typography style={style.checkitem}>{answer.email}</Typography>
+                            <Typography style={style.answerTextBold}> Email: </Typography>
+                            <Typography style={style.answerText}>{answer.email}</Typography>
                     </Grid>
+                    <Grid
+                        container
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="center"
+                        >
+                            <Typography style={style.answerTextBold}> Phone: </Typography>
+                            <Typography style={style.answerText}>{answer.phone}</Typography>
+                    </Grid>
+                    
                 </>
                 </>)
             default:

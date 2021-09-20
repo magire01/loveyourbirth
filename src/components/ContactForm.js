@@ -372,9 +372,10 @@ const ContactForm = (props) => {
                             direction="row"
                             justifyContent="center"
                             alignItems="center"
+                            onClick={checkSunday}
                             >
                                 <Checkbox {...label} 
-                                onChange={checkSunday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                                checked={selectDays.sunday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
                                 <Typography style={style.checkitem}>Sunday</Typography>
                             </Grid>
                             <Grid
@@ -382,9 +383,10 @@ const ContactForm = (props) => {
                             direction="row"
                             justifyContent="center"
                             alignItems="center"
+                            onClick={checkMonday} 
                             >
                                 <Checkbox {...label}
-                                onChange={checkMonday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                                checked={selectDays.monday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
                                 <Typography style={style.checkitem}>Monday</Typography>
                             </Grid>
                             <Grid
@@ -392,9 +394,10 @@ const ContactForm = (props) => {
                             direction="row"
                             justifyContent="center"
                             alignItems="center"
+                            onClick={checkTuesday} 
                             >
                                 <Checkbox {...label}
-                                onChange={checkTuesday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                                checked={selectDays.tuesday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
                                 <Typography style={style.checkitem}>Tuesday</Typography>
                             </Grid>
                             <Grid
@@ -402,9 +405,10 @@ const ContactForm = (props) => {
                             direction="row"
                             justifyContent="center"
                             alignItems="center"
+                            onClick={checkWednesday} 
                             >
-                                <Checkbox
-                                onChange={checkWednesday} {...label} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                                <Checkbox {...label}
+                                checked={selectDays.wednesday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
                                 <Typography style={style.checkitem}>Wednesday</Typography>
                             </Grid>
                         </Grid>
@@ -414,9 +418,10 @@ const ContactForm = (props) => {
                             direction="row"
                             justifyContent="center"
                             alignItems="center"
+                            onClick={checkThursday} 
                             >
                                 <Checkbox {...label}
-                                onChange={checkThursday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                                checked={selectDays.thursday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
                                 <Typography style={style.checkitem}>Thursday</Typography>
                             </Grid>
                             <Grid
@@ -424,9 +429,10 @@ const ContactForm = (props) => {
                             direction="row"
                             justifyContent="center"
                             alignItems="center"
+                            onClick={checkFriday} 
                             >
-                                <Checkbox
-                                onChange={checkFriday} {...label} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                                <Checkbox {...label} 
+                                checked={selectDays.friday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
                                 <Typography style={style.checkitem}>Friday</Typography>
                             </Grid>
                             <Grid
@@ -434,9 +440,10 @@ const ContactForm = (props) => {
                             direction="row"
                             justifyContent="center"
                             alignItems="center"
+                            onClick={checkSaturday} 
                             >
-                                <Checkbox
-                                onChange={checkSaturday} {...label} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                                <Checkbox {...label}
+                                checked={selectDays.saturday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
                                 <Typography style={style.checkitem}>Saturday</Typography>
                             </Grid>
 
@@ -450,9 +457,10 @@ const ContactForm = (props) => {
                     direction="row"
                     justifyContent="center"
                     alignItems="center"
+                    onClick={checkMorning}
                     >
                         <Checkbox {...label} 
-                        onClick={checkMorning} icon={<FavoriteBorder  style={style.checkbox} />} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                         checked={selectTime.morning} icon={<FavoriteBorder  style={style.checkbox} />} checkedIcon={<Favorite  style={style.checkbox}/>}/>
                         <Typography style={style.checkitem}>Morning</Typography>
                 </Grid>
                 <Grid
@@ -460,9 +468,10 @@ const ContactForm = (props) => {
                     direction="row"
                     justifyContent="center"
                     alignItems="center"
+                    onClick={checkAfternoon}
                     >
                         <Checkbox {...label}
-                        onClick={checkAfternoon} icon={<FavoriteBorder  style={style.checkbox} />} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                         checked={selectTime.afternoon} icon={<FavoriteBorder  style={style.checkbox} />} checkedIcon={<Favorite  style={style.checkbox}/>}/>
                         <Typography style={style.checkitem}>Afternoon</Typography>
                 </Grid>
                 <Grid
@@ -470,9 +479,10 @@ const ContactForm = (props) => {
                     direction="row"
                     justifyContent="center"
                     alignItems="center"
+                    onClick={checkEvening} 
                     >
                         <Checkbox {...label} 
-                        onClick={checkEvening} icon={<FavoriteBorder  style={style.checkbox} />} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                        checked={selectTime.evening} icon={<FavoriteBorder  style={style.checkbox} />} checkedIcon={<Favorite  style={style.checkbox}/>}/>
                         <Typography style={style.checkitem}>Evening</Typography>
                 </Grid>
 

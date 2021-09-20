@@ -118,7 +118,6 @@ const MessageForm = (props) => {
             </IconButton>
             <Grid container alignItems="center" justifyContent="center">
                 <Grid item md="12" xs="12" style={style.container}>
-                    <Typography>Email Us</Typography>
                     <Typography style={style.label}>Name</Typography>
                     <input style={style.smallInput} onChange={handleMessageName}/>
                     <Typography style={style.label}>Email</Typography>

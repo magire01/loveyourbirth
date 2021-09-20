@@ -14,17 +14,17 @@
          "id": 2,
             "question": "Is this your first pregnancy?",
             "type": "choice" 
-      },
-      {
+      },{
          "id": 3,
-         "question": "How Do you Envision Your Birth?",
+         "question": "Why are you interested home birth?",
          "type": "text" 
       },
       {
          "id": 4,
-         "question": "Why are you interested home birth?",
+         "question": "How Do you Envision Your Birth?",
          "type": "text" 
       },
+      
       {
          "id": 5,
          "question": "What questions do you have about midwifery care, our role and responsibility, training and eduction?",
@@ -42,11 +42,19 @@
       },
       {
          "id": 8,
-         "question": "Availibility"
+         "question": "What Day(s) do you Prefer for A Consultation?"
       },
       {
          "id": 9,
-         "question": "Thank you for your submission. I will contact you to confirm an appointment"
+         "question": "What Time of Day do you prefer?"
+      },
+      {
+         "id": 10,
+         "question": "Do you prefer an In-Person or Phone Consultation?"
+      },
+      {
+         "id": 11,
+         "question": "Thank you for your submission. I will contact you to confirm an appointment!"
       }
     ]
 } 

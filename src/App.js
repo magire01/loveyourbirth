@@ -131,7 +131,7 @@ const App = () => {
       otherIcon: {
         color: colorScheme.navbutton,
         position: "flex",
-        alignItems: "right",
+        alignItems: "right"
       },
       icons: {
         color: colorScheme.navbutton,
@@ -265,9 +265,11 @@ const App = () => {
                 </IconButton>
               </Grid>
               <Grid item>
+                <a href="https://www.facebook.com/Loveyourbirthmidwifery/" target="_blank" style={{ textDecoration: "none" }}>
                 <IconButton>
-                  <FacebookIcon style={style.otherIcon}/>
+                    <FacebookIcon style={style.otherIcon}/>
                 </IconButton>
+                </a>
               </Grid>
               <Grid item>
                 <IconButton onClick={messageOpen}>
@@ -285,7 +287,6 @@ const App = () => {
               >
                 {mobilePage.map((data, index) => (
                     <MenuItem style={style.mobilemenuItem} onClick={e => openPage(e, mobileScroll[index + 1])}>{data}</MenuItem>
-                    
                 ))}
               </Menu>
             </>
@@ -308,9 +309,11 @@ const App = () => {
               </IconButton>
             </Grid>
             <Grid item xs="1">
+            <a href="https://www.facebook.com/Loveyourbirthmidwifery/" target="_blank" style={{ textDecoration: "none" }}>
               <IconButton>
                 <FacebookIcon style={style.otherIcon}/>
               </IconButton>
+            </a>
             </Grid>
             <Grid item xs="1">
               <IconButton onClick={messageOpen}>

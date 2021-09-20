@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Button, Typography, IconButton, LinearProgress } from "@material-ui/core";
+import { Grid, Button, Typography, IconButton, LinearProgress, Checkbox } from "@material-ui/core";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import CloseIcon from '@material-ui/icons/Close';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import Favorite from '@material-ui/icons/Favorite';
 import QuestionData from "../utilities/questions.json";
 import emailjs from 'emailjs-com';
 import '@fontsource/roboto';
+import { QuestionAnswerSharp } from "@material-ui/icons";
 
 const ContactForm = (props) => {
     //Nav Rendering for Smartphone vs Laptop
@@ -17,8 +20,97 @@ const ContactForm = (props) => {
         window.addEventListener("resize", updateMedia);
         return () => window.removeEventListener("resize", updateMedia);
     });
+    //Checkbox
+    const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+    const day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    const time = ["Morning", "Afternoon", "Evening"]
+    const [selectDays, setSelectDays] = useState({
+            sunday: false,
+            monday: false,
+            tuesday: false,
+            wednesday: false,
+            thursday: false,
+            friday: false,
+            saturday: false
+        })
+    const checkSunday = () => {
+        if(!selectDays.sunday) {
+            setSelectDays({ ...selectDays, sunday: true })
+        } else {
+            setSelectDays({ ...selectDays, sunday: false })
+        }
+    } 
+    const checkMonday = () => {
+        if(!selectDays.monday) {
+            setSelectDays({ ...selectDays, monday: true })
+        } else {
+            setSelectDays({ ...selectDays, monday: false })
+        }
+    }
+    const checkTuesday = () => {
+        if(!selectDays.tuesday) {
+            setSelectDays({ ...selectDays, tuesday: true })
+        } else {
+            setSelectDays({ ...selectDays, tuesday: false })
+        }
+    }
+    const checkWednesday = () => {
+        if(!selectDays.wednesday) {
+            setSelectDays({ ...selectDays, wednesday: true })
+        } else {
+            setSelectDays({ ...selectDays, wednesday: false })
+        }
+    }
+    const checkThursday = () => {
+        if(!selectDays.thursday) {
+            setSelectDays({ ...selectDays, thursday: true })
+        } else {
+            setSelectDays({ ...selectDays, thursday: false })
+        }
+    }
+    const checkFriday = () => {
+        if(!selectDays.friday) {
+            setSelectDays({ ...selectDays, friday: true })
+        } else {
+            setSelectDays({ ...selectDays, friday: false })
+        }
+    }
+    const checkSaturday = () => {
+        if(!selectDays.saturday) {
+            setSelectDays({ ...selectDays, saturday: true })
+        } else {
+            setSelectDays({ ...selectDays, saturday: false })
+        }
+    }
 
+    const [selectTime, setSelectTime] = useState({
+        morning: false,
+        afternoon: false,
+        evening: false
+    })
 
+    const checkMorning = () => {
+        if(!selectTime.morning) {
+            setSelectTime({ ...selectTime, morning: true})
+        } else {
+            setSelectTime({ ...selectTime, morning: false})
+        }
+    }
+    const checkAfternoon = () => {
+        if(!selectTime.afternoon) {
+            setSelectTime({ ...selectTime, afternoon: true})
+        } else {
+            setSelectTime({ ...selectTime, afternoon: false})
+        }
+    }
+    const checkEvening = () => {
+        if(!selectTime.evening) {
+            setSelectTime({ ...selectTime, evening: true})
+        } else {
+            setSelectTime({ ...selectTime, evening: false})
+        }
+    }
+    
     //question # state
     const [questionNum, setQuestionNum] = useState(0)
 
@@ -49,8 +141,11 @@ const ContactForm = (props) => {
         why: "",
         midwifery: "",
         concerns: "",
-        refer: ""
+        refer: "",
+        consultPreference: ""
     })
+
+    
 
     const handleAnswerName = (e) => {
         setAnswer({ ...answer, name: e.target.value })
@@ -95,6 +190,10 @@ const ContactForm = (props) => {
         setAnswer({ ...answer, refer: e.target.value })
     }
 
+    const handleConsultPreference = (e, selection) => {
+        e.preventDefault();
+        setAnswer({ ...answer, consultPreference: selection})
+    }
     const sendEmail = (e) => {
         e.preventDefault();
         emailjs.send('service_brv7il1', 'template_aldpnbc', 
@@ -109,7 +208,10 @@ const ContactForm = (props) => {
             why: answer.why,
             midwifery: answer.midwifery,
             concerns: answer.concerns,
-            refer: answer.refer
+            refer: answer.refer,
+            days: Object.keys(selectDays).filter(key => selectDays[key]),
+            time: Object.keys(selectTime).filter(key => selectTime[key]),
+            preference: answer.consultPreference
         }, 'user_VCNwVyQVStaLfnvdfDv4t')
         .then((result) => {
             console.log(result.text);
@@ -120,7 +222,6 @@ const ContactForm = (props) => {
         props.closeForm();
     };
     
-
     //Style
     const style = {
         card: {
@@ -159,11 +260,14 @@ const ContactForm = (props) => {
             marginBottom: 20
         },
         button: {
-            marginBottom: 20
+            margin: "5%",
+            marginBottom: 20,
+            border: "1px solid purple"
         },
         activeButton: {
+            margin: "5%",
             marginBottom: 20,
-            backgroundColor: "blue",
+            backgroundColor: "purple",
             color: "white"
 
         },
@@ -171,7 +275,8 @@ const ContactForm = (props) => {
             // position: "absolute", 
             // bottom: (!isDesktop) ? "40%" : "10%",
             color: "white",
-            backgroundColor: "#d9b3ff"
+            backgroundColor: "#d9b3ff",
+            marginTop: 20
         },
         questionSection: {
             height: (!isDesktop) ? 200 : 400,
@@ -204,6 +309,14 @@ const ContactForm = (props) => {
         },
         nextButtonDisabled: {
             color: "white"
+        },
+        checkbox: {
+            fontSize: (!isDesktop) ? 15 : 20,
+            alignText: "right"
+        },
+        checkitem: {
+            fontSize: (!isDesktop) ? 15 : 20,
+            alignText: "left"
         }
     }
 
@@ -219,18 +332,19 @@ const ContactForm = (props) => {
                 )
             case 2:
                 return (
-                <>
+                <div style={{ paddingTop: (!isDesktop) ? 40 : 40}}>
                     <Button onClick={(e, value) => handleAnswerFirstBirth(e, "Yes")} style={(answer.firstBirth === "Yes") ? style.activeButton : style.button}>Yes</Button>
                     <Button onClick={(e, value) => handleAnswerFirstBirth(e, "No")} style={(answer.firstBirth === "No") ? style.activeButton : style.button}>No</Button>
-                </>)
+                </div>)
             case 3:
-                return (<>
-                    <textarea style={style.largeInput} value={answer.envision} onChange={handleAnswerEnvision}></textarea>
-                </>)
-            case 4:
                 return (<>
                     <textarea style={style.largeInput} value={answer.why} onChange={handleAnswerWhy}></textarea>
                 </>)
+            case 4:
+                return (<>
+                    <textarea style={style.largeInput} value={answer.envision} onChange={handleAnswerEnvision}></textarea>
+                </>)
+            
             case 5:
                 return (<>
                     <textarea style={style.largeInput} value={answer.midwifery} onChange={handleAnswerMidwifery}></textarea>
@@ -243,15 +357,149 @@ const ContactForm = (props) => {
                 return (<>
                     <input style={style.smallInput} value={answer.refer} onChange={handleAnswerRefer} />
                 </>)
-            case 8:
+            case 8: 
                 return (<>
-                        <Typography style={style.answer}>What Day Of the Week Do you prefer for a consult?</Typography>
-                        <button>Monday</button> <button>Tuesday</button> <button>Wednesday</button> <button>Thursday</button> <button>Friday</button> <button> Saturday</button> <button>Sunday</button>
-                    
-                        <Typography style={style.answer}>Preferred Time of Day</Typography>
-                        <button>Morning</button><button>Afternoon</button><button>Evening</button>
-                        <Typography style={style.answer}>Do you Prefer In Person or Telephone Consult?</Typography>
-                        <button>In Person</button> <button>Phone</button>
+                    <Grid container direction="row" alignItems="center" justifyContent="center">
+                        <Grid item md="6" xs="5">
+                            <Grid
+                            container
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            >
+                                <Checkbox {...label} 
+                                onChange={checkSunday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                                <Typography style={style.checkitem}>Sunday</Typography>
+                            </Grid>
+                            <Grid
+                            container
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            >
+                                <Checkbox {...label}
+                                onChange={checkMonday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                                <Typography style={style.checkitem}>Monday</Typography>
+                            </Grid>
+                            <Grid
+                            container
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            >
+                                <Checkbox {...label}
+                                onChange={checkTuesday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                                <Typography style={style.checkitem}>Tuesday</Typography>
+                            </Grid>
+                            <Grid
+                            container
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            >
+                                <Checkbox
+                                onChange={checkWednesday} {...label} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                                <Typography style={style.checkitem}>Wednesday</Typography>
+                            </Grid>
+                        </Grid>
+                        <Grid item md="6" xs="5">
+                            <Grid
+                            container
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            >
+                                <Checkbox {...label}
+                                onChange={checkThursday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                                <Typography style={style.checkitem}>Thursday</Typography>
+                            </Grid>
+                            <Grid
+                            container
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            >
+                                <Checkbox
+                                onChange={checkFriday} {...label} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                                <Typography style={style.checkitem}>Friday</Typography>
+                            </Grid>
+                            <Grid
+                            container
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            >
+                                <Checkbox
+                                onChange={checkSaturday} {...label} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                                <Typography style={style.checkitem}>Saturday</Typography>
+                            </Grid>
+
+                        </Grid>
+                    </Grid>
+            </>)
+        case 9:
+            return (<>
+                <Grid
+                    container
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    >
+                        <Checkbox {...label} 
+                        onClick={checkMorning} icon={<FavoriteBorder  style={style.checkbox} />} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                        <Typography style={style.checkitem}>Morning</Typography>
+                </Grid>
+                <Grid
+                    container
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    >
+                        <Checkbox {...label}
+                        onClick={checkAfternoon} icon={<FavoriteBorder  style={style.checkbox} />} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                        <Typography style={style.checkitem}>Afternoon</Typography>
+                </Grid>
+                <Grid
+                    container
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    >
+                        <Checkbox {...label} 
+                        onClick={checkEvening} icon={<FavoriteBorder  style={style.checkbox} />} checkedIcon={<Favorite  style={style.checkbox}/>}/>
+                        <Typography style={style.checkitem}>Evening</Typography>
+                </Grid>
+
+            </>)
+            case 10:
+                return (<>
+                    <div style={{ paddingTop: (!isDesktop) ? 40 : 40}}>
+                        <Button onClick={(e, value) => handleConsultPreference(e, "In Person")} style={(answer.consultPreference === "In Person") ? style.activeButton : style.button}>In Person</Button>
+                        <Button onClick={(e, value) => handleConsultPreference(e, "Phone")} style={(answer.consultPreference === "Phone") ? style.activeButton : style.button}>Phone</Button>
+                    </div>
+                </>)
+            case 11:
+                return (<>
+                <>
+                    <Grid
+                        container
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="center"
+                        >
+                            <Typography style={style.answerText}> Name: </Typography>
+                            <Typography style={style.checkitem}>{answer.name}</Typography>
+                    </Grid>
+                    <Grid
+                        container
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="center"
+                        >
+                            <Typography style={style.answerText}> Email: </Typography>
+                            <Typography style={style.checkitem}>{answer.email}</Typography>
+                    </Grid>
+                </>
                 </>)
             default:
                 return (

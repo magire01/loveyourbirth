@@ -94,9 +94,11 @@ const Contact = (props) => {
                 </IconButton>
             </Grid>
             <Grid item md="1" xs="4">
+            <a href="https://www.facebook.com/Loveyourbirthmidwifery/" target="_blank" style={{ textDecoration: "none" }}>
                 <IconButton>
                     <FacebookIcon style={style.facebookIcon}/>
                 </IconButton>
+            </a>
             </Grid>
             <Grid item md="1" xs="4">
                 <IconButton onClick={() => setPhoneState(true)}>

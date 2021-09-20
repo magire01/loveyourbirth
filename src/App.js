@@ -287,7 +287,6 @@ const App = () => {
               >
                 {mobilePage.map((data, index) => (
                     <MenuItem style={style.mobilemenuItem} onClick={e => openPage(e, mobileScroll[index + 1])}>{data}</MenuItem>
-                    
                 ))}
               </Menu>
             </>

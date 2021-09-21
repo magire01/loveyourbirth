@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Typography, CardMedia, Paper } from "@material-ui/core";
 import '@fontsource/roboto';
-import ProfilePic from "../krystal.png";
+import ProfilePic from "../krystal3.png";
 
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
@@ -35,7 +35,7 @@ const About = () => {
             width: "60%"
         },
         picture: {
-            width: (!isDesktop) ? "80%" : "50%",
+            width: (!isDesktop) ? "70%" : 250,
             height: "auto",
             marginTop: (!isDesktop) ? 0 : 10,
             marginBottom: (!isDesktop) ? 0 : 0,
@@ -118,7 +118,7 @@ const About = () => {
             <Grid item md="6" xs="12" style={style.section}>
                 
                 <div style={style.card2}>
-                    <Typography style={style.font2}>I have always had a passion for pregnancy and birth, but particularly after the birth of my second child. Although I had a hospital birth, I had an experience with limited intervention and was able to truly listen to my body. After such an empowering experience of an unmedicated birth, I envisioned myself providing similar opportunities to women. I live in Northern Kentucky with my two beautiful children. I enjoy playing piano, singing, kayaking, yoga, and being a mother. My dream is for everyone to have the birth experience they desire. I look forward to meeting you!</Typography>
+                    <Typography style={style.font2}>I have always had a passion for pregnancy and birth, but particularly after the birth of my second child. Although I had a hospital birth, I had an experience with limited intervention and was able to truly listen to my body. After such an empowering experience of having an unmedicated birth, I envisioned myself providing similar opportunities to women. I live in Northern Kentucky with my two beautiful children. I enjoy playing piano, singing, kayaking, yoga, and being a mother. My dream is for everyone to have the birth experience they desire. I look forward to meeting you!</Typography>
                 </div>
                 <div style={style.card2}>
                     <Typography variant="h6" style={style.font3}>Experience</Typography>

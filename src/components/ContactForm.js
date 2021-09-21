@@ -8,7 +8,7 @@ import Favorite from '@material-ui/icons/Favorite';
 import QuestionData from "../utilities/questions.json";
 import emailjs from 'emailjs-com';
 import '@fontsource/roboto';
-import { QuestionAnswerSharp } from "@material-ui/icons";
+import { Email, QuestionAnswerSharp } from "@material-ui/icons";
 
 const ContactForm = (props) => {
     //Nav Rendering for Smartphone vs Laptop
@@ -114,14 +114,32 @@ const ContactForm = (props) => {
     //question # state
     const [questionNum, setQuestionNum] = useState(0)
 
+    const [errValidation, setErrValidation] = useState({
+        name: false,
+        city: false,
+        email: false,
+        phone: false
+    })
+
     //progress bar
     const point = 100/QuestionData.data.length
     const [progress, setProgress] = useState(point)
 
     const nextQuestion = (e) => {
         e.preventDefault();
-        setQuestionNum(questionNum + 1)
-        setProgress(progress + point)
+        if (questionNum === 0 && answer.name == "")
+        {
+            setErrValidation({ ...errValidation, name: true})
+        } else if (questionNum == 0 && answer.city == "") {
+            setErrValidation({ ...errValidation, city: true})
+        } else if (questionNum === 1 && answer.email == "") {
+            setErrValidation({ ...errValidation, email: true})
+        } else if (questionNum === 1 && answer.phone == "") {
+            setErrValidation({ ...errValidation, phone: true})
+        } else {
+            setQuestionNum(questionNum + 1)
+            setProgress(progress + point)
+        }
     }
 
     const prevQuestion = (e) => {
@@ -196,7 +214,7 @@ const ContactForm = (props) => {
     }
     const sendEmail = (e) => {
         e.preventDefault();
-        emailjs.send('service_brv7il1', 'template_aldpnbc', 
+        emailjs.send('service_sa2sv31', 'template_aldpnbc', 
         { 
             name: answer.name, 
             city: answer.city, 
@@ -255,6 +273,13 @@ const ContactForm = (props) => {
             fontSize: (!isDesktop) ? 10 : 20,
             fontWeight: "bold"
         },
+        answerTextErr: {
+            marginTop: (!isDesktop) ? 10 : 20,
+            marginBottom: (!isDesktop) ? 10 : 10,
+            color: "red",
+            fontSize: (!isDesktop) ? 10 : 20,
+            fontWeight: "bold"
+        },
         answerTextBold: {
             marginTop: (!isDesktop) ? 10 : 20,
             marginBottom: (!isDesktop) ? 10 : 10,
@@ -281,6 +306,13 @@ const ContactForm = (props) => {
             // position: "absolute", 
             // bottom: (!isDesktop) ? "40%" : "10%",
             color: "white",
+            backgroundColor: "purple",
+            marginTop: 20
+        },
+        next: { 
+            // position: "absolute", 
+            // bottom: (!isDesktop) ? "40%" : "10%",
+            color: "white",
             backgroundColor: "#d9b3ff",
             marginTop: 20
         },
@@ -297,8 +329,11 @@ const ContactForm = (props) => {
             height: (!isDesktop) ? 200: 300
         },
         smallInput: {
+            width: (!isDesktop) ? 200: 350, 
+        },
+        smallInputErr: {
             width: (!isDesktop) ? 200: 350,
-            
+            border: "1px solid red"
         },
         largeInput: {
             width: (!isDesktop) ? "90%": 500,
@@ -331,8 +366,8 @@ const ContactForm = (props) => {
             case 1:
                 return (
                 <>
-                    <Typography style={style.answerText}>Phone</Typography> <input style={style.smallInput} value={answer.phone} onChange={handleAnswerPhone} />
-                    <Typography style={style.answerText}>Email</Typography> <input style={style.smallInput} value={answer.email} onChange={handleAnswerEmail} />
+                    <Typography style={(!errValidation.email) ? style.answerText : style.answerTextErr}>{(!errValidation.email) ? "Email" : "*Email"}</Typography> <input style={(!errValidation.email) ? style.smallInput : style.smallInputErr} value={answer.email} onChange={handleAnswerEmail} />
+                    <Typography style={(!errValidation.phone) ? style.answerText : style.answerTextErr}>{(!errValidation.phone) ? "Phone" : "*Phone"}</Typography> <input style={(!errValidation.phone) ? style.smallInput : style.smallInputErr} value={answer.email} value={answer.phone} onChange={handleAnswerPhone} />  
                     <Typography style={style.answerText}>Preferred Method of Contact</Typography> <Button onClick={(e, value) => handleAnswerContactPref(e, "Email")} style={(answer.contact === "Email") ? style.activeButton : style.button}>Email</Button><Button onClick={(e, value) => handleAnswerContactPref(e, "Phone")} style={(answer.contact === "Phone") ? style.activeButton : style.button}>Phone</Button>
                 </>
                 )
@@ -530,8 +565,8 @@ const ContactForm = (props) => {
             default:
                 return (
                 <>
-                    <Typography style={style.answerText}>Name</Typography> <input style={style.smallInput} value={answer.name} onChange={handleAnswerName}/>
-                    <Typography style={style.answerText}>City, State</Typography> <input style={style.smallInput} value={answer.city} onChange={handleAnswerCity} />
+                    <Typography style={(!errValidation.name) ? style.answerText : style.answerTextErr}>{(!errValidation.name) ? "Name" : "*Name"}</Typography> <input style={(!errValidation.name) ? style.smallInput : style.smallInputErr} value={answer.name} onChange={handleAnswerName}/>
+                    <Typography style={(!errValidation.city) ? style.answerText : style.answerTextErr}>{(!errValidation.city) ? "City, State" : "*City, State"}</Typography> <input style={(!errValidation.city) ? style.smallInput : style.smallInputErr} value={answer.name} value={answer.city} onChange={handleAnswerCity} />
                 </>)
             
         }
@@ -540,7 +575,7 @@ const ContactForm = (props) => {
     return (
         <div>
             <Grid container direction="row" alignItems="center" justifyContent="center"  style={{ paddingLeft: 0, paddingRight: (!isDesktop) ? "4%" : 0 }}>
-                <Grid container direction="row" alignItems="left" justifyContent="left">
+                <Grid container direction="row" justifyContent="left">
                     <IconButton>
                         <CloseIcon onClick={props.closeForm} />
                     </IconButton>
@@ -564,7 +599,7 @@ const ContactForm = (props) => {
                         <Grid item md="12" xs="12">
                             {(questionNum === QuestionData.data.length - 1) 
                             ? <Button onClick={sendEmail} style={style.submit}>Submit</Button> 
-                            : <Button onClick={nextQuestion} style={style.submit}>Next</Button>}
+                            : <Button onClick={nextQuestion} style={style.next}>Next</Button>}
                         </Grid> 
                     </Grid>
                     <Grid item md="1" xs="1">

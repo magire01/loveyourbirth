@@ -35,7 +35,7 @@ const About = () => {
             width: "60%"
         },
         picture: {
-            width: (!isDesktop) ? "70%" : 250,
+            width: (!isDesktop) ? 200 : 250,
             height: "auto",
             marginTop: (!isDesktop) ? 0 : 10,
             marginBottom: (!isDesktop) ? 0 : 0,

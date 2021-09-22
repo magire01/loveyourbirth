@@ -45,7 +45,7 @@ const App = () => {
   }
 
   //Nav Rendering for Smartphone vs Laptop
-  const [isDesktop, setDesktop] = useState(window.innerWidth > 1000);
+  const [isDesktop, setDesktop] = useState(window.innerWidth > 1400);
   const updateMedia = () => {
     setDesktop(window.innerWidth > 1000);
   };
@@ -92,13 +92,17 @@ const App = () => {
     //style
     const style = {
       banner: {
-        width: (!isDesktop) ? "70%" : "45%",
+        width: (!isDesktop) ? "70%" : "32%",
         height: "auto",
         marginTop: (!isDesktop) ? 40 : 10
       },
       page: {
         marginTop: 0,
         marginBottom: 0,
+      },
+      pageServices: {
+        marginTop: 0,
+        marginBottom: 100,
       },
       appbar: {
         background: colorScheme.navbar,
@@ -154,22 +158,22 @@ const App = () => {
       newPatient: {
         backgroundColor: colorScheme.newPatient,
         color: "white",
-        width: (!isDesktop) ? 120 : "55%",
+        width: (!isDesktop) ? 120 : "30%",
         height: (!isDesktop) ? 35 : 50,
-        fontSize: (!isDesktop) ? 8 : 20,
+        fontSize: (!isDesktop) ? 8 : 14,
         fontWeight: "bold",
-        margin: 10,
+        marginLeft: (!isDesktop) ? 10 : "40%",
         borderRadius: 200,
         border: "3px outset #E1F0FA"
       },
       message: {
         backgroundColor: colorScheme.message,
         color: "white",
-        width: (!isDesktop) ? 120 : "55%",
+        width: (!isDesktop) ? 120 : "30%",
         height: (!isDesktop) ? 35 : 50,
-        fontSize: (!isDesktop) ? 10 : 20,
+        fontSize: (!isDesktop) ? 10 : 16,
         fontWeight: "bold",
-        margin: 10,
+        marginRight: (!isDesktop) ? 10 : "40%",
         borderRadius: 200,
         border: "3px outset #F7E0E3"
       },
@@ -400,7 +404,7 @@ const App = () => {
         <Grid item md="12" xs="12" style={style.page} ref={AboutRef}>
           <About />
         </Grid>
-        <Grid item md="12" xs="12" style={style.page}ref={ServicesRef}>
+        <Grid item md="12" xs="12" style={style.page} ref={ServicesRef}>
           <Grid container direction="row" alignItems="center" justifyContent="center">
             <Grid item m="12" xs="12">
                 <Typography variant='subtitle1' style={style.subheader}>Services</Typography>
@@ -423,7 +427,9 @@ const App = () => {
       marginBottom: (!isDesktop) ? "5%" : "5%", marginLeft: 0, marginRight: 0
     }}>
           <Typography variant='subtitle1' style={style.subheader}>Resources</Typography>
-          <Resources />
+          <div style={{ paddingTop: (!isDesktop) ? 20 : 0 }}>
+            <Resources />
+          </div>
         </Grid>
         <Grid item md="12" xs="12" style={{
       marginTop: (!isDesktop) ? "5%" : 0, marginLeft: 0, marginRight: 0

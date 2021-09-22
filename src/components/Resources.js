@@ -26,7 +26,8 @@ const Resources = () => {
             backgroundColor: colorScheme.serviceCard,
             color: "black",
             margin: "3%",
-            height: (!isDesktop) ? "auto" : 20
+            height: (!isDesktop) ? 30 : 20,
+            padding: (!isDesktop) ? 5 : 0
         },
         title: {
             borderBottom: "1px dashed black"

@@ -48,6 +48,28 @@ body {
   }
 }
 
+.MuiList-padding {
+  background-color: #ff3399;
+}
+
+.heartIcon {
+  color: #ff3399;
+  font-size: 30px;
+  margin-bottom: 10px;
+  margin-top: 25px;
+
+}
+
+/* .subHeader {
+  font-size: 10px;
+  background-color: #d9b3ff;
+  color: white;
+  margin-top: 10px;
+  font-style: italic;
+  height: 30px;
+  padding-top: 10px
+} */
+
 
 @media screen and (max-width: 1200px) {
   .appBar {
@@ -70,6 +92,9 @@ body {
     color: white;
     margin: 5px
   }
+  .contactView {
+    margin-top: 5%;
+  }
 }
 
 @media screen 
@@ -88,11 +113,13 @@ body {
     align-items: right;
   }
   .menuIcon {
-    color: #ff3399
+    color: #ff3399;
+    font-size: 5px
   }
   .iconFont {
     color: white;
-    margin: 40px
+    margin: 40px;
+    font-size: 5px
   }
 }
 

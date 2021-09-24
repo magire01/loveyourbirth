@@ -98,9 +98,6 @@ const About = () => {
     }
     return (
         <Grid container direction="row" alignItems="center">
-            <Grid item m="12" xs="12">
-                <Typography variant='subtitle1' style={style.subheader}>Meet the Midwife</Typography>
-            </Grid>
             <Grid item md="6" xs="12" style={style.section}>
                 
                 <div style={style.card}>

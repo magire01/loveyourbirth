@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useRef, useEffect } from "react";
-import { Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, Modal, Card, Snackbar, SnackbarContent, colors, ListItemSecondaryAction } from "@material-ui/core";
+import { Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, Modal, Card, Snackbar, SnackbarContent, colors, ListItemSecondaryAction, Divider } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import EmailIcon from '@material-ui/icons/Email';
@@ -249,81 +249,31 @@ const App = () => {
     }
   return (
     <div className="App">
-      <AppBar position="fixed" style={(!isDesktop) ? style.appbarSmall : style.appbar}>
-        <Toolbar>
-          {(!isDesktop)
-
-  // MOBILE APPBAR
-          ? <>
-              <Grid item>
-                <IconButton onClick={menuOpen}>
-                  <MenuIcon style={style.menuicon}/>
-                </IconButton>
-              </Grid>
-              <Grid item xs="10" sm="10">
-                
-              </Grid>
-              <Grid item>
-                <IconButton onClick={e => openPage(e, scroll[0])}>
-                  <HomeIcon style={style.otherIcon}/>
-                </IconButton>
-              </Grid>
-              <Grid item>
-                <a href="https://www.facebook.com/Loveyourbirthmidwifery/" target="_blank" style={{ textDecoration: "none" }}>
-                <IconButton>
-                    <FacebookIcon style={style.otherIcon}/>
-                </IconButton>
-                </a>
-              </Grid>
-              <Grid item>
-                <IconButton onClick={messageOpen}>
-                  <EmailIcon style={style.otherIcon}/>
-                </IconButton>
-              </Grid>
-              <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={menuClose}
-                background="transparent"
-                style={{ opacity: 0.7 }}
-              >
-                {mobilePage.map((data, index) => (
-                    <MenuItem style={style.mobilemenuItem} onClick={e => openPage(e, mobileScroll[index + 1])}>{data}</MenuItem>
-                ))}
-              </Menu>
-            </>
-           
-
-  //PC APPBAR
-         : 
-          <Grid container direction="row">
-            <Grid item xs="1">
+{/* APPBAR */}
+      <AppBar>
+        <Toolbar className="appBar"> 
+          <Grid container columns={12} alignItems="center">
+            <Grid item md={3} xs={2} className={"menuIcon"}>
               <IconButton onClick={menuOpen}>
                 <MenuIcon style={style.menuicon}/>
               </IconButton>
             </Grid>
-            <Grid item xs="8" style={{ width: 1200 }}>
-            {/* Blank Space for App Bar */}
+            <Grid item md={4} xs={0}>
             </Grid>
-            <Grid item xs="1">
+            <Grid item md={4} xs={10} className={"appBarIcons"}>
               <IconButton onClick={e => openPage(e, scroll[0])}>
-                <HomeIcon style={style.otherIcon}/>
+                <HomeIcon className={"iconFont"}/>
+              </IconButton>
+              <a href="https://www.facebook.com/Loveyourbirthmidwifery/" target="_blank" style={{ textDecoration: "none" }}>
+                <IconButton className={"topIcon"}>
+                  <FacebookIcon className={"iconFont"}/>
+                </IconButton>
+              </a>
+              <IconButton onClick={messageOpen} className={"topIcon"}>
+                <EmailIcon className={"iconFont"}/>
               </IconButton>
             </Grid>
-            <Grid item xs="1">
-            <a href="https://www.facebook.com/Loveyourbirthmidwifery/" target="_blank" style={{ textDecoration: "none" }}>
-              <IconButton>
-                <FacebookIcon style={style.otherIcon}/>
-              </IconButton>
-            </a>
-            </Grid>
-            <Grid item xs="1">
-              <IconButton onClick={messageOpen}>
-                <EmailIcon style={style.otherIcon}/>
-              </IconButton>
-            </Grid>
+  {/* NAV MENU */}
             <Menu
               id="simple-menu"
               anchorEl={anchorEl}
@@ -333,21 +283,24 @@ const App = () => {
               background="transparent"
               style={{ opacity: 0.7 }}
             >
-              {page.map((data, index) => (
+              {(!isDesktop) 
+              ? mobilePage.map((data, index) => (
+                <MenuItem style={style.mobilemenuItem} onClick={e => openPage(e, mobileScroll[index + 1])}>{data}</MenuItem>
+              ))
+              : page.map((data, index) => (
                   <MenuItem style={style.menuItem} onClick={e => openPage(e, scroll[index + 1])}>{data}</MenuItem>
               ))}
             </Menu>
-          </Grid>}
+          </Grid>
         </Toolbar>
       </AppBar>
       
-  {/* BANNER */}
       <Grid container direction="row" alignItems="center" style={{ paddingTop: "3%" }}>
+{/* BANNER */}
         <Grid item md="12" xs="12" ref={HomeRef}>
             <img src={lybLogo} style={style.banner}/>
         </Grid>
-
-  {/* MODALS */}
+{/* MODALS */}
         <Grid item md="6" xs="6">
           <Button onClick={handleOpen} style={style.newPatient}>Schedule a Consultation</Button>
           <Modal
@@ -356,11 +309,9 @@ const App = () => {
               aria-labelledby="simple-modal-title"
               aria-describedby="simple-modal-description"
               >
-              <>
               <Card style={style.contactCard}>
                 <ContactForm closeForm={handleClose} successConsult={consultSnack}/>
               </Card>
-              </>
             </Modal>
         </Grid>
         <Grid item md="6" xs="6">

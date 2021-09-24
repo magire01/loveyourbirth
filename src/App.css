@@ -47,7 +47,52 @@ body {
     font-size: 16px;
   }
 }
-.MuiList-padding {
-  background-color: #ff3399
+
+
+@media screen and (max-width: 1200px) {
+  .appBar {
+    background-color: #A9D1EA;
+    height: 10px;
+  }
+  .menuIcon {
+    position: relative;
+    align-items: left;
+  }
+  .appBarIcons {
+    position: relative;
+    align-items: right;
+  }
+  .menuIcon {
+    font-size: 5px;
+    color: #ff3399
+  }
+  .iconFont {
+    color: white;
+    margin: 5px
+  }
+}
+
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-width: 2000px) {
+  .appBar {
+    background-color: #A9D1EA;
+    height: 10px;
+  }
+  .menuIcon {
+    position: relative;
+    align-items: left;
+  }
+  .appBarIcons {
+    position: relative;
+    align-items: right;
+  }
+  .menuIcon {
+    color: #ff3399
+  }
+  .iconFont {
+    color: white;
+    margin: 40px
+  }
 }
 

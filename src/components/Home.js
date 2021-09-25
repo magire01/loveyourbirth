@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./Home.css";
 import { Grid, Paper, Typography, CardMedia } from "@material-ui/core";
 import '@fontsource/roboto';
 import MidwifePic from "../midwife1.png";
@@ -53,18 +54,11 @@ const Home = () => {
         picture2: {
             width: (!isDesktop) ? 300 : "40%",
             height: "auto",
-            textAlign: "left",
-            marginTop: 50
+            textAlign: "left"
         },
         card: {
             backgroundColor: "#A9D1EA",
-            marginBottom: 5,
-            marginTop: 5,
-            paddingRight: 0
-        },
-        section: {
-            marginTop: 30,
-            marginBottom: 50
+            marginBottom: 10
         },
         heart: {
             color: "#ff3399",
@@ -74,25 +68,12 @@ const Home = () => {
         }
     }
     return (
-        <Grid container direction="row" alignItems="center" justifyContent="center">
-                    <Grid item md="12" xs="12">
-                        <Typography style={style.quoteFont}>You are a midwife, assisting at someone else’s birth. Do good without show or fuss. Facilitate what is happening rather than what you think ought to be happening. If you must take the lead, lead so that the mother is helped, yet still free and in charge. When the baby is born, the mother will rightly say, 'We did it ourselves!'</Typography>
-                        <Typography style={style.quoteFont2}>Tao Te Ching</Typography>
-                    </Grid>
-                    <Grid item md="12" xs="12">
-          <FavoriteIcon style={style.heart} />
-        </Grid>
-            <Paper style={style.card} elevation="3">
-                <Grid item md="12" xs="12">
-                    <CardMedia>
-                        <img src={MidwifePic} style={style.picture2}/>
-                    </CardMedia>
-                </Grid>
-                <Grid item md="12" xs="12" style={style.section}>
-                    <Typography style={style.missionFont}>My mission is to support physiologic pregnancy and birth by providing safe and evidence-based midwifery care in the home setting. Pregnancy and birth bring forth sacred and beautiful physiologic moments that should be protected through physical and emotional support. We will work together through informed consent and shared decision making so you can feel confident in the decisions about your pregnancy and birth. My hope is for you to feel supported, empowered, and to ultimately love your birth experience.</Typography>
-                </Grid>
-            </Paper>   
-        </Grid>
+        <Paper style={style.card} elevation={3}>
+            <CardMedia>
+                <img src={MidwifePic} style={style.picture2}/>
+            </CardMedia>
+            <Typography className={"missionFont"}>My mission is to support physiologic pregnancy and birth by providing safe and evidence-based midwifery care in the home setting. Pregnancy and birth bring forth sacred and beautiful physiologic moments that should be protected through physical and emotional support. We will work together through informed consent and shared decision making so you can feel confident in the decisions about your pregnancy and birth. My hope is for you to feel supported, empowered, and to ultimately love your birth experience.</Typography>
+        </Paper>
     )
 }
 

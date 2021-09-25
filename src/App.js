@@ -56,7 +56,7 @@ const App = () => {
 
   //Open Form and Message Functions
   const [openForm, setOpenForm] = useState(false);
-    const [openMessage, setOpenMessage] = useState(false);
+  const [openMessage, setOpenMessage] = useState(false);
 
     const handleOpen = () => {
         setOpenForm(true);
@@ -179,8 +179,14 @@ const App = () => {
         backgroundColor: "#d9b3ff",
         color: "white",
         fontWeight: "bold",
-        marginTop: 10,
         fontStyle: "italic"
+      },
+      quoteFont: {
+        fontSize: (!isDesktop) ? 12 : 20
+      },
+      authorFont: {
+        fontSize: (!isDesktop) ? 12 : 20,
+        fontWeight: "bold"
       }
     }
 
@@ -204,25 +210,29 @@ const App = () => {
   return (
     <div className="App">
 {/* APPBAR */}
-      <AppBar>
-        <Toolbar className="appBar"> 
-          <Grid container columns={12} alignItems="center">
-            <Grid item md={2} xs={2}>
+      <AppBar position="fixed" elevation={5} style={{ height: (!isDesktop) ? 50 : 60, position: "fixed", backgroundColor: "#A9D1EA" }}>
+        <Toolbar> 
+          <Grid container alignItems="center">
+            <Grid item md={1} xs={1}>
               <IconButton onClick={menuOpen}>
                 <MenuIcon className={"menuIcon"}/>
               </IconButton>
             </Grid>
-            <Grid item md={6} xs={0}>
+            <Grid item md={8} xs={5}> 
             </Grid>
-            <Grid item md={4} xs={10} className={"appBarIcons"}>
+            <Grid item md={1} xs={2}>
               <IconButton onClick={e => openPage(e, scroll[0])}>
                 <HomeIcon className={"iconFont"}/>
               </IconButton>
+            </Grid>
+            <Grid item md={1} xs={2}>
               <a href="https://www.facebook.com/Loveyourbirthmidwifery/" target="_blank" style={{ textDecoration: "none" }}>
                 <IconButton className={"topIcon"}>
                   <FacebookIcon className={"iconFont"}/>
                 </IconButton>
               </a>
+            </Grid>
+            <Grid item md={1} xs={2}>
               <IconButton onClick={messageOpen} className={"topIcon"}>
                 <EmailIcon className={"iconFont"}/>
               </IconButton>
@@ -248,7 +258,7 @@ const App = () => {
           </Grid>
         </Toolbar>
       </AppBar>
-      
+    
       <Grid container direction="row" alignItems="center" style={{ paddingTop: "3%" }}>
 {/* BANNER */}
         <Grid item md="12" xs="12" ref={HomeRef}>
@@ -297,6 +307,14 @@ const App = () => {
               <SnackbarContent message="Consultation Request Sent Successfully!" style={style.success} />
           </Snackbar>
         </Grid>
+    {/* QUOTE */}
+        <Grid item md="12" xs="12" className={"quoteMargin"}>
+            <Typography style={style.quoteFont} className={"quoteFont"}>You are a midwife, assisting at someone else’s birth. Do good without show or fuss. Facilitate what is happening rather than what you think ought to be happening. If you must take the lead, lead so that the mother is helped, yet still free and in charge. When the baby is born, the mother will rightly say, 'We did it ourselves!'</Typography>
+            <Typography style={style.authorFont} className={"authorFont"} style={{ fontWeight: "bold" }}>Tao Te Ching</Typography>
+        </Grid>
+        <Grid item md="12" xs="12">
+          <FavoriteIcon className={"heartIcon"} />
+        </Grid>
 {/* CONTENT  */}
     {/* HOME */}
           <Grid item md="12" xs="12">
@@ -314,14 +332,19 @@ const App = () => {
           <Grid item md="12" xs="12" ref={ServicesRef}>
               <Typography style={style.subheader}>Services</Typography>
           </Grid>
-          <Grid item md="4" xs="12" ref={PrenatalRef}>
-            <Prenatal />
-          </Grid>
-          <Grid item md="4" xs="12" ref={BirthRef}>
-            <Birth />
-          </Grid>
-          <Grid item md="4" xs="12" ref={NewbornRef}>
-            <Newborn />
+          <Grid container direction="row" justifyContent="center" alignItems="flex-start">
+            <Grid item md="4" xs="12" ref={PrenatalRef}>
+              <FavoriteIcon className={"heartIcon"}/>
+              <Prenatal />
+            </Grid>
+            <Grid item md="4" xs="12" ref={BirthRef}>
+              <FavoriteIcon className={"heartIcon"}/>
+              <Birth />
+            </Grid>
+            <Grid item md="4" xs="12" ref={NewbornRef}>
+              <FavoriteIcon className={"heartIcon"}/>
+              <Newborn />
+            </Grid>
           </Grid>
           <Grid item md="12" xs="12">
             <FavoriteIcon className={"heartIcon"} />

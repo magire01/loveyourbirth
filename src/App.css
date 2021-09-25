@@ -54,24 +54,15 @@ body {
 
 .heartIcon {
   color: #ff3399;
-  font-size: 30px;
-  margin-bottom: 10px;
-  margin-top: 25px;
-
+  font-size: 20px;
+  padding: 10px 0px 10px 0px
 }
 
-/* .subHeader {
-  font-size: 10px;
-  background-color: #d9b3ff;
-  color: white;
-  margin-top: 10px;
-  font-style: italic;
-  height: 30px;
-  padding-top: 10px
-} */
 
 
-@media screen and (max-width: 1200px) {
+
+@media screen 
+  and (max-width: 1200px) {
   .appBar {
     background-color: #A9D1EA;
     height: 10px;
@@ -81,17 +72,32 @@ body {
     align-items: left;
   }
   .appBarIcons {
-    position: relative;
-    align-items: right;
+  
   }
   .menuIcon {
-    font-size: 5px;
-    color: #ff3399
+    color: #ff3399;
+    padding: 20px;
   }
   .iconFont {
     color: white;
-    margin: 5px
+    padding: 20px
   }
+  .quoteFont {
+    color: black;
+    font-size: 12px;
+    font-style: italic;
+    padding: 20px 50px 10px 50px
+  }
+  .authorFont {
+    color: black;
+    font-size: 20px;
+  }
+
+
+
+
+
+
   .contactView {
     margin-top: 5%;
   }
@@ -109,17 +115,23 @@ body {
     align-items: left;
   }
   .appBarIcons {
-    position: relative;
-    align-items: right;
+    
   }
   .menuIcon {
     color: #ff3399;
-    font-size: 5px
+    padding: 20px;
   }
   .iconFont {
     color: white;
-    margin: 40px;
-    font-size: 5px
+    padding: 20px;
+  }
+  .quoteFont {
+    color: black;
+    font-style: italic;
+    padding: 40px 200px 20px 200px
+  }
+  .authorFont {
+    color: black;
   }
 }
 

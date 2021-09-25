@@ -1,0 +1,17 @@
+@media screen 
+    and (max-width: 1200px) {
+        .missionFont {
+            font-size: 20px;
+            padding: 10px 10px 10px 10px
+        }
+
+}
+@media screen 
+    and (min-device-width: 1200px) 
+    and (max-width: 2000px) {
+      .missionFont {
+        font-size: 14px;
+        text-align: center;
+        padding: 10px 100px 10px 100px
+    }
+}

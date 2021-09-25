@@ -21,7 +21,7 @@ const About = () => {
     const style = {
         font2: {
             color: "#730099",
-            margin: 20,
+            padding: 10,
             fontSize: 18
         },
         font3: {
@@ -37,7 +37,7 @@ const About = () => {
         picture: {
             width: (!isDesktop) ? 200 : 250,
             height: "auto",
-            marginTop: (!isDesktop) ? 0 : 10,
+            marginTop: 30,
             marginBottom: (!isDesktop) ? 0 : 0,
             borderRadius: 60,
             border: "2px solid #730099"
@@ -53,18 +53,18 @@ const About = () => {
             fontWeight: "bold"
         },
         section: {
-            marginTop: 0,
-            height: (!isDesktop) ? "auto" : 700
+            paddingTop: 20,
+            height: "auto"
         },
         card: {
             margin: 20,
-            width: "auto%",
+            width: "auto",
             height: "auto",
             marginBottom: 20,
             borderRadius: 20
         },
         card2: {
-            marginBottom: 50
+            paddingBottom: 50
         },
         cardMessage: {
             display: 'fixed',  
@@ -97,36 +97,23 @@ const About = () => {
         },
     }
     return (
-        <Grid container direction="row" alignItems="center">
-            <Grid item md="6" xs="12" style={style.section}>
-                
-                <div style={style.card}>
-                    <CardMedia>
-                        <img src={ProfilePic} style={style.picture}/>
-                    </CardMedia> 
-                </div>{(!isDesktop)
-                        ?
-                        <>
-                            <Typography variant="h4" style={style.title}>Krystal Smith, MSN, APRN, CNM</Typography>
-                        </>
-                        : <Typography variant="h4" style={style.title}>Krystal Smith, MSN, APRN, CNM</Typography>
-                    }
+        <Grid container direction="row" alignItems="flex-start" justifyContent="center" style={{ height: "auto"}}>
+            <Grid item md="6" xs="12">
+                <img src={ProfilePic} style={style.picture}/>
+                <Typography variant="h4" style={style.title}>Krystal Smith, MSN, APRN, CNM</Typography>
             </Grid>
-            <Grid item md="6" xs="12" style={style.section}>
-                
-                <div style={style.card2}>
-                    <Typography style={style.font2}>I have always had a passion for pregnancy and birth, but particularly after the birth of my second child. Although I had a hospital birth, I had an experience with limited intervention and was able to truly listen to my body. After such an empowering experience of having an unmedicated birth, I envisioned myself providing similar opportunities to women. I live in Northern Kentucky with my two beautiful children. I enjoy playing piano, singing, kayaking, yoga, and being a mother. My dream is for everyone to have the birth experience they desire. I look forward to meeting you!</Typography>
-                </div>
-                <div style={style.card2}>
-                    <Typography variant="h6" style={style.font3}>Experience</Typography>
-                    <Typography style={style.font2}>Master’s Degree in the Science of Nurse-Midwifery (2021)</Typography>
-                    <Typography style={style.font2}>Certified Nurse Midwife through AMCB (2021)</Typography>
-                    <Typography style={style.font2}>APRN Kentucky License (2021)</Typography>
-                    <Typography style={style.font2}>Registered Nurse in Labor &amp; Delivery and Postpartum (2016)</Typography>
-                    <Typography style={style.font2}>Midwifery Clinical Experience in the Home Setting </Typography>
-                    <Typography style={style.font2}>Neonatal Resuscitation Certified</Typography>
-                    <Typography style={style.font2}>BLS CPR Certified</Typography>
-                </div>
+            <Grid item md="6" xs="12">
+                <Typography style={style.font2}>I have always had a passion for pregnancy and birth, but particularly after the birth of my second child. Although I had a hospital birth, I had an experience with limited intervention and was able to truly listen to my body. After such an empowering experience of having an unmedicated birth, I envisioned myself providing similar opportunities to women. I live in Northern Kentucky with my two beautiful children. I enjoy playing piano, singing, kayaking, yoga, and being a mother. My dream is for everyone to have the birth experience they desire. I look forward to meeting you!</Typography>
+            <div style={style.section}>
+                <Typography variant="h6" style={style.font3}>Experience</Typography>
+                <Typography style={style.font2}>Master’s Degree in the Science of Nurse-Midwifery (2021)</Typography>
+                <Typography style={style.font2}>Certified Nurse Midwife through AMCB (2021)</Typography>
+                <Typography style={style.font2}>APRN Kentucky License (2021)</Typography>
+                <Typography style={style.font2}>Registered Nurse in Labor &amp; Delivery and Postpartum (2016)</Typography>
+                <Typography style={style.font2}>Midwifery Clinical Experience in the Home Setting </Typography>
+                <Typography style={style.font2}>Neonatal Resuscitation Certified</Typography>
+                <Typography style={style.font2}>BLS CPR Certified</Typography>
+            </div>
             </Grid>
         </Grid>
     )

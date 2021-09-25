@@ -54,24 +54,22 @@ const Contact = (props) => {
             fontWeight: "bold",
             fontStyle: "italic",
             marginBottom: 20
-            // borderBottom: "1px solid #ff3399",
-          },
-          patientPortal: {
+        },
+        patientPortal: {
             color: "white",
             fontSize: (!isDesktop) ? 14 : 20,
             textDecoration: 'none',
             padding: (!isDesktop) ? 20 : 50,
             fontWeight: "bold"
-          },
-          patientConsult: {
+        },
+        patientConsult: {
             color: "white", 
             fontSize: (!isDesktop) ? 14 : 20, 
             background: "none", 
             border: "none", 
             paddingBottom: !(isDesktop) ? 50 : 15,
             fontWeight: "bold"
-            
-          }
+        }
     }
     return (
     <Paper style={style.card} elevation="5">

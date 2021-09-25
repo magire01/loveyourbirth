@@ -1,26 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Service.css";
-import { Grid, Typography } from "@material-ui/core";
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import { Typography } from "@material-ui/core";
 import '@fontsource/roboto';
 
 const Newborn = () => {
-    //Nav Rendering for Smartphone vs Laptop
-    const [isDesktop, setDesktop] = useState(window.innerWidth > 1000);
-    const updateMedia = () => {
-        setDesktop(window.innerWidth > 1000);
-    };
-    useEffect(() => {
-        window.addEventListener("resize", updateMedia);
-        return () => window.removeEventListener("resize", updateMedia);
-    });
-
-    //Colors
-    const colorScheme = {
-        serviceCard: "white",
-        title: "#E68FAE",
-        font: "black",
-    }
     //Style
     const style = {
         subTitle: {

@@ -71,16 +71,11 @@ body {
     position: relative;
     align-items: left;
   }
-  .appBarIcons {
-  
-  }
   .menuIcon {
     color: #ff3399;
-    padding: 20px;
   }
   .iconFont {
     color: white;
-    padding: 20px
   }
   .quoteFont {
     color: black;
@@ -113,9 +108,6 @@ body {
   .menuIcon {
     position: relative;
     align-items: left;
-  }
-  .appBarIcons {
-    
   }
   .menuIcon {
     color: #ff3399;

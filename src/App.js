@@ -22,7 +22,7 @@ const App = () => {
   //Scroll Nav
   const scrollToRef = (ref) => window.scrollTo({
     behavior: "smooth",
-    top: ref.current.offsetTop-50
+    top: ref.current.offsetTop-62
   })
   const HomeRef = useRef()
   const ContactRef = useRef()
@@ -32,9 +32,9 @@ const App = () => {
   const BirthRef = useRef();
   const NewbornRef = useRef();
   const ResourceRef = useRef();
-
-  const scroll = [HomeRef, AboutRef, ServicesRef, ResourceRef, ContactRef]
+  
   const page = ["About", "Services", "Resources", "Contact"]
+  const scroll = [HomeRef, AboutRef, ServicesRef, ResourceRef, ContactRef]
   const mobilePage = ["About", "Pregnancy", "Labor & Birth", "Postpartum & Newborn", "Resources", "Contact"]
   const mobileScroll = [HomeRef, AboutRef, PrenatalRef, BirthRef, NewbornRef, ResourceRef, ContactRef]
 
@@ -94,18 +94,7 @@ const App = () => {
       banner: {
         width: (!isDesktop) ? "70%" : "32%",
         height: "auto",
-        marginTop: (!isDesktop) ? 40 : 10
-      },
-      navbutton: {
-        color: colorScheme.navbutton,
-        fontSize: 15,
-        marginRight: 10,
-        marginLeft: 10
-      },
-      navbuttonSmall: {
-        color: "#ff3399",
-        fontSize: 10,
-        marginLeft: 30
+        marginTop: (!isDesktop) ? 40 : 15
       },
       menuItem: {
         backGroundColor: "#ff3399",
@@ -176,10 +165,11 @@ const App = () => {
       },
       subheader: {
         fontSize: 20,
-        backgroundColor: "#d9b3ff",
+        backgroundColor: colorScheme.subheader,
         color: "white",
         fontWeight: "bold",
-        fontStyle: "italic"
+        fontStyle: "italic",
+        padding: 4
       },
       quoteFont: {
         fontSize: (!isDesktop) ? 12 : 20
@@ -333,15 +323,15 @@ const App = () => {
               <Typography style={style.subheader}>Services</Typography>
           </Grid>
           <Grid container direction="row" justifyContent="center" alignItems="flex-start">
-            <Grid item md="4" xs="12" ref={PrenatalRef}>
+            <Grid item md="12" sm="12" xs="12" lg="4" ref={PrenatalRef}>
               <FavoriteIcon className={"heartIcon"}/>
               <Prenatal />
             </Grid>
-            <Grid item md="4" xs="12" ref={BirthRef}>
+            <Grid item md="12" sm="12" xs="12" lg="4" ref={BirthRef}>
               <FavoriteIcon className={"heartIcon"}/>
               <Birth />
             </Grid>
-            <Grid item md="4" xs="12" ref={NewbornRef}>
+            <Grid item md="12" sm="12" xs="12" lg="4" ref={NewbornRef}>
               <FavoriteIcon className={"heartIcon"}/>
               <Newborn />
             </Grid>

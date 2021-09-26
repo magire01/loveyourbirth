@@ -19,13 +19,13 @@ const About = () => {
     const style = {
         aboutFont: {
             color: "#730099",
-            padding: "10px 40px 20px 40px",
+            padding: (!isDesktop) ? "10px 10px 20px 10px" : "10px 40px 20px 40px",
             fontSize: 18,
             marginTop: 10
         },
         experienceFont: {
             color: "#730099",
-            padding: 10,
+            padding: (!isDesktop) ? "10px 10px 20px 10px" : "10px 0px 20px 0px",
             fontSize: 18
         },
         subTitle: {

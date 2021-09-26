@@ -55,7 +55,7 @@ body {
 .heartIcon {
   color: #ff3399;
   font-size: 20px;
-  padding: 10px 0px 10px 0px
+  padding: 20px 0px 20px 0px
 }
 
 
@@ -81,17 +81,12 @@ body {
     color: black;
     font-size: 12px;
     font-style: italic;
-    padding: 20px 50px 10px 50px
+    padding: 40px 10px 40px 10px
   }
   .authorFont {
     color: black;
     font-size: 20px;
   }
-
-
-
-
-
 
   .contactView {
     margin-top: 5%;

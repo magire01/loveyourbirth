@@ -155,9 +155,6 @@ const App = () => {
         border: "5px solid pink",
         overflowY: "auto"
       },
-      messageTitle: {
-        color: "#ff3399"
-      },
       success: {
         backgroundColor: "#8cd98c",
         alignItems: "center",
@@ -172,11 +169,14 @@ const App = () => {
         padding: 4
       },
       quoteFont: {
-        fontSize: (!isDesktop) ? 12 : 20
+        fontSize: (!isDesktop) ? 12 : 18
       },
       authorFont: {
-        fontSize: (!isDesktop) ? 12 : 20,
+        fontSize: (!isDesktop) ? 12 : 18,
         fontWeight: "bold"
+      },
+      heart: {
+        fontSize: 25
       }
     }
 
@@ -303,7 +303,7 @@ const App = () => {
             <Typography style={style.authorFont} className={"authorFont"} style={{ fontWeight: "bold" }}>Tao Te Ching</Typography>
         </Grid>
         <Grid item md="12" xs="12">
-          <FavoriteIcon className={"heartIcon"} />
+          <FavoriteIcon style={style.heart} className={"heartIcon"} />
         </Grid>
 {/* CONTENT  */}
     {/* HOME */}
@@ -311,7 +311,7 @@ const App = () => {
             <Home />
           </Grid>
           <Grid item md="12" xs="12">
-            <FavoriteIcon className={"heartIcon"} />
+            <FavoriteIcon style={style.heart} className={"heartIcon"} />
           </Grid>
     {/* ABOUT */}
           <Grid item ref={AboutRef}>
@@ -323,21 +323,21 @@ const App = () => {
               <Typography style={style.subheader}>Services</Typography>
           </Grid>
           <Grid container direction="row" justifyContent="center" alignItems="flex-start">
-            <Grid item md="12" sm="12" xs="12" lg="4" ref={PrenatalRef}>
-              <FavoriteIcon className={"heartIcon"}/>
+            <Grid item lg="4" md="12" sm="12" xs="12" ref={PrenatalRef}>
+              <FavoriteIcon style={style.heart} className={"heartIcon"} />
               <Prenatal />
             </Grid>
-            <Grid item md="12" sm="12" xs="12" lg="4" ref={BirthRef}>
-              <FavoriteIcon className={"heartIcon"}/>
+            <Grid item lg="4" md="12" sm="12" xs="12" ref={BirthRef}>
+              <FavoriteIcon style={style.heart} className={"heartIcon"} />
               <Birth />
             </Grid>
-            <Grid item md="12" sm="12" xs="12" lg="4" ref={NewbornRef}>
-              <FavoriteIcon className={"heartIcon"}/>
+            <Grid item lg="4" md="12" sm="12" xs="12" ref={NewbornRef}>
+              <FavoriteIcon style={style.heart} className={"heartIcon"} />
               <Newborn />
             </Grid>
           </Grid>
           <Grid item md="12" xs="12">
-            <FavoriteIcon className={"heartIcon"} />
+            <FavoriteIcon style={style.heart} className={"heartIcon"} />
           </Grid>
     {/* RESOURCES */}
         <Grid item md="12" xs="12" style={style.page} ref={ResourceRef}  style={{ marginBottom: (!isDesktop) ? "5%" : "5%", marginLeft: 0, marginRight: 0}}>

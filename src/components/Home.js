@@ -16,7 +16,7 @@ const Home = () => {
     //Style
     const style = {
         missionFont: {
-            fontSize: (!isDesktop) ? 14 : 20,
+            fontSize: (!isDesktop) ? 16 : 20,
             textAlign: "center",
             marginTop: 20,
             paddingRight: (!isDesktop) ? 5 : 60,

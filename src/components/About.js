@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import '@fontsource/roboto';
-import ProfilePic from "../krystal3.png";
+import ProfilePic from "../krystal4.png";
 
 const About = () => {
 
@@ -41,7 +41,7 @@ const About = () => {
             width: 300
         },
         picture: {
-            width: (!isDesktop) ? 200 : 250,
+            width: (!isDesktop) ? 200 : 300,
             height: "auto",
             marginTop: 30,
             marginBottom: (!isDesktop) ? 0 : 0,

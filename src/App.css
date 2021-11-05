@@ -81,11 +81,10 @@ body {
     color: black;
     font-size: 12px;
     font-style: italic;
-    padding: 40px 10px 40px 10px
+    padding: 40px 10px 10px 10px
   }
   .authorFont {
     color: black;
-    font-size: 20px;
   }
 
   .contactView {

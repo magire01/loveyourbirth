@@ -54,24 +54,22 @@ const Contact = (props) => {
             fontWeight: "bold",
             fontStyle: "italic",
             marginBottom: 20
-            // borderBottom: "1px solid #ff3399",
-          },
-          patientPortal: {
+        },
+        patientPortal: {
             color: "white",
             fontSize: (!isDesktop) ? 14 : 20,
             textDecoration: 'none',
             padding: (!isDesktop) ? 20 : 50,
             fontWeight: "bold"
-          },
-          patientConsult: {
+        },
+        patientConsult: {
             color: "white", 
             fontSize: (!isDesktop) ? 14 : 20, 
             background: "none", 
             border: "none", 
             paddingBottom: !(isDesktop) ? 50 : 15,
             fontWeight: "bold"
-            
-          }
+        }
     }
     return (
     <Paper style={style.card} elevation="5">
@@ -100,13 +98,6 @@ const Contact = (props) => {
                 </IconButton>
             </a>
             </Grid>
-            <Grid item md="1" xs="4">
-                <IconButton onClick={() => setPhoneState(true)}>
-                    <LocalPhoneIcon style={style.phoneIcon} />
-                </IconButton>
-                {(!phoneState) ? <Typography></Typography> : <Typography>(859) 620-2982</Typography>}
-            </Grid>
-
             </>
             :
             <>
@@ -124,12 +115,6 @@ const Contact = (props) => {
                     <FacebookIcon style={style.facebookIcon}/>
                 </IconButton>
             </a>
-            </Grid>
-            <Grid item md="1" xs="4">
-                <IconButton onClick={() => setPhoneState(true)}>
-                    <LocalPhoneIcon style={style.phoneIcon} />
-                </IconButton>
-                {(!phoneState) ? <Typography></Typography> : <Typography>(859) 620-2982</Typography>}
             </Grid>
             <Grid item md="4" xs="12">
                 <a href="https://clientcareeast.net/Account/LogOn?ReturnUrl=%2f" target="_blank" style={style.patientPortal}> Patient Portal Login </a>

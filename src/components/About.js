@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Typography, CardMedia, Paper } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import '@fontsource/roboto';
-import ProfilePic from "../krystal3.png";
-
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import ProfilePic from "../krystal4.png";
 
 const About = () => {
 
@@ -19,116 +17,65 @@ const About = () => {
     
     //Style
     const style = {
-        font2: {
+        aboutFont: {
             color: "#730099",
-            margin: 20,
+            padding: (!isDesktop) ? "10px 10px 20px 10px" : "10px 40px 20px 40px",
+            fontSize: 18,
+            marginTop: 10
+        },
+        experienceFont: {
+            color: "#730099",
+            padding: (!isDesktop) ? "10px 10px 20px 10px" : "10px 0px 20px 0px",
             fontSize: 18
         },
-        font3: {
+        subTitle: {
             color: "white",
             fontSize: 20,
             borderBottom: "3px solid #730099",
             borderRight: "3px solid #730099",
             backgroundColor: "#FDB7C2",
             margin: "auto",
+            marginBottom: 5,
+            marginTop: 10,
             borderRadius: 5,
-            width: "60%"
+            width: 300
         },
         picture: {
-            width: (!isDesktop) ? 200 : 250,
+            width: (!isDesktop) ? 200 : 300,
             height: "auto",
-            marginTop: (!isDesktop) ? 0 : 10,
+            marginTop: 30,
             marginBottom: (!isDesktop) ? 0 : 0,
-            borderRadius: 60,
+            borderRadius: 40,
             border: "2px solid #730099"
-        },
-        picture2: {
-            width: (!isDesktop) ? "100%" : "30%",
-            height: "auto"
         },
         title: {
             fontSize: (!isDesktop) ? 20 : 20,
             color: "#730099",
-            marginBottom: 10,
+            margin: "10px 0px 10px 0px",
             fontWeight: "bold"
         },
         section: {
-            marginTop: 0,
-            height: (!isDesktop) ? "auto" : 700
-        },
-        card: {
-            margin: 20,
-            width: "auto%",
-            height: "auto",
-            marginBottom: 20,
-            borderRadius: 20
-        },
-        card2: {
-            marginBottom: 50
-        },
-        cardMessage: {
-            display: 'fixed',  
-            justifyContent:'center', 
-            alignItems:'center',
-            height: (!isDesktop) ? "60%" : "80%",
-            width: (!isDesktop) ? "97%" : "auto",
-            margin: (!isDesktop) ? 0 : 100,
-            marginTop: (!isDesktop) ? 0 : 100,
-            textAlign: "center",
-            border: "5px solid pink",
-            backgroundColor: "white"
-        },
-        subheader: {
-            fontSize: 20,
-            backgroundColor: "#d9b3ff",
-            color: "white",
-            fontWeight: "bold",
-            fontStyle: "italic",
-            marginTop: 10
-            // borderBottom: "1px solid #ff3399",
-            
-        },
-        heart: {
-            color: "#ff3399",
-            fontSize: 30,
-            marginTop: 30,
-            marginBottom: 20,
-            textAlign: "center"
-        },
+            padding: "20px 0px 50px 0px",
+            height: "auto"
+        }
     }
     return (
-        <Grid container direction="row" alignItems="center">
-            <Grid item m="12" xs="12">
-                <Typography variant='subtitle1' style={style.subheader}>Meet the Midwife</Typography>
+        <Grid container direction="row" alignItems="flex-start" justifyContent="center" style={{ height: "auto"}}>
+            <Grid item md="4" xs="12">
+                <img src={ProfilePic} style={style.picture}/>
+                <Typography variant="h4" style={style.title}>Krystal Smith, MSN, APRN, CNM</Typography>
             </Grid>
-            <Grid item md="6" xs="12" style={style.section}>
-                
-                <div style={style.card}>
-                    <CardMedia>
-                        <img src={ProfilePic} style={style.picture}/>
-                    </CardMedia> 
-                </div>{(!isDesktop)
-                        ?
-                        <>
-                            <Typography variant="h4" style={style.title}>Krystal Smith, MSN, APRN, CNM</Typography>
-                        </>
-                        : <Typography variant="h4" style={style.title}>Krystal Smith, MSN, APRN, CNM</Typography>
-                    }
-            </Grid>
-            <Grid item md="6" xs="12" style={style.section}>
-                
-                <div style={style.card2}>
-                    <Typography style={style.font2}>I have always had a passion for pregnancy and birth, but particularly after the birth of my second child. Although I had a hospital birth, I had an experience with limited intervention and was able to truly listen to my body. After such an empowering experience of having an unmedicated birth, I envisioned myself providing similar opportunities to women. I live in Northern Kentucky with my two beautiful children. I enjoy playing piano, singing, kayaking, yoga, and being a mother. My dream is for everyone to have the birth experience they desire. I look forward to meeting you!</Typography>
-                </div>
-                <div style={style.card2}>
-                    <Typography variant="h6" style={style.font3}>Experience</Typography>
-                    <Typography style={style.font2}>Master’s Degree in the Science of Nurse-Midwifery (2021)</Typography>
-                    <Typography style={style.font2}>Certified Nurse Midwife through AMCB (2021)</Typography>
-                    <Typography style={style.font2}>APRN Kentucky License (2021)</Typography>
-                    <Typography style={style.font2}>Registered Nurse in Labor &amp; Delivery and Postpartum (2016)</Typography>
-                    <Typography style={style.font2}>Midwifery Clinical Experience in the Home Setting </Typography>
-                    <Typography style={style.font2}>Neonatal Resuscitation Certified</Typography>
-                    <Typography style={style.font2}>BLS CPR Certified</Typography>
+            <Grid item md="8" xs="12">
+                <Typography style={style.aboutFont}>I have always had a passion for pregnancy and birth, but particularly after the birth of my second child. Although I had a hospital birth, I had an experience with limited intervention and was able to truly listen to my body. After such an empowering experience of having an unmedicated birth, I envisioned myself providing similar opportunities to women. I live in Northern Kentucky with my two beautiful children. I enjoy playing piano, singing, kayaking, yoga, and being a mother. My dream is for everyone to have the birth experience they desire. I look forward to meeting you!</Typography>
+                <div style={style.section}>
+                    <Typography variant="h6" style={style.subTitle}>Experience</Typography>
+                    <Typography style={style.experienceFont}>Master’s Degree in the Science of Nurse-Midwifery (2021)</Typography>
+                    <Typography style={style.experienceFont}>Certified Nurse Midwife through AMCB (2021)</Typography>
+                    <Typography style={style.experienceFont}>APRN Kentucky License (2021)</Typography>
+                    <Typography style={style.experienceFont}>Registered Nurse in Labor &amp; Delivery and Postpartum (2016)</Typography>
+                    <Typography style={style.experienceFont}>Midwifery Clinical Experience in the Home Setting </Typography>
+                    <Typography style={style.experienceFont}>Neonatal Resuscitation Certified</Typography>
+                    <Typography style={style.experienceFont}>BLS CPR Certified</Typography>
                 </div>
             </Grid>
         </Grid>

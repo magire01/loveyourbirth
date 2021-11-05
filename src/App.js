@@ -1,11 +1,10 @@
 import './App.css';
 import React, { useState, useRef, useEffect } from "react";
-import { Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, Modal, Card, Snackbar, SnackbarContent, colors, ListItemSecondaryAction } from "@material-ui/core";
+import { Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, Modal, Card, Snackbar, SnackbarContent, colors, ListItemSecondaryAction, Divider } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import EmailIcon from '@material-ui/icons/Email';
 import HomeIcon from '@material-ui/icons/Home';
-
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import '@fontsource/roboto';
 import lybLogo from "./lybLogo3.png";
@@ -23,7 +22,7 @@ const App = () => {
   //Scroll Nav
   const scrollToRef = (ref) => window.scrollTo({
     behavior: "smooth",
-    top: ref.current.offsetTop-50
+    top: ref.current.offsetTop-62
   })
   const HomeRef = useRef()
   const ContactRef = useRef()
@@ -33,8 +32,9 @@ const App = () => {
   const BirthRef = useRef();
   const NewbornRef = useRef();
   const ResourceRef = useRef();
-  const scroll = [HomeRef, AboutRef, ServicesRef, ResourceRef, ContactRef]
+  
   const page = ["About", "Services", "Resources", "Contact"]
+  const scroll = [HomeRef, AboutRef, ServicesRef, ResourceRef, ContactRef]
   const mobilePage = ["About", "Pregnancy", "Labor & Birth", "Postpartum & Newborn", "Resources", "Contact"]
   const mobileScroll = [HomeRef, AboutRef, PrenatalRef, BirthRef, NewbornRef, ResourceRef, ContactRef]
 
@@ -56,7 +56,7 @@ const App = () => {
 
   //Open Form and Message Functions
   const [openForm, setOpenForm] = useState(false);
-    const [openMessage, setOpenMessage] = useState(false);
+  const [openMessage, setOpenMessage] = useState(false);
 
     const handleOpen = () => {
         setOpenForm(true);
@@ -94,53 +94,7 @@ const App = () => {
       banner: {
         width: (!isDesktop) ? "70%" : "32%",
         height: "auto",
-        marginTop: (!isDesktop) ? 40 : 10
-      },
-      page: {
-        marginTop: 0,
-        marginBottom: 0,
-      },
-      pageServices: {
-        marginTop: 0,
-        marginBottom: 100,
-      },
-      appbar: {
-        background: colorScheme.navbar,
-        position: "fixed",
-        alignItems: "center",
-        height: 60
-      },
-      appbarSmall: {
-        background: colorScheme.navbar,
-        height: 50,
-        position: "fixed",
-        paddingRight: 0
-      },
-      navbutton: {
-        color: colorScheme.navbutton,
-        fontSize: 15,
-        marginRight: 10,
-        marginLeft: 10
-      },
-      navbuttonSmall: {
-        color: "#ff3399",
-        fontSize: 10,
-        marginLeft: 30
-      },
-      menuicon: {
-        color: "#ff3399",
-        display: "flex",
-        alignItems: "left",
-      },
-      otherIcon: {
-        color: colorScheme.navbutton,
-        position: "flex",
-        alignItems: "right"
-      },
-      icons: {
-        color: colorScheme.navbutton,
-        position: "flex",
-        alignItems: "right",
+        marginTop: (!isDesktop) ? 40 : 15
       },
       menuItem: {
         backGroundColor: "#ff3399",
@@ -201,12 +155,6 @@ const App = () => {
         border: "5px solid pink",
         overflowY: "auto"
       },
-      messageTitle: {
-        color: "#ff3399"
-      },
-      closeIcon: {
-        color: "black"
-      },
       success: {
         backgroundColor: "#8cd98c",
         alignItems: "center",
@@ -214,19 +162,21 @@ const App = () => {
       },
       subheader: {
         fontSize: 20,
-        backgroundColor: "#d9b3ff",
+        backgroundColor: colorScheme.subheader,
         color: "white",
         fontWeight: "bold",
-        marginTop: 10,
-        fontStyle: "italic"
-        // borderBottom: "1px solid #ff3399",
-        
+        fontStyle: "italic",
+        padding: 4
+      },
+      quoteFont: {
+        fontSize: (!isDesktop) ? 12 : 18
+      },
+      authorFont: {
+        fontSize: (!isDesktop) ? 12 : 18,
+        fontWeight: "bold"
       },
       heart: {
-          color: "#ff3399",
-          fontSize: 30,
-          marginBottom: 10,
-          marginTop: 25
+        fontSize: 25
       }
     }
 
@@ -249,81 +199,36 @@ const App = () => {
     }
   return (
     <div className="App">
-      <AppBar position="fixed" style={(!isDesktop) ? style.appbarSmall : style.appbar}>
-        <Toolbar>
-          {(!isDesktop)
-
-  // MOBILE APPBAR
-          ? <>
-              <Grid item>
-                <IconButton onClick={menuOpen}>
-                  <MenuIcon style={style.menuicon}/>
-                </IconButton>
-              </Grid>
-              <Grid item xs="10" sm="10">
-                
-              </Grid>
-              <Grid item>
-                <IconButton onClick={e => openPage(e, scroll[0])}>
-                  <HomeIcon style={style.otherIcon}/>
-                </IconButton>
-              </Grid>
-              <Grid item>
-                <a href="https://www.facebook.com/Loveyourbirthmidwifery/" target="_blank" style={{ textDecoration: "none" }}>
-                <IconButton>
-                    <FacebookIcon style={style.otherIcon}/>
-                </IconButton>
-                </a>
-              </Grid>
-              <Grid item>
-                <IconButton onClick={messageOpen}>
-                  <EmailIcon style={style.otherIcon}/>
-                </IconButton>
-              </Grid>
-              <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={menuClose}
-                background="transparent"
-                style={{ opacity: 0.7 }}
-              >
-                {mobilePage.map((data, index) => (
-                    <MenuItem style={style.mobilemenuItem} onClick={e => openPage(e, mobileScroll[index + 1])}>{data}</MenuItem>
-                ))}
-              </Menu>
-            </>
-           
-
-  //PC APPBAR
-         : 
-          <Grid container direction="row">
-            <Grid item xs="1">
+{/* APPBAR */}
+      <AppBar position="fixed" elevation={5} style={{ height: (!isDesktop) ? 50 : 60, position: "fixed", backgroundColor: "#A9D1EA" }}>
+        <Toolbar> 
+          <Grid container alignItems="center" justifyContent="flex-start">
+            <Grid item md={1} xs={1}>
               <IconButton onClick={menuOpen}>
-                <MenuIcon style={style.menuicon}/>
+                <MenuIcon className={"menuIcon"}/>
               </IconButton>
             </Grid>
-            <Grid item xs="8" style={{ width: 1200 }}>
-            {/* Blank Space for App Bar */}
+            <Grid item md={8} xs={5}> 
+              <Typography component="div" style={{ color: "white", fontWeight: "bold", fontSize: (!isDesktop) ? 10 : 15 }}>Currently Only Serving Kentucky</Typography>
             </Grid>
-            <Grid item xs="1">
+            <Grid item md={1} xs={2}>
               <IconButton onClick={e => openPage(e, scroll[0])}>
-                <HomeIcon style={style.otherIcon}/>
+                <HomeIcon className={"iconFont"}/>
               </IconButton>
             </Grid>
-            <Grid item xs="1">
-            <a href="https://www.facebook.com/Loveyourbirthmidwifery/" target="_blank" style={{ textDecoration: "none" }}>
-              <IconButton>
-                <FacebookIcon style={style.otherIcon}/>
-              </IconButton>
-            </a>
+            <Grid item md={1} xs={2}>
+              <a href="https://www.facebook.com/Loveyourbirthmidwifery/" target="_blank" style={{ textDecoration: "none" }}>
+                <IconButton className={"topIcon"}>
+                  <FacebookIcon className={"iconFont"}/>
+                </IconButton>
+              </a>
             </Grid>
-            <Grid item xs="1">
-              <IconButton onClick={messageOpen}>
-                <EmailIcon style={style.otherIcon}/>
+            <Grid item md={1} xs={2}>
+              <IconButton onClick={messageOpen} className={"topIcon"}>
+                <EmailIcon className={"iconFont"}/>
               </IconButton>
             </Grid>
+  {/* NAV MENU */}
             <Menu
               id="simple-menu"
               anchorEl={anchorEl}
@@ -333,21 +238,24 @@ const App = () => {
               background="transparent"
               style={{ opacity: 0.7 }}
             >
-              {page.map((data, index) => (
+              {(!isDesktop) 
+              ? mobilePage.map((data, index) => (
+                <MenuItem style={style.mobilemenuItem} onClick={e => openPage(e, mobileScroll[index + 1])}>{data}</MenuItem>
+              ))
+              : page.map((data, index) => (
                   <MenuItem style={style.menuItem} onClick={e => openPage(e, scroll[index + 1])}>{data}</MenuItem>
               ))}
             </Menu>
-          </Grid>}
+          </Grid>
         </Toolbar>
       </AppBar>
-      
-  {/* BANNER */}
+    
       <Grid container direction="row" alignItems="center" style={{ paddingTop: "3%" }}>
+{/* BANNER */}
         <Grid item md="12" xs="12" ref={HomeRef}>
             <img src={lybLogo} style={style.banner}/>
         </Grid>
-
-  {/* MODALS */}
+{/* MODALS */}
         <Grid item md="6" xs="6">
           <Button onClick={handleOpen} style={style.newPatient}>Schedule a Consultation</Button>
           <Modal
@@ -356,11 +264,9 @@ const App = () => {
               aria-labelledby="simple-modal-title"
               aria-describedby="simple-modal-description"
               >
-              <>
               <Card style={style.contactCard}>
                 <ContactForm closeForm={handleClose} successConsult={consultSnack}/>
               </Card>
-              </>
             </Modal>
         </Grid>
         <Grid item md="6" xs="6">
@@ -375,8 +281,7 @@ const App = () => {
                 <MessageForm closeMessage={messageClose} successMessage={messageSnack}/>
               </Card>
           </Modal>
-
-  {/* SNACKBARS */}
+{/* SNACKBARS */}
           <Snackbar
             open={openSnack.message}
             onClose={closeMessageSnack}
@@ -393,47 +298,57 @@ const App = () => {
               <SnackbarContent message="Consultation Request Sent Successfully!" style={style.success} />
           </Snackbar>
         </Grid>
-
-  {/* CONTENT  */}
-        <Grid item md="12" xs="12" style={style.page}>
-          <Home />
+    {/* QUOTE */}
+        <Grid item md="12" xs="12" className={"quoteMargin"}>
+            <Typography style={style.quoteFont} className={"quoteFont"}>You are a midwife, assisting at someone else’s birth. Do good without show or fuss. Facilitate what is happening rather than what you think ought to be happening. If you must take the lead, lead so that the mother is helped, yet still free and in charge. When the baby is born, the mother will rightly say, 'We did it ourselves!'</Typography>
+            <Typography style={style.authorFont} className={"authorFont"} style={{ fontWeight: "bold" }}>Tao Te Ching</Typography>
         </Grid>
         <Grid item md="12" xs="12">
-          <FavoriteIcon style={style.heart} />
+          <FavoriteIcon style={style.heart} className={"heartIcon"} />
         </Grid>
-        <Grid item md="12" xs="12" style={style.page} ref={AboutRef}>
-          <About />
-        </Grid>
-        <Grid item md="12" xs="12" style={style.page} ref={ServicesRef}>
-          <Grid container direction="row" alignItems="center" justifyContent="center">
-            <Grid item m="12" xs="12">
-                <Typography variant='subtitle1' style={style.subheader}>Services</Typography>
-            </Grid>
-            <Grid item md="4" xs="12" ref={PrenatalRef}>
+{/* CONTENT  */}
+    {/* HOME */}
+          <Grid item md="12" xs="12">
+            <Home />
+          </Grid>
+          <Grid item md="12" xs="12">
+            <FavoriteIcon style={style.heart} className={"heartIcon"} />
+          </Grid>
+    {/* ABOUT */}
+          <Grid item ref={AboutRef}>
+            <Typography style={style.subheader}>Meet the Midwife</Typography>
+            <About />
+          </Grid>
+    {/* SERVICES */}
+          <Grid item md="12" xs="12" ref={ServicesRef}>
+              <Typography style={style.subheader}>Services</Typography>
+          </Grid>
+          <Grid container direction="row" justifyContent="center" alignItems="flex-start">
+            <Grid item lg="4" md="12" sm="12" xs="12" ref={PrenatalRef}>
+              <FavoriteIcon style={style.heart} className={"heartIcon"} />
               <Prenatal />
             </Grid>
-            <Grid item md="4" xs="12" ref={BirthRef}>
+            <Grid item lg="4" md="12" sm="12" xs="12" ref={BirthRef}>
+              <FavoriteIcon style={style.heart} className={"heartIcon"} />
               <Birth />
             </Grid>
-            <Grid item md="4" xs="12" ref={NewbornRef}>
+            <Grid item lg="4" md="12" sm="12" xs="12" ref={NewbornRef}>
+              <FavoriteIcon style={style.heart} className={"heartIcon"} />
               <Newborn />
             </Grid>
           </Grid>
-        </Grid>
-        <Grid item md="12" xs="12">
-          <FavoriteIcon style={style.heart} />
-        </Grid>
-        <Grid item md="12" xs="12" style={style.page} ref={ResourceRef}  style={{
-      marginBottom: (!isDesktop) ? "5%" : "5%", marginLeft: 0, marginRight: 0
-    }}>
-          <Typography variant='subtitle1' style={style.subheader}>Resources</Typography>
+          <Grid item md="12" xs="12">
+            <FavoriteIcon style={style.heart} className={"heartIcon"} />
+          </Grid>
+    {/* RESOURCES */}
+        <Grid item md="12" xs="12" style={style.page} ref={ResourceRef}  style={{ marginBottom: (!isDesktop) ? "5%" : "5%", marginLeft: 0, marginRight: 0}}>
+          <Typography style={style.subheader}>Resources</Typography>
           <div style={{ paddingTop: (!isDesktop) ? 20 : 0 }}>
             <Resources />
           </div>
         </Grid>
-        <Grid item md="12" xs="12" style={{
-      marginTop: (!isDesktop) ? "5%" : 0, marginLeft: 0, marginRight: 0
-    }} ref={ContactRef}>
+    {/* CONTACT */}
+        <Grid item md="12" xs="12" className={"contactView"} ref={ContactRef}>
           <Contact openMessage={messageOpen} openConsult={handleOpen}/>
         </Grid>
       </Grid>

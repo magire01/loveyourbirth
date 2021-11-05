@@ -47,7 +47,77 @@ body {
     font-size: 16px;
   }
 }
+
 .MuiList-padding {
-  background-color: #ff3399
+  background-color: #ff3399;
+}
+
+.heartIcon {
+  color: #ff3399;
+  font-size: 20px;
+  padding: 20px 0px 20px 0px
+}
+
+
+
+
+@media screen 
+  and (max-width: 1200px) {
+  .appBar {
+    background-color: #A9D1EA;
+    height: 10px;
+  }
+  .menuIcon {
+    position: relative;
+    align-items: left;
+  }
+  .menuIcon {
+    color: #ff3399;
+  }
+  .iconFont {
+    color: white;
+  }
+  .quoteFont {
+    color: black;
+    font-size: 12px;
+    font-style: italic;
+    padding: 40px 10px 10px 10px
+  }
+  .authorFont {
+    color: black;
+  }
+
+  .contactView {
+    margin-top: 5%;
+  }
+}
+
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-width: 2000px) {
+  .appBar {
+    background-color: #A9D1EA;
+    height: 10px;
+  }
+  .menuIcon {
+    position: relative;
+    align-items: left;
+  }
+  .menuIcon {
+    color: #ff3399;
+    padding: 20px;
+  }
+  .iconFont {
+    color: white;
+    padding: 20px;
+  }
+  .quoteFont {
+    color: black;
+    font-style: italic;
+    padding: 40px 200px 20px 200px
+  }
+  .authorFont {
+    color: black;
+  }
 }
 

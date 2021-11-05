@@ -202,13 +202,14 @@ const App = () => {
 {/* APPBAR */}
       <AppBar position="fixed" elevation={5} style={{ height: (!isDesktop) ? 50 : 60, position: "fixed", backgroundColor: "#A9D1EA" }}>
         <Toolbar> 
-          <Grid container alignItems="center">
+          <Grid container alignItems="center" justifyContent="flex-start">
             <Grid item md={1} xs={1}>
               <IconButton onClick={menuOpen}>
                 <MenuIcon className={"menuIcon"}/>
               </IconButton>
             </Grid>
             <Grid item md={8} xs={5}> 
+              <Typography component="div" style={{ color: "white", fontWeight: "bold", fontSize: (!isDesktop) ? 10 : 15 }}>Currently Only Serving Kentucky</Typography>
             </Grid>
             <Grid item md={1} xs={2}>
               <IconButton onClick={e => openPage(e, scroll[0])}>

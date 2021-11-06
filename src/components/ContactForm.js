@@ -9,8 +9,13 @@ import QuestionData from "../utilities/questions.json";
 import emailjs from 'emailjs-com';
 import '@fontsource/roboto';
 import { Email, QuestionAnswerSharp } from "@material-ui/icons";
+import CityData from "../utilities/cities.json";
+import Axios from "axios";
+
 
 const ContactForm = (props) => {
+
+    const apiKey = "ayFB5Vec_uM5Od_HvkQVxYYJyKndnRuMoDqwo945W9E";
     //Nav Rendering for Smartphone vs Laptop
     const [isDesktop, setDesktop] = useState(window.innerWidth > 1000);
     const updateMedia = () => {
@@ -151,6 +156,7 @@ const ContactForm = (props) => {
     const [answer, setAnswer] = useState({
         name: "",
         city: "",
+        distance: null,
         phone: "",
         email: "",
         contact: "",
@@ -162,9 +168,7 @@ const ContactForm = (props) => {
         refer: "",
         consultPreference: ""
     })
-
     
-
     const handleAnswerName = (e) => {
         setAnswer({ ...answer, name: e.target.value })
     }
@@ -178,6 +182,12 @@ const ContactForm = (props) => {
     }
     const handleAnswerCity = (e) => {
         setAnswer({ ...answer, city: e.target.value })
+    }
+    const calculateDrive = () => {
+        Axios(`https://geocode.search.hereapi.com/v1/geocode?q=${answer.city},+KY&apiKey=${apiKey}`)
+        .then(response => Axios(`https://route.ls.hereapi.com/routing/7.2/calculateroute.json?apiKey=${apiKey}&waypoint0=geo!38.9432,-84.54441&waypoint1=geo!${response.data.items[0].position.lat},${response.data.items[0].position.lng}&mode=fastest;car;traffic:disabled`))
+        .then(route => setAnswer({ ...answer, distance: route.data.response.route[0].summary.distance/1609 }))
+        .catch(err => console.log(err))
     }
     const handleAnswerContactPref = (e, selection) => {
         e.preventDefault();
@@ -214,10 +224,13 @@ const ContactForm = (props) => {
     }
     const sendEmail = (e) => {
         e.preventDefault();
+
+        calculateDrive();
         emailjs.send('service_sa2sv31', 'template_aldpnbc', 
         { 
             name: answer.name, 
-            city: answer.city, 
+            city: answer.city,
+            distance: answer.distance,
             phone: answer.phone,
             email: answer.email, 
             contact: answer.contact,
@@ -566,7 +579,22 @@ const ContactForm = (props) => {
                 return (
                 <>
                     <Typography style={(!errValidation.name) ? style.answerText : style.answerTextErr}>{(!errValidation.name) ? "Name" : "*Name"}</Typography> <input style={(!errValidation.name) ? style.smallInput : style.smallInputErr} value={answer.name} onChange={handleAnswerName}/>
-                    <Typography style={(!errValidation.city) ? style.answerText : style.answerTextErr}>{(!errValidation.city) ? "City, State" : "*City, State"}</Typography> <input style={(!errValidation.city) ? style.smallInput : style.smallInputErr} value={answer.name} value={answer.city} onChange={handleAnswerCity} />
+                    <Typography style={(!errValidation.city) ? style.answerText : style.answerTextErr}>{(!errValidation.city) ? "City, State" : "*City, State"}</Typography> 
+                    <input style={(!errValidation.city) ? style.smallInput : style.smallInputErr} value={answer.name} value={answer.city} onChange={handleAnswerCity} />
+                    {
+                        (answer.city.length > 1)
+                        ? CityData.data.filter(entry => entry.toLowerCase().includes(answer.city.toLowerCase())).map(data => (
+                            <Grid item md="12">
+                            <Button onClick={() => {
+                                setAnswer({ ...answer, city: data })
+                                calculateDrive()
+                            }}>
+                                <Typography>{data}</Typography>
+                            </Button></Grid>
+                        ))
+                        : <Typography></Typography>
+                    }
+
                 </>)
             
         }

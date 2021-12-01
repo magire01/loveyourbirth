@@ -10,6 +10,7 @@ import '@fontsource/roboto';
 import lybLogo from "./lybLogo3.png";
 import Home from './components/Home';
 import About from "./components/About";
+import Assistant from './components/Assistant';
 import Prenatal from './components/Prenatal';
 import Birth from './components/Birth';
 import Newborn from './components/Newborn';
@@ -318,6 +319,11 @@ const App = () => {
           <Grid item ref={AboutRef}>
             <Typography style={style.subheader}>Meet the Midwife</Typography>
             <About />
+          </Grid>
+    {/* ASSISTANT */}
+          <Grid item>
+            <Typography style={style.subheader}>Meet the Birth Assistant</Typography>
+            <Assistant />
           </Grid>
     {/* SERVICES */}
           <Grid item md="12" xs="12" ref={ServicesRef}>

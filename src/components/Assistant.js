@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import '@fontsource/roboto';
-import ProfilePic from "../krystal4.png";
+import ProfilePic from "../Kaily1.png";
 
-const About = () => {
+const Assistant = () => {
 
     //Nav Rendering for Smartphone vs Laptop
     const [isDesktop, setDesktop] = useState(window.innerWidth > 1000);
@@ -41,7 +41,7 @@ const About = () => {
             width: 300
         },
         picture: {
-            width: (!isDesktop) ? 200 : 300,
+            width: (!isDesktop) ? 200 : 250,
             height: "auto",
             marginTop: 30,
             marginBottom: (!isDesktop) ? 0 : 0,
@@ -63,25 +63,18 @@ const About = () => {
         <Grid container direction="row" alignItems="flex-start" justifyContent="center" style={{ height: "auto"}}>
             <Grid item md="4" xs="12">
                 <img src={ProfilePic} style={style.picture}/>
-                <Typography variant="h4" style={style.title}>Krystal Smith, MSN, APRN, CNM</Typography>
+                <Typography variant="h4" style={style.title}>Kaily Jones</Typography>
             </Grid>
             <Grid item md="8" xs="12">
-                <Typography style={style.aboutFont}>I have always had a passion for pregnancy and birth, but particularly after the unmedicated birth of my second
-                child. It was an experience vastly different from my first birth and it empowered me in ways I never thought
-                possible. I felt connected to the power of women and all of those who came before me. It opened my eyes to the
-                true strength we have within us if only we are supported and lifted to meet it. We must remember that if the
-                intricate design of the human body can nurture a baby within us, it is reasonable to trust that we instinctually
-                know how to birth that same baby. Ever since this realization, I have envisioned myself providing support,
-                encouragement, and empowerment to those who desire a different birthing experience. I live in Northern
-                Kentucky with my two children. I enjoy playing piano, guitar, singing, kayaking, reading, and spending time
-                outdoors. My dream is for everyone to have the birth experience they desire. I look forward to meeting you!</Typography>
+                <Typography style={style.aboutFont}>I’ve been drawn to birth and pregnancy ever since I can remember, but I discovered my true love for the process
+                when I experienced it firsthand. Bringing my sons into the world was a pivotal moment for me as a woman. Both of
+                my experiences allowed me to grow as a person but my unmedicated birth with my youngest child really allowed
+                me to see so much potential and strength within. Labor is sacred and has so much potential to be very healing and
+                empowering. It is an honor to stand by other women as they get to go through their own journey of motherhood
+                and to support them in the comfort of their own space. I live in Northern Kentucky with my husband and two boys.
+                I love spending quality time with family and friends, reading, cooking, and being in nature.</Typography>
                 <div style={style.section}>
                     <Typography variant="h6" style={style.subTitle}>Experience</Typography>
-                    <Typography style={style.experienceFont}>Master’s Degree in the Science of Nurse-Midwifery (2021)</Typography>
-                    <Typography style={style.experienceFont}>Certified Nurse Midwife through AMCB (2021)</Typography>
-                    <Typography style={style.experienceFont}>APRN Kentucky License (2021)</Typography>
-                    <Typography style={style.experienceFont}>Registered Nurse in Labor &amp; Delivery and Postpartum (2016)</Typography>
-                    <Typography style={style.experienceFont}>Midwifery Clinical Experience in the Home Setting </Typography>
                     <Typography style={style.experienceFont}>Neonatal Resuscitation Certified</Typography>
                     <Typography style={style.experienceFont}>BLS CPR Certified</Typography>
                 </div>
@@ -90,4 +83,4 @@ const About = () => {
     )
 }
 
-export default About;
+export default Assistant;

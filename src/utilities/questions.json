@@ -14,46 +14,52 @@
          "id": 2,
             "question": "Is this your first pregnancy?",
             "type": "choice" 
-      },{
+      },
+      {
          "id": 3,
-         "question": "Why are you interested in home birth?",
+         "question": "What month do you anticipate to give birth?",
          "type": "text" 
       },
       {
          "id": 4,
+         "question": "Why are you interested in home birth?",
+         "type": "text" 
+      },
+      {
+         "id": 5,
          "question": "How do you envision your birth?",
          "type": "text" 
       },
       
       {
-         "id": 5,
+         "id": 6,
          "question": "What questions do you have about midwifery care, our role and responsibility, training and education?",
          "type": "text" 
       },
       {
-         "id": 6,
+         "id": 7,
          "question": "Do you have any fears, concerns, or questions you would like to discuss?",
          "type": "text" 
       },
       {
-         "id": 7,
+         "id": 8,
          "question": "How did you hear about Love Your Birth Midwifery, PLLC?",
          "type": "text" 
       },
       {
-         "id": 8,
+         "id": 9,
          "question": "What day(s) do you prefer for a consultation?"
       },
       {
-         "id": 9,
+         "id": 10,
          "question": "What time of day do you prefer?"
       },
       {
-         "id": 10,
+         "id": 11,
          "question": "Do you prefer an in person or phone consultation?"
       },
       {
-         "id": 11,
+         "id": 12,
          "question": "Thank you for your submission. I will contact you to confirm an appointment!"
       }
     ]

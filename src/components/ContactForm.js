@@ -26,6 +26,7 @@ const ContactForm = (props) => {
     const selectDueDateMonth = (e, value) => {
         e.preventDefault();
         setSelectMonth(value);
+        handleDueDate(e, value);
     }
     //Checkbox
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -177,11 +178,9 @@ const ContactForm = (props) => {
     const handleAnswerName = (e) => {
         setAnswer({ ...answer, name: e.target.value })
     }
-
     const handleAnswerPhone = (e) => {
         setAnswer({ ...answer, phone: e.target.value })
     }
-
     const handleAnswerEmail = (e) => {
         setAnswer({ ...answer, email: e.target.value })
     }
@@ -196,9 +195,9 @@ const ContactForm = (props) => {
         e.preventDefault();
         setAnswer({ ...answer, firstBirth: selection})
     }
-    const handleDueDate = (e) => {
+    const handleDueDate = (e, value) => {
         e.preventDefault();
-        setAnswer({ ...answer, dueDate: e.target.value })
+        setAnswer({ ...answer, dueDate: value })
     }
     const handleAnswerEnvision = (e) => {
         e.preventDefault();
@@ -721,7 +720,6 @@ const ContactForm = (props) => {
                             <ArrowForwardIcon style={style.nextButtonActive}/>
                           </IconButton>}
                     </Grid>
-                           
                 </Grid>
             </Grid>
         </div>

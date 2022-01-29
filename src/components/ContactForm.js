@@ -20,6 +20,13 @@ const ContactForm = (props) => {
         window.addEventListener("resize", updateMedia);
         return () => window.removeEventListener("resize", updateMedia);
     });
+    //Month Selector
+    const [selectMonth, setSelectMonth] = useState("empty");
+
+    const selectDueDateMonth = (e, value) => {
+        e.preventDefault();
+        setSelectMonth(value);
+    }
     //Checkbox
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -33,6 +40,7 @@ const ContactForm = (props) => {
             friday: false,
             saturday: false
         })
+
     const checkSunday = () => {
         if(!selectDays.sunday) {
             setSelectDays({ ...selectDays, sunday: true })
@@ -227,6 +235,7 @@ const ContactForm = (props) => {
             email: answer.email, 
             contact: answer.contact,
             firstBirth: answer.firstBirth,
+            dueDate: answer.dueDate,
             envision: answer.envision,
             why: answer.why,
             midwifery: answer.midwifery,
@@ -363,6 +372,14 @@ const ContactForm = (props) => {
         checkitem: {
             fontSize: (!isDesktop) ? 15 : 20,
             alignText: "left"
+        },
+        monthButton: {
+            border: "1px solid purple",
+            margin: "1%"
+        },
+        activeMonthButton: {
+            backgroundColor: "purple",
+            color: "white"
         }
     }
 
@@ -384,7 +401,73 @@ const ContactForm = (props) => {
                 </div>)
             case 3:
                 return (
-                    <input onChange={(e) => handleDueDate(e)}/>
+                    <Grid
+                    container
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    >
+                        <Grid item md="6">
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "January")} 
+                            style={(selectMonth != "January") ? style.monthButton : style.activeMonthButton}>January</Button>
+                        </Grid>
+                        <Grid item md="6">
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "July")} 
+                            style={(selectMonth != "July") ? style.monthButton : style.activeMonthButton}>July</Button>
+                        </Grid>
+                        <Grid item md="6">
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "February")} 
+                            style={(selectMonth != "February") ? style.monthButton : style.activeMonthButton}>February</Button>
+                        </Grid>
+                        <Grid item md="6">
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "August")} 
+                            style={(selectMonth != "August") ? style.monthButton : style.activeMonthButton}>August</Button>
+                        </Grid>
+                        <Grid item md="6">
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "March")} 
+                            style={(selectMonth != "March") ? style.monthButton : style.activeMonthButton}>March</Button>
+                        </Grid>
+                        <Grid item md="6">
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "September")} 
+                            style={(selectMonth != "September") ? style.monthButton : style.activeMonthButton}>September</Button>
+                        </Grid>
+                        <Grid item md="6">
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "April")} 
+                            style={(selectMonth != "April") ? style.monthButton : style.activeMonthButton}>April</Button>
+                        </Grid>
+                        <Grid item md="6">
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "October")} 
+                            style={(selectMonth != "October") ? style.monthButton : style.activeMonthButton}>October</Button>
+                        </Grid>
+                        <Grid item md="6">
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "May")} 
+                            style={(selectMonth != "May") ? style.monthButton : style.activeMonthButton}>May</Button>
+                        </Grid>
+                        <Grid item md="6">
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "November")} 
+                            style={(selectMonth != "November") ? style.monthButton : style.activeMonthButton}>November</Button>
+                        </Grid>
+                        <Grid item md="6">
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "June")} 
+                            style={(selectMonth != "June") ? style.monthButton : style.activeMonthButton}>June</Button>
+                        </Grid>
+                        <Grid item md="6">
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "December")} 
+                            style={(selectMonth != "December") ? style.monthButton : style.activeMonthButton}>December</Button>
+                        </Grid>
+                    </Grid>
                 )
             case 4:
                 return (<>

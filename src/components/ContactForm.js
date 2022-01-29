@@ -155,6 +155,7 @@ const ContactForm = (props) => {
         email: "",
         contact: "",
         firstBirth: "",
+        dueDate: "",
         envision: "",
         why: "",
         midwifery: "",
@@ -186,6 +187,10 @@ const ContactForm = (props) => {
     const handleAnswerFirstBirth = (e, selection) => {
         e.preventDefault();
         setAnswer({ ...answer, firstBirth: selection})
+    }
+    const handleDueDate = (e) => {
+        e.preventDefault();
+        setAnswer({ ...answer, dueDate: e.target.value })
     }
     const handleAnswerEnvision = (e) => {
         e.preventDefault();
@@ -379,7 +384,7 @@ const ContactForm = (props) => {
                 </div>)
             case 3:
                 return (
-                    <input />
+                    <input onChange={(e) => handleDueDate(e)}/>
                 )
             case 4:
                 return (<>

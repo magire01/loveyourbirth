@@ -378,27 +378,31 @@ const ContactForm = (props) => {
                     <Button onClick={(e, value) => handleAnswerFirstBirth(e, "No")} style={(answer.firstBirth === "No") ? style.activeButton : style.button}>No</Button>
                 </div>)
             case 3:
+                return (
+                    <input />
+                )
+            case 4:
                 return (<>
                     <textarea style={style.largeInput} value={answer.why} onChange={handleAnswerWhy}></textarea>
                 </>)
-            case 4:
+            case 5:
                 return (<>
                     <textarea style={style.largeInput} value={answer.envision} onChange={handleAnswerEnvision}></textarea>
                 </>)
             
-            case 5:
+            case 6:
                 return (<>
                     <textarea style={style.largeInput} value={answer.midwifery} onChange={handleAnswerMidwifery}></textarea>
                 </>)
-            case 6:
+            case 7:
                 return (<>
                     <textarea style={style.largeInput} value={answer.concerns} onChange={handleAnswerConcerns}></textarea>
                 </>)
-            case 7:
+            case 8:
                 return (<>
                     <input style={style.smallInput} value={answer.refer} onChange={handleAnswerRefer} />
                 </>)
-            case 8: 
+            case 9: 
                 return (<>
                     <Grid container direction="row" alignItems="center" justifyContent="center">
                         <Grid item md="6" xs="5">
@@ -485,7 +489,7 @@ const ContactForm = (props) => {
                         </Grid>
                     </Grid>
             </>)
-        case 9:
+        case 10:
             return (<>
                 <Grid
                     container
@@ -522,14 +526,14 @@ const ContactForm = (props) => {
                 </Grid>
 
             </>)
-            case 10:
+            case 11:
                 return (<>
                     <div style={{ paddingTop: (!isDesktop) ? 40 : 40}}>
                         <Button onClick={(e, value) => handleConsultPreference(e, "In Person")} style={(answer.consultPreference === "In Person") ? style.activeButton : style.button}>In Person</Button>
                         <Button onClick={(e, value) => handleConsultPreference(e, "Phone")} style={(answer.consultPreference === "Phone") ? style.activeButton : style.button}>Phone</Button>
                     </div>
                 </>)
-            case 11:
+            case 12:
                 return (<>
                 <>
                     <Grid

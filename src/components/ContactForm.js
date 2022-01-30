@@ -20,6 +20,14 @@ const ContactForm = (props) => {
         window.addEventListener("resize", updateMedia);
         return () => window.removeEventListener("resize", updateMedia);
     });
+    //Month Selector
+    const [selectMonth, setSelectMonth] = useState("empty");
+
+    const selectDueDateMonth = (e, value) => {
+        e.preventDefault();
+        setSelectMonth(value);
+        handleDueDate(e, value);
+    }
     //Checkbox
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -33,6 +41,7 @@ const ContactForm = (props) => {
             friday: false,
             saturday: false
         })
+
     const checkSunday = () => {
         if(!selectDays.sunday) {
             setSelectDays({ ...selectDays, sunday: true })
@@ -155,6 +164,7 @@ const ContactForm = (props) => {
         email: "",
         contact: "",
         firstBirth: "",
+        dueDate: "",
         envision: "",
         why: "",
         midwifery: "",
@@ -168,11 +178,9 @@ const ContactForm = (props) => {
     const handleAnswerName = (e) => {
         setAnswer({ ...answer, name: e.target.value })
     }
-
     const handleAnswerPhone = (e) => {
         setAnswer({ ...answer, phone: e.target.value })
     }
-
     const handleAnswerEmail = (e) => {
         setAnswer({ ...answer, email: e.target.value })
     }
@@ -186,6 +194,10 @@ const ContactForm = (props) => {
     const handleAnswerFirstBirth = (e, selection) => {
         e.preventDefault();
         setAnswer({ ...answer, firstBirth: selection})
+    }
+    const handleDueDate = (e, value) => {
+        e.preventDefault();
+        setAnswer({ ...answer, dueDate: value })
     }
     const handleAnswerEnvision = (e) => {
         e.preventDefault();
@@ -222,6 +234,7 @@ const ContactForm = (props) => {
             email: answer.email, 
             contact: answer.contact,
             firstBirth: answer.firstBirth,
+            dueDate: answer.dueDate,
             envision: answer.envision,
             why: answer.why,
             midwifery: answer.midwifery,
@@ -358,6 +371,38 @@ const ContactForm = (props) => {
         checkitem: {
             fontSize: (!isDesktop) ? 15 : 20,
             alignText: "left"
+        },
+        monthButton: {
+            border: "1px solid purple",
+            margin: (!isDesktop) ? 5 : "1%",
+            width: (!isDesktop) ? 30 : 150,
+            height: (!isDesktop) ? 10 : 40,
+            fontSize: (!isDesktop) ? 8 : 20,
+        },
+        activeMonthButton: {
+            backgroundColor: "purple",
+            border: "1px solid purple",
+            margin: (!isDesktop) ? 5 : "1%",
+            color: "white",
+            width: (!isDesktop) ? 30 : 150,
+            height: (!isDesktop) ? 10 : 40,
+            fontSize: (!isDesktop) ? 8 : 20
+        },
+        idkButton: {
+            border: "1px solid purple",
+            margin: (!isDesktop) ? 5 : "1%",
+            width: (!isDesktop) ? 100 : 250,
+            height: (!isDesktop) ? 10 : 40,
+            fontSize: (!isDesktop) ? 8 : 20,
+        },
+        activeIdkButton: {
+            backgroundColor: "purple",
+            border: "1px solid purple",
+            margin: (!isDesktop) ? 5 : "1%",
+            color: "white",
+            width: (!isDesktop) ? 100 : 250,
+            height: (!isDesktop) ? 10 : 40,
+            fontSize: (!isDesktop) ? 8 : 20
         }
     }
 
@@ -378,27 +423,91 @@ const ContactForm = (props) => {
                     <Button onClick={(e, value) => handleAnswerFirstBirth(e, "No")} style={(answer.firstBirth === "No") ? style.activeButton : style.button}>No</Button>
                 </div>)
             case 3:
+                return (
+                    <Grid
+                    container
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    >
+                        <Grid item md="12">
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "January")} 
+                            style={(selectMonth != "January") ? style.monthButton : style.activeMonthButton}>January</Button>
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "February")} 
+                            style={(selectMonth != "February") ? style.monthButton : style.activeMonthButton}>February</Button>
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "March")} 
+                            style={(selectMonth != "March") ? style.monthButton : style.activeMonthButton}>March</Button>
+                            
+                        </Grid>
+                        <Grid item md="12">
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "April")} 
+                            style={(selectMonth != "April") ? style.monthButton : style.activeMonthButton}>April</Button>
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "May")} 
+                            style={(selectMonth != "May") ? style.monthButton : style.activeMonthButton}>May</Button>
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "June")} 
+                            style={(selectMonth != "June") ? style.monthButton : style.activeMonthButton}>June</Button>
+
+                            
+                        </Grid>
+                        <Grid item md="12">
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "July")} 
+                            style={(selectMonth != "July") ? style.monthButton : style.activeMonthButton}>July</Button>
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "August")} 
+                            style={(selectMonth != "August") ? style.monthButton : style.activeMonthButton}>August</Button>
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "September")} 
+                            style={(selectMonth != "September") ? style.monthButton : style.activeMonthButton}>September</Button>
+                            
+                        </Grid>
+                        <Grid item md="12">
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "October")} 
+                            style={(selectMonth != "October") ? style.monthButton : style.activeMonthButton}>October</Button>
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "November")} 
+                            style={(selectMonth != "November") ? style.monthButton : style.activeMonthButton}>November</Button>
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "December")} 
+                            style={(selectMonth != "December") ? style.monthButton : style.activeMonthButton}>December</Button>
+                        </Grid>
+                        <Grid item md="12">
+                            <Button 
+                            onClick={(e, value) => selectDueDateMonth(e, "I Don't Know")} 
+                            style={(selectMonth != "I Don't Know") ? style.idkButton : style.activeIdkButton}>I Don't Know</Button>
+                        </Grid>
+                        
+                    </Grid>
+                )
+            case 4:
                 return (<>
                     <textarea style={style.largeInput} value={answer.why} onChange={handleAnswerWhy}></textarea>
                 </>)
-            case 4:
+            case 5:
                 return (<>
                     <textarea style={style.largeInput} value={answer.envision} onChange={handleAnswerEnvision}></textarea>
                 </>)
             
-            case 5:
+            case 6:
                 return (<>
                     <textarea style={style.largeInput} value={answer.midwifery} onChange={handleAnswerMidwifery}></textarea>
                 </>)
-            case 6:
+            case 7:
                 return (<>
                     <textarea style={style.largeInput} value={answer.concerns} onChange={handleAnswerConcerns}></textarea>
                 </>)
-            case 7:
+            case 8:
                 return (<>
                     <input style={style.smallInput} value={answer.refer} onChange={handleAnswerRefer} />
                 </>)
-            case 8: 
+            case 9: 
                 return (<>
                     <Grid container direction="row" alignItems="center" justifyContent="center">
                         <Grid item md="6" xs="5">
@@ -485,7 +594,7 @@ const ContactForm = (props) => {
                         </Grid>
                     </Grid>
             </>)
-        case 9:
+        case 10:
             return (<>
                 <Grid
                     container
@@ -522,14 +631,14 @@ const ContactForm = (props) => {
                 </Grid>
 
             </>)
-            case 10:
+            case 11:
                 return (<>
                     <div style={{ paddingTop: (!isDesktop) ? 40 : 40}}>
                         <Button onClick={(e, value) => handleConsultPreference(e, "In Person")} style={(answer.consultPreference === "In Person") ? style.activeButton : style.button}>In Person</Button>
                         <Button onClick={(e, value) => handleConsultPreference(e, "Phone")} style={(answer.consultPreference === "Phone") ? style.activeButton : style.button}>Phone</Button>
                     </div>
                 </>)
-            case 11:
+            case 12:
                 return (<>
                 <>
                     <Grid
@@ -611,7 +720,6 @@ const ContactForm = (props) => {
                             <ArrowForwardIcon style={style.nextButtonActive}/>
                           </IconButton>}
                     </Grid>
-                           
                 </Grid>
             </Grid>
         </div>

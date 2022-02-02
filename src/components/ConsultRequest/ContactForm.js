@@ -32,79 +32,6 @@ const ContactForm = (props) => {
         return () => window.removeEventListener("resize", updateMedia);
     });
     
-    //Checkbox - Select Days
-    const checkSunday = () => {
-        if(!answer.selectDays.sunday) {
-            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, sunday: true } })
-        } else {
-            setAnswer({ ...answer, selectDays: { ...answer.selectDays, sunday: false } })
-        }
-    } 
-    const checkMonday = () => {
-        if(!answer.selectDays.Monday) {
-            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, monday: true } })
-        } else {
-            setAnswer({ ...answer, selectDays: { ...answer.selectDays, monday: false } })
-        }
-    } 
-    const checkTuesday = () => {
-        if(!answer.selectDays.tuesday) {
-            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, tuesday: true } })
-        } else {
-            setAnswer({ ...answer, selectDays: { ...answer.selectDays, tuesday: false } })
-        }
-    } 
-    const checkWednesday = () => {
-        if(!answer.selectDays.wednesday) {
-            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, wednesday: true } })
-        } else {
-            setAnswer({ ...answer, selectDays: { ...answer.selectDays, wednesday: false } })
-        }
-    }
-    const checkThursday = () => {
-        if(!answer.selectDays.thursday) {
-            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, thursday: true } })
-        } else {
-            setAnswer({ ...answer, selectDays: { ...answer.selectDays, thursday: false } })
-        }
-    } 
-    const checkFriday = () => {
-        if(!answer.selectDays.friday) {
-            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, friday: true } })
-        } else {
-            setAnswer({ ...answer, selectDays: { ...answer.selectDays, friday: false } })
-        }
-    } 
-    const checkSaturday = () => {
-        if(!answer.selectDays.saturday) {
-            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, saturday: true } })
-        } else {
-            setAnswer({ ...answer, selectDays: { ...answer.selectDays, saturday: false } })
-        }
-    } 
-    //Checkbox - SelectTime
-    const checkMorning = () => {
-        if(!answer.selectTime.morning) {
-            setAnswer({ ...answer, selectTime: { ...answer.selectTime, morning: true } })
-        } else {
-            setAnswer({ ...answer, selectTime: { ...answer.selectTime, morning: false } })
-        }
-    }
-    const checkAfternoon = () => {
-        if(!answer.selectTime.afternoon) {
-            setAnswer({ ...answer, selectTime: { ...answer.selectTime, afternoon: true } })
-        } else {
-            setAnswer({ ...answer, selectTime: { ...answer.selectTime, afternoon: false } })
-        }
-    }
-    const checkEvening = () => {
-        if(!answer.selectTime.evening) {
-            setAnswer({ ...answer, selectTime: { ...answer.selectTime, evening: true } })
-        } else {
-            setAnswer({ ...answer, selectTime: { ...answer.selectTime, evening: false } })
-        }
-    }
-    
     //question # state
     const [questionNum, setQuestionNum] = useState(0)
 
@@ -202,6 +129,81 @@ const ContactForm = (props) => {
                 return setAnswer({ ...answer, name: value })
         }
     }
+
+
+    //Checkbox - Select Days
+    const checkSunday = () => {
+        if(!answer.selectDays.sunday) {
+            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, sunday: true } })
+        } else {
+            setAnswer({ ...answer, selectDays: { ...answer.selectDays, sunday: false } })
+        }
+    } 
+    const checkMonday = () => {
+        if(!answer.selectDays.Monday) {
+            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, monday: true } })
+        } else {
+            setAnswer({ ...answer, selectDays: { ...answer.selectDays, monday: false } })
+        }
+    } 
+    const checkTuesday = () => {
+        if(!answer.selectDays.tuesday) {
+            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, tuesday: true } })
+        } else {
+            setAnswer({ ...answer, selectDays: { ...answer.selectDays, tuesday: false } })
+        }
+    } 
+    const checkWednesday = () => {
+        if(!answer.selectDays.wednesday) {
+            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, wednesday: true } })
+        } else {
+            setAnswer({ ...answer, selectDays: { ...answer.selectDays, wednesday: false } })
+        }
+    }
+    const checkThursday = () => {
+        if(!answer.selectDays.thursday) {
+            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, thursday: true } })
+        } else {
+            setAnswer({ ...answer, selectDays: { ...answer.selectDays, thursday: false } })
+        }
+    } 
+    const checkFriday = () => {
+        if(!answer.selectDays.friday) {
+            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, friday: true } })
+        } else {
+            setAnswer({ ...answer, selectDays: { ...answer.selectDays, friday: false } })
+        }
+    } 
+    const checkSaturday = () => {
+        if(!answer.selectDays.saturday) {
+            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, saturday: true } })
+        } else {
+            setAnswer({ ...answer, selectDays: { ...answer.selectDays, saturday: false } })
+        }
+    } 
+    //Checkbox - SelectTime
+    const checkMorning = () => {
+        if(!answer.selectTime.morning) {
+            setAnswer({ ...answer, selectTime: { ...answer.selectTime, morning: true } })
+        } else {
+            setAnswer({ ...answer, selectTime: { ...answer.selectTime, morning: false } })
+        }
+    }
+    const checkAfternoon = () => {
+        if(!answer.selectTime.afternoon) {
+            setAnswer({ ...answer, selectTime: { ...answer.selectTime, afternoon: true } })
+        } else {
+            setAnswer({ ...answer, selectTime: { ...answer.selectTime, afternoon: false } })
+        }
+    }
+    const checkEvening = () => {
+        if(!answer.selectTime.evening) {
+            setAnswer({ ...answer, selectTime: { ...answer.selectTime, evening: true } })
+        } else {
+            setAnswer({ ...answer, selectTime: { ...answer.selectTime, evening: false } })
+        }
+    }
+
     const sendEmail = (e) => {
         e.preventDefault();
         emailjs.send('service_sa2sv31', 'template_aldpnbc', 

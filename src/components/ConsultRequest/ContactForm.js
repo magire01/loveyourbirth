@@ -11,8 +11,15 @@ import AnswerContact from "./Answers/AnswerContact";
 import AnswerName from "./Answers/AnswerName";
 import AnswerFirstBirth from "./Answers/AnswerFIrstBirth";
 import AnswerDueDate from "./Answers/AnswerDueDate";
+import AnswerWhy from "./Answers/AnswerWhy";
+import AnswerEnvision from "./Answers/AnswerEnvision";
+import AnswerMidwifery from "./Answers/AnswerMidwifery";
 import AnswerSelectDays from "./Answers/AnswerSelectDays";
 import AnswerSelectTime from "./Answers/AnswerSelectTime";
+import AnswerConcerns from "./Answers/AnswerConcerns";
+import AnswerRefer from "./Answers/AnswerRefer";
+import AnswerPreference from "./Answers/AnswerPreference";
+import ConsultSummary from "./ConsultSummary";
 
 const ContactForm = (props) => {
     //Nav Rendering for Smartphone vs Laptop
@@ -162,34 +169,8 @@ const ContactForm = (props) => {
             evening: false
         },
         refer: "",
-        consultPreference: ""
+        preference: ""
     })
-
-    const handleAnswerEnvision = (e) => {
-        e.preventDefault();
-        setAnswer({ ...answer, envision: e.target.value })
-    }
-    const handleAnswerWhy = (e) => {
-        e.preventDefault();
-        setAnswer({ ...answer, why: e.target.value })
-    }
-    const handleAnswerMidwifery = (e) => {
-        e.preventDefault();
-        setAnswer({ ...answer, midwifery: e.target.value })
-    }
-    const handleAnswerConcerns = (e) => {
-        e.preventDefault();
-        setAnswer({ ...answer, concerns: e.target.value })
-    }
-    const handleAnswerRefer = (e) => {
-        e.preventDefault();
-        setAnswer({ ...answer, refer: e.target.value })
-    }
-
-    const handleConsultPreference = (e, selection) => {
-        e.preventDefault();
-        setAnswer({ ...answer, consultPreference: selection})
-    }
 
     const handleAllAnswers = (e, question, value) => {
         switch(question) {
@@ -276,42 +257,6 @@ const ContactForm = (props) => {
             fontSize: (!isDesktop) ? 15 : 30,
             fontWeight: "bold"
         },
-        answerText: {
-            marginTop: (!isDesktop) ? 10 : 20,
-            marginBottom: (!isDesktop) ? 10 : 10,
-            color: "purple",
-            fontSize: (!isDesktop) ? 10 : 20,
-            fontWeight: "bold"
-        },
-        answerTextErr: {
-            marginTop: (!isDesktop) ? 10 : 20,
-            marginBottom: (!isDesktop) ? 10 : 10,
-            color: "red",
-            fontSize: (!isDesktop) ? 10 : 20,
-            fontWeight: "bold"
-        },
-        answerTextBold: {
-            marginTop: (!isDesktop) ? 10 : 20,
-            marginBottom: (!isDesktop) ? 10 : 10,
-            color: "purple",
-            fontSize: (!isDesktop) ? 10 : 20,
-        },
-        input: {
-            marginTop: 20,
-            marginBottom: 20
-        },
-        button: {
-            margin: "5%",
-            marginBottom: 20,
-            border: "1px solid purple"
-        },
-        activeButton: {
-            margin: "5%",
-            marginBottom: 20,
-            backgroundColor: "purple",
-            color: "white"
-
-        },
         submit: { 
             // position: "absolute", 
             // bottom: (!isDesktop) ? "40%" : "10%",
@@ -337,18 +282,6 @@ const ContactForm = (props) => {
         },
         questionSection3: {
             height: (!isDesktop) ? 200: 300
-        },
-        smallInput: {
-            width: (!isDesktop) ? 200: 350, 
-        },
-        smallInputErr: {
-            width: (!isDesktop) ? 200: 350,
-            border: "1px solid red"
-        },
-        largeInput: {
-            width: (!isDesktop) ? "90%": 500,
-            height: (!isDesktop) ? "60%": 200,
-            margin: (!isDesktop) ? "5%": "5%"
         },
         progress: {
             marginLeft: "3%",
@@ -387,26 +320,36 @@ const ContactForm = (props) => {
                 answer={answer}/>
             )
         case 4:
-            return (<>
-                <textarea style={style.largeInput} value={answer.why} onChange={handleAnswerWhy}></textarea>
-            </>)
+            return (
+                <AnswerWhy 
+                handleAnswer={handleAllAnswers}
+                answer={answer}/>
+            )
         case 5:
-            return (<>
-                <textarea style={style.largeInput} value={answer.envision} onChange={handleAnswerEnvision}></textarea>
-            </>)
+            return (
+                <AnswerEnvision 
+                handleAnswer={handleAllAnswers}
+                answer={answer}/>
+            )
         
         case 6:
-            return (<>
-                <textarea style={style.largeInput} value={answer.midwifery} onChange={handleAnswerMidwifery}></textarea>
-            </>)
+            return (
+                <AnswerMidwifery 
+                handleAnswer={handleAllAnswers}
+                answer={answer}/>
+            )
         case 7:
-            return (<>
-                <textarea style={style.largeInput} value={answer.concerns} onChange={handleAnswerConcerns}></textarea>
-            </>)
+            return (
+                <AnswerConcerns 
+                handleAnswer={handleAllAnswers}
+                answer={answer}/>
+            )
         case 8:
-            return (<>
-                <input style={style.smallInput} value={answer.refer} onChange={handleAnswerRefer} />
-            </>)
+            return (
+                <AnswerRefer 
+                handleAnswer={handleAllAnswers}
+                answer={answer}/>
+            )
         case 9: 
             return (
                 <AnswerSelectDays 
@@ -428,44 +371,15 @@ const ContactForm = (props) => {
                 selectTime={answer.selectTime}/>
             )
         case 11:
-            return (<>
-                <div style={{ paddingTop: (!isDesktop) ? 40 : 40}}>
-                    <Button onClick={(e, value) => handleConsultPreference(e, "In Person")} style={(answer.consultPreference === "In Person") ? style.activeButton : style.button}>In Person</Button>
-                    <Button onClick={(e, value) => handleConsultPreference(e, "Phone")} style={(answer.consultPreference === "Phone") ? style.activeButton : style.button}>Phone</Button>
-                </div>
-            </>)
+            return (
+                <AnswerPreference 
+                handleAnswer={handleAllAnswers}
+                answer={answer}/>
+            )
         case 12:
             return (
-                <>
-                    <Grid
-                        container
-                        direction="row"
-                        justifyContent="center"
-                        alignItems="center"
-                        >
-                            <Typography style={style.answerTextBold}> Name: </Typography>
-                            <Typography style={style.answerText}>{answer.name}</Typography>
-                    </Grid>
-                    <Grid
-                        container
-                        direction="row"
-                        justifyContent="center"
-                        alignItems="center"
-                        >
-                            <Typography style={style.answerTextBold}> Email: </Typography>
-                            <Typography style={style.answerText}>{answer.email}</Typography>
-                    </Grid>
-                    <Grid
-                        container
-                        direction="row"
-                        justifyContent="center"
-                        alignItems="center"
-                        >
-                            <Typography style={style.answerTextBold}> Phone: </Typography>
-                            <Typography style={style.answerText}>{answer.phone}</Typography>
-                    </Grid>
-                    
-                </>
+                <ConsultSummary
+                answer={answer}/>
             )
         default:
             return (

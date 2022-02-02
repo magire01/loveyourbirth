@@ -16,7 +16,7 @@ import Birth from './components/Birth';
 import Newborn from './components/Newborn';
 import Resources from './components/Resources';
 import Contact from './components/Contact';
-import ContactForm from './components/ContactForm';
+import ContactForm from './components/ConsultRequest/ContactForm';
 import MessageForm from './components/MessageForm';
  
 const App = () => {

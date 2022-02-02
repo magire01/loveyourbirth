@@ -5,10 +5,13 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import CloseIcon from '@material-ui/icons/Close';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Favorite from '@material-ui/icons/Favorite';
-import QuestionData from "../utilities/questions.json";
+import QuestionData from "../../utilities/questions.json";
 import emailjs from 'emailjs-com';
 import '@fontsource/roboto';
 import { Email, QuestionAnswerSharp } from "@material-ui/icons";
+
+import AnswerContact from "./Answers/AnswerContact";
+import AnswerName from "./Answers/AnswerName";
 
 const ContactForm = (props) => {
     //Nav Rendering for Smartphone vs Laptop
@@ -410,11 +413,12 @@ const ContactForm = (props) => {
         switch(questionNum) {
             case 1:
                 return (
-                <>
-                    <Typography style={(!errValidation.email) ? style.answerText : style.answerTextErr}>{(!errValidation.email) ? "Email" : "*Email"}</Typography> <input style={(!errValidation.email) ? style.smallInput : style.smallInputErr} value={answer.email} onChange={handleAnswerEmail} />
-                    <Typography style={(!errValidation.phone) ? style.answerText : style.answerTextErr}>{(!errValidation.phone) ? "Phone" : "*Phone"}</Typography> <input style={(!errValidation.phone) ? style.smallInput : style.smallInputErr} value={answer.email} value={answer.phone} onChange={handleAnswerPhone} />  
-                    <Typography style={style.answerText}>Preferred Method of Contact</Typography> <Button onClick={(e, value) => handleAnswerContactPref(e, "Email")} style={(answer.contact === "Email") ? style.activeButton : style.button}>Email</Button><Button onClick={(e, value) => handleAnswerContactPref(e, "Phone")} style={(answer.contact === "Phone") ? style.activeButton : style.button}>Phone</Button>
-                </>
+                <AnswerContact 
+                email={handleAnswerEmail} 
+                phone={handleAnswerPhone} 
+                contactPref={handleAnswerContactPref} 
+                error={errValidation}
+                answer={answer}/>
                 )
             case 2:
                 return (
@@ -674,8 +678,11 @@ const ContactForm = (props) => {
             default:
                 return (
                 <>
-                    <Typography style={(!errValidation.name) ? style.answerText : style.answerTextErr}>{(!errValidation.name) ? "Name" : "*Name"}</Typography> <input style={(!errValidation.name) ? style.smallInput : style.smallInputErr} value={answer.name} onChange={handleAnswerName}/>
-                    <Typography style={(!errValidation.city) ? style.answerText : style.answerTextErr}>{(!errValidation.city) ? "City, State" : "*City, State"}</Typography> <input style={(!errValidation.city) ? style.smallInput : style.smallInputErr} value={answer.name} value={answer.city} onChange={handleAnswerCity} />
+                    <AnswerName 
+                    name={handleAnswerName} 
+                    city={handleAnswerCity}
+                    error={errValidation}
+                    answer={answer}/>
                 </>)
             
         }

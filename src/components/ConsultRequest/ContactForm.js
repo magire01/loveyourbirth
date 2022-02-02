@@ -12,6 +12,8 @@ import { Email, QuestionAnswerSharp } from "@material-ui/icons";
 
 import AnswerContact from "./Answers/AnswerContact";
 import AnswerName from "./Answers/AnswerName";
+import AnswerFirstBirth from "./Answers/AnswerFIrstBirth";
+import AnswerDueDate from "./Answers/AnswerDueDate";
 
 const ContactForm = (props) => {
     //Nav Rendering for Smartphone vs Laptop
@@ -413,82 +415,27 @@ const ContactForm = (props) => {
         switch(questionNum) {
             case 1:
                 return (
-                <AnswerContact 
-                email={handleAnswerEmail} 
-                phone={handleAnswerPhone} 
-                contactPref={handleAnswerContactPref} 
-                error={errValidation}
-                answer={answer}/>
+                    <AnswerContact 
+                    email={handleAnswerEmail} 
+                    phone={handleAnswerPhone} 
+                    contactPref={handleAnswerContactPref} 
+                    error={errValidation}
+                    answer={answer}/>
                 )
             case 2:
                 return (
-                <div style={{ paddingTop: (!isDesktop) ? 40 : 40}}>
-                    <Button onClick={(e, value) => handleAnswerFirstBirth(e, "Yes")} style={(answer.firstBirth === "Yes") ? style.activeButton : style.button}>Yes</Button>
-                    <Button onClick={(e, value) => handleAnswerFirstBirth(e, "No")} style={(answer.firstBirth === "No") ? style.activeButton : style.button}>No</Button>
-                </div>)
+                    <AnswerFirstBirth 
+                    firstBirth={handleAnswerFirstBirth} 
+                    error={errValidation}
+                    answer={answer}/>
+
+                )
             case 3:
                 return (
-                    <Grid
-                    container
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    >
-                        <Grid item md="12">
-                            <Button 
-                            onClick={(e, value) => selectDueDateMonth(e, "January")} 
-                            style={(selectMonth != "January") ? style.monthButton : style.activeMonthButton}>January</Button>
-                            <Button 
-                            onClick={(e, value) => selectDueDateMonth(e, "February")} 
-                            style={(selectMonth != "February") ? style.monthButton : style.activeMonthButton}>February</Button>
-                            <Button 
-                            onClick={(e, value) => selectDueDateMonth(e, "March")} 
-                            style={(selectMonth != "March") ? style.monthButton : style.activeMonthButton}>March</Button>
-                            
-                        </Grid>
-                        <Grid item md="12">
-                            <Button 
-                            onClick={(e, value) => selectDueDateMonth(e, "April")} 
-                            style={(selectMonth != "April") ? style.monthButton : style.activeMonthButton}>April</Button>
-                            <Button 
-                            onClick={(e, value) => selectDueDateMonth(e, "May")} 
-                            style={(selectMonth != "May") ? style.monthButton : style.activeMonthButton}>May</Button>
-                            <Button 
-                            onClick={(e, value) => selectDueDateMonth(e, "June")} 
-                            style={(selectMonth != "June") ? style.monthButton : style.activeMonthButton}>June</Button>
-
-                            
-                        </Grid>
-                        <Grid item md="12">
-                            <Button 
-                            onClick={(e, value) => selectDueDateMonth(e, "July")} 
-                            style={(selectMonth != "July") ? style.monthButton : style.activeMonthButton}>July</Button>
-                            <Button 
-                            onClick={(e, value) => selectDueDateMonth(e, "August")} 
-                            style={(selectMonth != "August") ? style.monthButton : style.activeMonthButton}>August</Button>
-                            <Button 
-                            onClick={(e, value) => selectDueDateMonth(e, "September")} 
-                            style={(selectMonth != "September") ? style.monthButton : style.activeMonthButton}>September</Button>
-                            
-                        </Grid>
-                        <Grid item md="12">
-                            <Button 
-                            onClick={(e, value) => selectDueDateMonth(e, "October")} 
-                            style={(selectMonth != "October") ? style.monthButton : style.activeMonthButton}>October</Button>
-                            <Button 
-                            onClick={(e, value) => selectDueDateMonth(e, "November")} 
-                            style={(selectMonth != "November") ? style.monthButton : style.activeMonthButton}>November</Button>
-                            <Button 
-                            onClick={(e, value) => selectDueDateMonth(e, "December")} 
-                            style={(selectMonth != "December") ? style.monthButton : style.activeMonthButton}>December</Button>
-                        </Grid>
-                        <Grid item md="12">
-                            <Button 
-                            onClick={(e, value) => selectDueDateMonth(e, "I Don't Know")} 
-                            style={(selectMonth != "I Don't Know") ? style.idkButton : style.activeIdkButton}>I Don't Know</Button>
-                        </Grid>
-                        
-                    </Grid>
+                    <AnswerDueDate 
+                    changeMonth={selectDueDateMonth}
+                    dueDate={handleDueDate}
+                    answer={answer}/>
                 )
             case 4:
                 return (<>
@@ -677,13 +624,13 @@ const ContactForm = (props) => {
                 </>)
             default:
                 return (
-                <>
-                    <AnswerName 
-                    name={handleAnswerName} 
-                    city={handleAnswerCity}
-                    error={errValidation}
-                    answer={answer}/>
-                </>)
+                    <>
+                        <AnswerName 
+                        name={handleAnswerName} 
+                        city={handleAnswerCity}
+                        error={errValidation}
+                        answer={answer}/>
+                    </>)
             
         }
     }

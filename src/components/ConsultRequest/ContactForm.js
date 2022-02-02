@@ -8,12 +8,13 @@ import Favorite from '@material-ui/icons/Favorite';
 import QuestionData from "../../utilities/questions.json";
 import emailjs from 'emailjs-com';
 import '@fontsource/roboto';
-import { Email, QuestionAnswerSharp } from "@material-ui/icons";
 
 import AnswerContact from "./Answers/AnswerContact";
 import AnswerName from "./Answers/AnswerName";
 import AnswerFirstBirth from "./Answers/AnswerFIrstBirth";
 import AnswerDueDate from "./Answers/AnswerDueDate";
+import AnswerSelectDays from "./Answers/AnswerSelectDays";
+import AnswerSelectTime from "./Answers/AnswerSelectTime";
 
 const ContactForm = (props) => {
     //Nav Rendering for Smartphone vs Laptop
@@ -35,8 +36,7 @@ const ContactForm = (props) => {
     }
     //Checkbox
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-    const day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-    const time = ["Morning", "Afternoon", "Evening"]
+    
     const [selectDays, setSelectDays] = useState({
             sunday: false,
             monday: false,
@@ -459,129 +459,25 @@ const ContactForm = (props) => {
                     <input style={style.smallInput} value={answer.refer} onChange={handleAnswerRefer} />
                 </>)
             case 9: 
-                return (<>
-                    <Grid container direction="row" alignItems="center" justifyContent="center">
-                        <Grid item md="6" xs="5">
-                            <Grid
-                            container
-                            direction="row"
-                            justifyContent="center"
-                            alignItems="center"
-                            onClick={checkSunday}
-                            >
-                                <Checkbox {...label} 
-                                checked={selectDays.sunday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
-                                <Typography style={style.checkitem}>Sunday</Typography>
-                            </Grid>
-                            <Grid
-                            container
-                            direction="row"
-                            justifyContent="center"
-                            alignItems="center"
-                            onClick={checkMonday} 
-                            >
-                                <Checkbox {...label}
-                                checked={selectDays.monday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
-                                <Typography style={style.checkitem}>Monday</Typography>
-                            </Grid>
-                            <Grid
-                            container
-                            direction="row"
-                            justifyContent="center"
-                            alignItems="center"
-                            onClick={checkTuesday} 
-                            >
-                                <Checkbox {...label}
-                                checked={selectDays.tuesday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
-                                <Typography style={style.checkitem}>Tuesday</Typography>
-                            </Grid>
-                            <Grid
-                            container
-                            direction="row"
-                            justifyContent="center"
-                            alignItems="center"
-                            onClick={checkWednesday} 
-                            >
-                                <Checkbox {...label}
-                                checked={selectDays.wednesday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
-                                <Typography style={style.checkitem}>Wednesday</Typography>
-                            </Grid>
-                        </Grid>
-                        <Grid item md="6" xs="5">
-                            <Grid
-                            container
-                            direction="row"
-                            justifyContent="center"
-                            alignItems="center"
-                            onClick={checkThursday} 
-                            >
-                                <Checkbox {...label}
-                                checked={selectDays.thursday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
-                                <Typography style={style.checkitem}>Thursday</Typography>
-                            </Grid>
-                            <Grid
-                            container
-                            direction="row"
-                            justifyContent="center"
-                            alignItems="center"
-                            onClick={checkFriday} 
-                            >
-                                <Checkbox {...label} 
-                                checked={selectDays.friday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
-                                <Typography style={style.checkitem}>Friday</Typography>
-                            </Grid>
-                            <Grid
-                            container
-                            direction="row"
-                            justifyContent="center"
-                            alignItems="center"
-                            onClick={checkSaturday} 
-                            >
-                                <Checkbox {...label}
-                                checked={selectDays.saturday} icon={<FavoriteBorder  style={style.checkbox}/>} checkedIcon={<Favorite  style={style.checkbox}/>}/>
-                                <Typography style={style.checkitem}>Saturday</Typography>
-                            </Grid>
-
-                        </Grid>
-                    </Grid>
-            </>)
+                return (
+                    <AnswerSelectDays 
+                    checkSunday={checkSunday}
+                    checkMonday={checkMonday}
+                    checkTuesday={checkTuesday}
+                    checkWednesday={checkWednesday}
+                    checkThursday={checkThursday}
+                    checkFriday={checkFriday}
+                    checkSaturday={checkSaturday}
+                    selectDays={selectDays}/>
+                )
         case 10:
-            return (<>
-                <Grid
-                    container
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    onClick={checkMorning}
-                    >
-                        <Checkbox {...label} 
-                         checked={selectTime.morning} icon={<FavoriteBorder  style={style.checkbox} />} checkedIcon={<Favorite  style={style.checkbox}/>}/>
-                        <Typography style={style.checkitem}>Morning</Typography>
-                </Grid>
-                <Grid
-                    container
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    onClick={checkAfternoon}
-                    >
-                        <Checkbox {...label}
-                         checked={selectTime.afternoon} icon={<FavoriteBorder  style={style.checkbox} />} checkedIcon={<Favorite  style={style.checkbox}/>}/>
-                        <Typography style={style.checkitem}>Afternoon</Typography>
-                </Grid>
-                <Grid
-                    container
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    onClick={checkEvening} 
-                    >
-                        <Checkbox {...label} 
-                        checked={selectTime.evening} icon={<FavoriteBorder  style={style.checkbox} />} checkedIcon={<Favorite  style={style.checkbox}/>}/>
-                        <Typography style={style.checkitem}>Evening</Typography>
-                </Grid>
-
-            </>)
+            return (
+                <AnswerSelectTime 
+                checkMorning={checkMorning}
+                checkAfternoon={checkAfternoon}
+                checkEvening={checkEvening}
+                selectTime={selectTime}/>
+            )
             case 11:
                 return (<>
                     <div style={{ paddingTop: (!isDesktop) ? 40 : 40}}>
@@ -630,7 +526,8 @@ const ContactForm = (props) => {
                         city={handleAnswerCity}
                         error={errValidation}
                         answer={answer}/>
-                    </>)
+                    </>
+                )
             
         }
     }

@@ -36,92 +36,76 @@ const ContactForm = (props) => {
     }
     //Checkbox
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-    
-    const [selectDays, setSelectDays] = useState({
-            sunday: false,
-            monday: false,
-            tuesday: false,
-            wednesday: false,
-            thursday: false,
-            friday: false,
-            saturday: false
-        })
-
+        //Select Days
     const checkSunday = () => {
-        if(!selectDays.sunday) {
-            setSelectDays({ ...selectDays, sunday: true })
+        if(!answer.selectDays.sunday) {
+            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, sunday: true } })
         } else {
-            setSelectDays({ ...selectDays, sunday: false })
+            setAnswer({ ...answer, selectDays: { ...answer.selectDays, sunday: false } })
         }
     } 
     const checkMonday = () => {
-        if(!selectDays.monday) {
-            setSelectDays({ ...selectDays, monday: true })
+        if(!answer.selectDays.Monday) {
+            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, monday: true } })
         } else {
-            setSelectDays({ ...selectDays, monday: false })
+            setAnswer({ ...answer, selectDays: { ...answer.selectDays, monday: false } })
         }
-    }
+    } 
     const checkTuesday = () => {
-        if(!selectDays.tuesday) {
-            setSelectDays({ ...selectDays, tuesday: true })
+        if(!answer.selectDays.tuesday) {
+            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, tuesday: true } })
         } else {
-            setSelectDays({ ...selectDays, tuesday: false })
+            setAnswer({ ...answer, selectDays: { ...answer.selectDays, tuesday: false } })
         }
-    }
+    } 
     const checkWednesday = () => {
-        if(!selectDays.wednesday) {
-            setSelectDays({ ...selectDays, wednesday: true })
+        if(!answer.selectDays.wednesday) {
+            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, wednesday: true } })
         } else {
-            setSelectDays({ ...selectDays, wednesday: false })
+            setAnswer({ ...answer, selectDays: { ...answer.selectDays, wednesday: false } })
         }
     }
     const checkThursday = () => {
-        if(!selectDays.thursday) {
-            setSelectDays({ ...selectDays, thursday: true })
+        if(!answer.selectDays.thursday) {
+            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, thursday: true } })
         } else {
-            setSelectDays({ ...selectDays, thursday: false })
+            setAnswer({ ...answer, selectDays: { ...answer.selectDays, thursday: false } })
         }
-    }
+    } 
     const checkFriday = () => {
-        if(!selectDays.friday) {
-            setSelectDays({ ...selectDays, friday: true })
+        if(!answer.selectDays.friday) {
+            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, friday: true } })
         } else {
-            setSelectDays({ ...selectDays, friday: false })
+            setAnswer({ ...answer, selectDays: { ...answer.selectDays, friday: false } })
         }
-    }
+    } 
     const checkSaturday = () => {
-        if(!selectDays.saturday) {
-            setSelectDays({ ...selectDays, saturday: true })
+        if(!answer.selectDays.saturday) {
+            setAnswer({ ...answer, selectDays:{ ...answer.selectDays, saturday: true } })
         } else {
-            setSelectDays({ ...selectDays, saturday: false })
+            setAnswer({ ...answer, selectDays: { ...answer.selectDays, saturday: false } })
         }
-    }
-
-    const [selectTime, setSelectTime] = useState({
-        morning: false,
-        afternoon: false,
-        evening: false
-    })
-
+    } 
+        //SelectTime
     const checkMorning = () => {
-        if(!selectTime.morning) {
-            setSelectTime({ ...selectTime, morning: true})
+        if(!answer.selectTime.morning) {
+            setAnswer({ ...answer, selectTime: { ...answer.selectTime, morning: true } })
         } else {
-            setSelectTime({ ...selectTime, morning: false})
+            setAnswer({ ...answer, selectTime: { ...answer.selectTime, morning: false } })
         }
     }
     const checkAfternoon = () => {
-        if(!selectTime.afternoon) {
-            setSelectTime({ ...selectTime, afternoon: true})
+        if(!answer.selectTime.afternoon) {
+            setAnswer({ ...answer, selectTime: { ...answer.selectTime, afternoon: true } })
         } else {
-            setSelectTime({ ...selectTime, afternoon: false})
+            setAnswer({ ...answer, selectTime: { ...answer.selectTime, afternoon: false } })
         }
     }
     const checkEvening = () => {
-        if(!selectTime.evening) {
-            setSelectTime({ ...selectTime, evening: true})
+        if(!answer.selectTime.evening) {
+            setAnswer({ ...answer, selectTime: { ...answer.selectTime, evening: true } })
         } else {
-            setSelectTime({ ...selectTime, evening: false})
+            setAnswer({ ...answer, selectTime: { ...answer.selectTime, evening: false } })
         }
     }
     
@@ -174,6 +158,20 @@ const ContactForm = (props) => {
         why: "",
         midwifery: "",
         concerns: "",
+        selectDays: {
+            sunday: false,
+            monday: false,
+            tuesday: false,
+            wednesday: false,
+            thursday: false,
+            friday: false,
+            saturday: false
+        },
+        selectTime: {
+            morning: false,
+            afternoon: false,
+            evening: false
+        },
         refer: "",
         consultPreference: ""
     })
@@ -245,8 +243,8 @@ const ContactForm = (props) => {
             midwifery: answer.midwifery,
             concerns: answer.concerns,
             refer: answer.refer,
-            days: Object.keys(selectDays).filter(key => selectDays[key]),
-            time: Object.keys(selectTime).filter(key => selectTime[key]),
+            days: Object.keys(answer.selectDays).filter(key => answer.selectDays[key]),
+            time: Object.keys(answer.selectTime).filter(key => answer.selectTime[key]),
             preference: answer.consultPreference
         }, 'user_VCNwVyQVStaLfnvdfDv4t')
         .then((result) => {
@@ -468,7 +466,7 @@ const ContactForm = (props) => {
                     checkThursday={checkThursday}
                     checkFriday={checkFriday}
                     checkSaturday={checkSaturday}
-                    selectDays={selectDays}/>
+                    selectDays={answer.selectDays}/>
                 )
         case 10:
             return (
@@ -476,17 +474,17 @@ const ContactForm = (props) => {
                 checkMorning={checkMorning}
                 checkAfternoon={checkAfternoon}
                 checkEvening={checkEvening}
-                selectTime={selectTime}/>
+                selectTime={answer.selectTime}/>
             )
-            case 11:
-                return (<>
-                    <div style={{ paddingTop: (!isDesktop) ? 40 : 40}}>
-                        <Button onClick={(e, value) => handleConsultPreference(e, "In Person")} style={(answer.consultPreference === "In Person") ? style.activeButton : style.button}>In Person</Button>
-                        <Button onClick={(e, value) => handleConsultPreference(e, "Phone")} style={(answer.consultPreference === "Phone") ? style.activeButton : style.button}>Phone</Button>
-                    </div>
-                </>)
-            case 12:
-                return (<>
+        case 11:
+            return (<>
+                <div style={{ paddingTop: (!isDesktop) ? 40 : 40}}>
+                    <Button onClick={(e, value) => handleConsultPreference(e, "In Person")} style={(answer.consultPreference === "In Person") ? style.activeButton : style.button}>In Person</Button>
+                    <Button onClick={(e, value) => handleConsultPreference(e, "Phone")} style={(answer.consultPreference === "Phone") ? style.activeButton : style.button}>Phone</Button>
+                </div>
+            </>)
+        case 12:
+            return (
                 <>
                     <Grid
                         container
@@ -517,18 +515,17 @@ const ContactForm = (props) => {
                     </Grid>
                     
                 </>
-                </>)
-            default:
-                return (
-                    <>
-                        <AnswerName 
-                        name={handleAnswerName} 
-                        city={handleAnswerCity}
-                        error={errValidation}
-                        answer={answer}/>
-                    </>
-                )
-            
+            )
+        default:
+            return (
+                <>
+                    <AnswerName 
+                    name={handleAnswerName} 
+                    city={handleAnswerCity}
+                    error={errValidation}
+                    answer={answer}/>
+                </>
+            )
         }
     }
     

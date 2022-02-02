@@ -17,7 +17,7 @@ const AnswerSelectDays = (props) => {
     });
     
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
+    
     //Style
     const style = {
         answerText: {

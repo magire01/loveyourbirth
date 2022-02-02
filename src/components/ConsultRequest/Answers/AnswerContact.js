@@ -54,12 +54,12 @@ const AnswerContact = (props) => {
     return (
         <>
             <Typography style={(!props.error.email) ? style.answerText : style.answerTextErr}>{(!props.error.email) ? "Email" : "*Email"}</Typography> 
-            <input style={(!props.error.email) ? style.smallInput : style.smallInputErr} value={props.answer.email} onChange={props.email} />
+            <input style={(!props.error.email) ? style.smallInput : style.smallInputErr} value={props.answer.email} onChange={(e, question, value) => props.handleAnswer(e, "email", e.target.value )} />
             <Typography style={(!props.error.phone) ? style.answerText : style.answerTextErr}>{(!props.error.phone) ? "Phone" : "*Phone"}</Typography> 
-            <input style={(!props.error.phone) ? style.smallInput : style.smallInputErr} value={props.answer.email} value={props.answer.phone} onChange={props.phone} />  
+            <input style={(!props.error.phone) ? style.smallInput : style.smallInputErr} value={props.answer.email} value={props.answer.phone} onChange={(e, question, value) => props.handleAnswer(e, "phone", e.target.value )} />  
             <Typography style={style.answerText}>Preferred Method of Contact</Typography> 
-            <Button onClick={(e, value) => props.contactPref(e, "Email")} style={(props.answer.contact === "Email") ? style.activeButton : style.button}>Email</Button>
-            <Button onClick={(e, value) => props.contactPref(e, "Phone")} style={(props.answer.contact === "Phone") ? style.activeButton : style.button}>Phone</Button>
+            <Button onClick={(e, question, value) => props.handleAnswer(e, "contact", "Email")} style={(props.answer.contact === "Email") ? style.activeButton : style.button}>Email</Button>
+            <Button onClick={(e, question, value) => props.handleAnswer(e, "contact", "Phone" )} style={(props.answer.contact === "Phone") ? style.activeButton : style.button}>Phone</Button>
         </>
     )
 }

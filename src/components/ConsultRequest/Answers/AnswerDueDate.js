@@ -13,6 +13,8 @@ const AnswerDueDate = (props) => {
         window.addEventListener("resize", updateMedia);
         return () => window.removeEventListener("resize", updateMedia);
     });
+
+    const [selectMonth, setSelectMonth] = useState("empty");
     
     //Style
     const style = {
@@ -92,51 +94,51 @@ const AnswerDueDate = (props) => {
         >
             <Grid item md="12">
                 <Button 
-                onClick={(e, value) => props.changeMonth(e, "January")} 
+                onClick={(e, question, value) => props.handleAnswer(e, "dueDate", "January")}
                 style={(props.answer.dueDate != "January") ? style.monthButton : style.activeMonthButton}>January</Button>
                 <Button 
-                onClick={(e, value) => props.changeMonth(e, "February")} 
+                onClick={(e, question, value) => props.handleAnswer(e, "dueDate", "February")} 
                 style={(props.answer.dueDate != "February") ? style.monthButton : style.activeMonthButton}>February</Button>
                 <Button 
-                onClick={(e, value) => props.changeMonth(e, "March")} 
+                onClick={(e, question, value) => props.handleAnswer(e, "dueDate", "March")} 
                 style={(props.answer.dueDate != "March") ? style.monthButton : style.activeMonthButton}>March</Button>     
             </Grid>
             <Grid item md="12">
                 <Button 
-                onClick={(e, value) => props.changeMonth(e, "April")} 
+                onClick={(e, question, value) => props.handleAnswer(e, "dueDate", "April")} 
                 style={(props.answer.dueDate != "April") ? style.monthButton : style.activeMonthButton}>April</Button>
                 <Button 
-                onClick={(e, value) => props.changeMonth(e, "May")} 
+                onClick={(e, question, value) => props.handleAnswer(e, "dueDate", "May")} 
                 style={(props.answer.dueDate != "May") ? style.monthButton : style.activeMonthButton}>May</Button>
                 <Button 
-                onClick={(e, value) => props.changeMonth(e, "June")} 
+                onClick={(e, question, value) => props.handleAnswer(e, "dueDate", "June")} 
                 style={(props.answer.dueDate != "June") ? style.monthButton : style.activeMonthButton}>June</Button> 
             </Grid>
             <Grid item md="12">
                 <Button 
-                onClick={(e, value) => props.changeMonth(e, "July")} 
+                onClick={(e, question, value) => props.handleAnswer(e, "dueDate", "July")} 
                 style={(props.answer.dueDate != "July") ? style.monthButton : style.activeMonthButton}>July</Button>
                 <Button 
-                onClick={(e, value) => props.changeMonth(e, "August")} 
+                onClick={(e, question, value) => props.handleAnswer(e, "dueDate", "August")} 
                 style={(props.answer.dueDate != "August") ? style.monthButton : style.activeMonthButton}>August</Button>
                 <Button 
-                onClick={(e, value) => props.changeMonth(e, "September")} 
+                onClick={(e, question, value) => props.handleAnswer(e, "dueDate", "September")} 
                 style={(props.answer.dueDate != "September") ? style.monthButton : style.activeMonthButton}>September</Button>
             </Grid>
             <Grid item md="12">
                 <Button 
-                onClick={(e, value) => props.changeMonth(e, "October")} 
+                onClick={(e, question, value) => props.handleAnswer(e, "dueDate", "October")} 
                 style={(props.answer.dueDate != "October") ? style.monthButton : style.activeMonthButton}>October</Button>
                 <Button 
-                onClick={(e, value) => props.changeMonth(e, "November")} 
+                onClick={(e, question, value) => props.handleAnswer(e, "dueDate", "November")} 
                 style={(props.answer.dueDate != "November") ? style.monthButton : style.activeMonthButton}>November</Button>
                 <Button 
-                onClick={(e, value) => props.changeMonth(e, "December")} 
+                onClick={(e, question, value) => props.handleAnswer(e, "dueDate", "December")} 
                 style={(props.answer.dueDate != "December") ? style.monthButton : style.activeMonthButton}>December</Button>
             </Grid>
             <Grid item md="12">
                 <Button 
-                onClick={(e, value) => props.changeMonth(e, "I Don't Know")} 
+                onClick={(e, question, value) => props.handleAnswer(e, "dueDate", "I Don't Know")} 
                 style={(props.answer.dueDate != "I Don't Know") ? style.idkButton : style.activeIdkButton}>I Don't Know</Button>
             </Grid>
         </Grid>

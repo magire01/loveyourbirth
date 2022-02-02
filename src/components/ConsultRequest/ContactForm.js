@@ -3,8 +3,6 @@ import { Grid, Button, Typography, IconButton, LinearProgress, Checkbox } from "
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import CloseIcon from '@material-ui/icons/Close';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import Favorite from '@material-ui/icons/Favorite';
 import QuestionData from "../../utilities/questions.json";
 import emailjs from 'emailjs-com';
 import '@fontsource/roboto';
@@ -26,17 +24,8 @@ const ContactForm = (props) => {
         window.addEventListener("resize", updateMedia);
         return () => window.removeEventListener("resize", updateMedia);
     });
-    //Month Selector
-    const [selectMonth, setSelectMonth] = useState("empty");
-
-    const selectDueDateMonth = (e, value) => {
-        e.preventDefault();
-        setSelectMonth(value);
-        handleDueDate(e, value);
-    }
-    //Checkbox
-    const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-        //Select Days
+    
+    //Checkbox - Select Days
     const checkSunday = () => {
         if(!answer.selectDays.sunday) {
             setAnswer({ ...answer, selectDays:{ ...answer.selectDays, sunday: true } })
@@ -86,7 +75,7 @@ const ContactForm = (props) => {
             setAnswer({ ...answer, selectDays: { ...answer.selectDays, saturday: false } })
         }
     } 
-        //SelectTime
+    //Checkbox - SelectTime
     const checkMorning = () => {
         if(!answer.selectTime.morning) {
             setAnswer({ ...answer, selectTime: { ...answer.selectTime, morning: true } })
@@ -176,32 +165,6 @@ const ContactForm = (props) => {
         consultPreference: ""
     })
 
-    
-
-    const handleAnswerName = (e) => {
-        setAnswer({ ...answer, name: e.target.value })
-    }
-    const handleAnswerPhone = (e) => {
-        setAnswer({ ...answer, phone: e.target.value })
-    }
-    const handleAnswerEmail = (e) => {
-        setAnswer({ ...answer, email: e.target.value })
-    }
-    const handleAnswerCity = (e) => {
-        setAnswer({ ...answer, city: e.target.value })
-    }
-    const handleAnswerContactPref = (e, selection) => {
-        e.preventDefault();
-        setAnswer({ ...answer, contact: selection})
-    }
-    const handleAnswerFirstBirth = (e, selection) => {
-        e.preventDefault();
-        setAnswer({ ...answer, firstBirth: selection})
-    }
-    const handleDueDate = (e, value) => {
-        e.preventDefault();
-        setAnswer({ ...answer, dueDate: value })
-    }
     const handleAnswerEnvision = (e) => {
         e.preventDefault();
         setAnswer({ ...answer, envision: e.target.value })
@@ -226,6 +189,37 @@ const ContactForm = (props) => {
     const handleConsultPreference = (e, selection) => {
         e.preventDefault();
         setAnswer({ ...answer, consultPreference: selection})
+    }
+
+    const handleAllAnswers = (e, question, value) => {
+        switch(question) {
+            case "city":
+                return setAnswer({ ...answer, city: value })
+            case "phone":
+                return setAnswer({ ...answer, phone: value})
+            case "email":
+                return setAnswer({ ...answer, email: value})
+            case "contact":
+                return setAnswer({ ...answer, contact: value})
+            case "firstBirth":
+                return setAnswer({ ...answer, firstBirth: value})
+            case "dueDate":
+                return setAnswer({ ...answer, dueDate: value})
+            case "envision":
+                return setAnswer({ ...answer, envision: value})
+            case "why":
+                return setAnswer({ ...answer, why: value})
+            case "midwifery":
+                return setAnswer({ ...answer, midwifery: value})
+            case "concerns":
+                return setAnswer({ ...answer, concerns: value})
+            case "refer":
+                return setAnswer({ ...answer, refer: value})
+            case "preference":
+                return setAnswer({ ...answer, preference: value})
+            default:
+                return setAnswer({ ...answer, name: value })
+        }
     }
     const sendEmail = (e) => {
         e.preventDefault();
@@ -366,108 +360,65 @@ const ContactForm = (props) => {
         },
         nextButtonDisabled: {
             color: "white"
-        },
-        checkbox: {
-            fontSize: (!isDesktop) ? 15 : 20,
-            alignText: "right"
-        },
-        checkitem: {
-            fontSize: (!isDesktop) ? 15 : 20,
-            alignText: "left"
-        },
-        monthButton: {
-            border: "1px solid purple",
-            margin: (!isDesktop) ? 5 : "1%",
-            width: (!isDesktop) ? 30 : 150,
-            height: (!isDesktop) ? 10 : 40,
-            fontSize: (!isDesktop) ? 8 : 20,
-        },
-        activeMonthButton: {
-            backgroundColor: "purple",
-            border: "1px solid purple",
-            margin: (!isDesktop) ? 5 : "1%",
-            color: "white",
-            width: (!isDesktop) ? 30 : 150,
-            height: (!isDesktop) ? 10 : 40,
-            fontSize: (!isDesktop) ? 8 : 20
-        },
-        idkButton: {
-            border: "1px solid purple",
-            margin: (!isDesktop) ? 5 : "1%",
-            width: (!isDesktop) ? 100 : 250,
-            height: (!isDesktop) ? 10 : 40,
-            fontSize: (!isDesktop) ? 8 : 20,
-        },
-        activeIdkButton: {
-            backgroundColor: "purple",
-            border: "1px solid purple",
-            margin: (!isDesktop) ? 5 : "1%",
-            color: "white",
-            width: (!isDesktop) ? 100 : 250,
-            height: (!isDesktop) ? 10 : 40,
-            fontSize: (!isDesktop) ? 8 : 20
         }
     }
 
     const handleAnswer = () => {
         switch(questionNum) {
-            case 1:
-                return (
-                    <AnswerContact 
-                    email={handleAnswerEmail} 
-                    phone={handleAnswerPhone} 
-                    contactPref={handleAnswerContactPref} 
-                    error={errValidation}
-                    answer={answer}/>
-                )
-            case 2:
-                return (
-                    <AnswerFirstBirth 
-                    firstBirth={handleAnswerFirstBirth} 
-                    error={errValidation}
-                    answer={answer}/>
+        case 1:
+            return (
+                <AnswerContact 
+                handleAnswer={handleAllAnswers}
+                error={errValidation}
+                answer={answer}/>
+            )
+        case 2:
+            return (
+                <AnswerFirstBirth 
+                handleAnswer={handleAllAnswers} 
+                error={errValidation}
+                answer={answer}/>
 
-                )
-            case 3:
-                return (
-                    <AnswerDueDate 
-                    changeMonth={selectDueDateMonth}
-                    dueDate={handleDueDate}
-                    answer={answer}/>
-                )
-            case 4:
-                return (<>
-                    <textarea style={style.largeInput} value={answer.why} onChange={handleAnswerWhy}></textarea>
-                </>)
-            case 5:
-                return (<>
-                    <textarea style={style.largeInput} value={answer.envision} onChange={handleAnswerEnvision}></textarea>
-                </>)
-            
-            case 6:
-                return (<>
-                    <textarea style={style.largeInput} value={answer.midwifery} onChange={handleAnswerMidwifery}></textarea>
-                </>)
-            case 7:
-                return (<>
-                    <textarea style={style.largeInput} value={answer.concerns} onChange={handleAnswerConcerns}></textarea>
-                </>)
-            case 8:
-                return (<>
-                    <input style={style.smallInput} value={answer.refer} onChange={handleAnswerRefer} />
-                </>)
-            case 9: 
-                return (
-                    <AnswerSelectDays 
-                    checkSunday={checkSunday}
-                    checkMonday={checkMonday}
-                    checkTuesday={checkTuesday}
-                    checkWednesday={checkWednesday}
-                    checkThursday={checkThursday}
-                    checkFriday={checkFriday}
-                    checkSaturday={checkSaturday}
-                    selectDays={answer.selectDays}/>
-                )
+            )
+        case 3:
+            return (
+                <AnswerDueDate 
+                handleAnswer={handleAllAnswers}
+                answer={answer}/>
+            )
+        case 4:
+            return (<>
+                <textarea style={style.largeInput} value={answer.why} onChange={handleAnswerWhy}></textarea>
+            </>)
+        case 5:
+            return (<>
+                <textarea style={style.largeInput} value={answer.envision} onChange={handleAnswerEnvision}></textarea>
+            </>)
+        
+        case 6:
+            return (<>
+                <textarea style={style.largeInput} value={answer.midwifery} onChange={handleAnswerMidwifery}></textarea>
+            </>)
+        case 7:
+            return (<>
+                <textarea style={style.largeInput} value={answer.concerns} onChange={handleAnswerConcerns}></textarea>
+            </>)
+        case 8:
+            return (<>
+                <input style={style.smallInput} value={answer.refer} onChange={handleAnswerRefer} />
+            </>)
+        case 9: 
+            return (
+                <AnswerSelectDays 
+                checkSunday={checkSunday}
+                checkMonday={checkMonday}
+                checkTuesday={checkTuesday}
+                checkWednesday={checkWednesday}
+                checkThursday={checkThursday}
+                checkFriday={checkFriday}
+                checkSaturday={checkSaturday}
+                selectDays={answer.selectDays}/>
+            )
         case 10:
             return (
                 <AnswerSelectTime 
@@ -520,8 +471,7 @@ const ContactForm = (props) => {
             return (
                 <>
                     <AnswerName 
-                    name={handleAnswerName} 
-                    city={handleAnswerCity}
+                    handleAnswer={handleAllAnswers}
                     error={errValidation}
                     answer={answer}/>
                 </>

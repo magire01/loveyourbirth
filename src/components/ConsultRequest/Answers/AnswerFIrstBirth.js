@@ -53,8 +53,8 @@ const AnswerFirstBirth = (props) => {
     
     return (
         <div style={{ paddingTop: (!isDesktop) ? 40 : 40}}>
-            <Button onClick={(e, value) => props.firstBirth(e, "Yes")} style={(props.answer.firstBirth === "Yes") ? style.activeButton : style.button}>Yes</Button>
-            <Button onClick={(e, value) => props.firstBirth(e, "No")} style={(props.answer.firstBirth === "No") ? style.activeButton : style.button}>No</Button>
+            <Button onClick={(e, question, value) => props.handleAnswer(e, "firstBirth", "Yes")} style={(props.answer.firstBirth === "Yes") ? style.activeButton : style.button}>Yes</Button>
+            <Button onClick={(e, question, value) => props.handleAnswer(e, "firstBirth", "No")} style={(props.answer.firstBirth === "No") ? style.activeButton : style.button}>No</Button>
         </div>
 )
 }

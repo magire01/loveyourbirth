@@ -54,9 +54,9 @@ const AnswerName = (props) => {
     return (
         <>
             <Typography style={(!props.error.name) ? style.answerText : style.answerTextErr}>{(!props.error.name) ? "Name" : "*Name"}</Typography> 
-            <input style={(!props.error.name) ? style.smallInput : style.smallInputErr} value={props.answer.name} onChange={props.name}/>
+            <input style={(!props.error.name) ? style.smallInput : style.smallInputErr} value={props.answer.name} onChange={(e, question, value) => props.handleAnswer(e, "name", e.target.value )}/>
             <Typography style={(!props.error.city) ? style.answerText : style.answerTextErr}>{(!props.error.city) ? "City, State" : "*City, State"}</Typography> 
-            <input style={(!props.error.city) ? style.smallInput : style.smallInputErr} value={props.answer.name} value={props.answer.city} onChange={props.city} />
+            <input style={(!props.error.city) ? style.smallInput : style.smallInputErr} value={props.answer.name} value={props.answer.city} onChange={(e, question, value) => props.handleAnswer(e, "city", e.target.value )} />
         </>
     )
 }

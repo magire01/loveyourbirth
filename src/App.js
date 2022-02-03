@@ -88,8 +88,8 @@ const App = () => {
       navbar: "#A9D1EA",
       navbutton: "white",
       background1: "#E5COC8",
-      newPatient: "#d9b3ff",
-      message: "#FDB7C2",
+      consultButton: "#d9b3ff",
+      messageButton: "#FDB7C2",
       subheader: "#d9b3ff"
     }
 //style
@@ -112,8 +112,8 @@ const App = () => {
         fontSize: 10,
         fontWeight: "bold"
       },
-      newPatient: {
-        backgroundColor: colorScheme.newPatient,
+      consultButton: {
+        backgroundColor: colorScheme.consultButton,
         color: "white",
         width: (!isDesktop) ? 120 : "30%",
         height: (!isDesktop) ? 35 : 50,
@@ -123,8 +123,8 @@ const App = () => {
         borderRadius: 200,
         border: "3px outset #E1F0FA"
       },
-      message: {
-        backgroundColor: colorScheme.message,
+      messageButton: {
+        backgroundColor: colorScheme.messageButton,
         color: "white",
         width: (!isDesktop) ? 120 : "30%",
         height: (!isDesktop) ? 35 : 50,
@@ -232,7 +232,7 @@ const App = () => {
         </Grid>
 {/* CONSULT FORM */}
         <Grid item md="6" xs="6">
-          <Button onClick={handleOpen} style={style.newPatient}>Schedule a Consultation</Button>
+          <Button onClick={handleOpen} style={style.consultButton}>Schedule a Consultation</Button>
             <ConsultFormMain 
             openForm={openForm}
             handleClose={handleClose} 
@@ -240,7 +240,7 @@ const App = () => {
         </Grid>
 {/* SEND MESSAGE */}
         <Grid item md="6" xs="6">
-          <Button onClick={messageOpen} style={style.message}>Send Message</Button>
+          <Button onClick={messageOpen} style={style.messageButton}>Send Message</Button>
           <MessageForm
           openMessage={openMessage}
           messageClose={messageClose}

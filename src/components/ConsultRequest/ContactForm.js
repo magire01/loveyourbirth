@@ -1,25 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Button, Typography, IconButton, LinearProgress, Checkbox } from "@material-ui/core";
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import { Grid, IconButton, LinearProgress } from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
 import QuestionData from "../../utilities/questions.json";
 import emailjs from 'emailjs-com';
 import '@fontsource/roboto';
 
-import AnswerContact from "./Answers/AnswerContact";
-import AnswerName from "./Answers/AnswerName";
-import AnswerFirstBirth from "./Answers/AnswerFIrstBirth";
-import AnswerDueDate from "./Answers/AnswerDueDate";
-import AnswerWhy from "./Answers/AnswerWhy";
-import AnswerEnvision from "./Answers/AnswerEnvision";
-import AnswerMidwifery from "./Answers/AnswerMidwifery";
-import AnswerSelectDays from "./Answers/AnswerSelectDays";
-import AnswerSelectTime from "./Answers/AnswerSelectTime";
-import AnswerConcerns from "./Answers/AnswerConcerns";
-import AnswerRefer from "./Answers/AnswerRefer";
-import AnswerPreference from "./Answers/AnswerPreference";
-import ConsultSummary from "./ConsultSummary";
+import HandleQuestion from "./HandleQuestion";
+import HandleAnswer from "./HandleAnswer";
+import PrevQuestion from "./PrevQuestion";
+import NextQuestion from "./NextQuestion";
+import SubmitConsult from "./SubmitConsult";
 
 const ContactForm = (props) => {
     //Nav Rendering for Smartphone vs Laptop
@@ -31,21 +21,21 @@ const ContactForm = (props) => {
         window.addEventListener("resize", updateMedia);
         return () => window.removeEventListener("resize", updateMedia);
     });
-    
-    //question # state
+//Questions
+    //question number
     const [questionNum, setQuestionNum] = useState(0)
-
+    //error validation
     const [errValidation, setErrValidation] = useState({
         name: false,
         city: false,
         email: false,
         phone: false
     })
-
     //progress bar
     const point = 100/QuestionData.data.length
     const [progress, setProgress] = useState(point)
 
+    //next question button
     const nextQuestion = (e) => {
         e.preventDefault();
         if (questionNum === 0 && answer.name == "")
@@ -62,43 +52,14 @@ const ContactForm = (props) => {
             setProgress(progress + point)
         }
     }
-
+    //prev question button
     const prevQuestion = (e) => {
         e.preventDefault();
         setQuestionNum(questionNum - 1)
         setProgress(progress - point)
     }
-
-    const [answer, setAnswer] = useState({
-        name: "",
-        city: "",
-        phone: "",
-        email: "",
-        contact: "",
-        firstBirth: "",
-        dueDate: "",
-        envision: "",
-        why: "",
-        midwifery: "",
-        concerns: "",
-        selectDays: {
-            sunday: false,
-            monday: false,
-            tuesday: false,
-            wednesday: false,
-            thursday: false,
-            friday: false,
-            saturday: false
-        },
-        selectTime: {
-            morning: false,
-            afternoon: false,
-            evening: false
-        },
-        refer: "",
-        preference: ""
-    })
-
+//Answers
+    //Handle All Answers (Except check box questions)
     const handleAllAnswers = (e, question, value) => {
         switch(question) {
             case "city":
@@ -180,6 +141,7 @@ const ContactForm = (props) => {
             setAnswer({ ...answer, selectDays: { ...answer.selectDays, saturday: false } })
         }
     } 
+
     //Checkbox - SelectTime
     const checkMorning = () => {
         if(!answer.selectTime.morning) {
@@ -203,6 +165,38 @@ const ContactForm = (props) => {
         }
     }
 
+    //Answer Object
+    const [answer, setAnswer] = useState({
+        name: "",
+        city: "",
+        phone: "",
+        email: "",
+        contact: "",
+        firstBirth: "",
+        dueDate: "",
+        envision: "",
+        why: "",
+        midwifery: "",
+        concerns: "",
+        selectDays: {
+            sunday: false,
+            monday: false,
+            tuesday: false,
+            wednesday: false,
+            thursday: false,
+            friday: false,
+            saturday: false
+        },
+        selectTime: {
+            morning: false,
+            afternoon: false,
+            evening: false
+        },
+        refer: "",
+        preference: ""
+    })
+
+    //Email JS
     const sendEmail = (e) => {
         e.preventDefault();
         emailjs.send('service_sa2sv31', 'template_aldpnbc', 
@@ -232,204 +226,74 @@ const ContactForm = (props) => {
         props.closeForm();
     };
     
-    //Style
+//Style
     const style = {
-        card: {
-            display: 'fixed',  
-            justifyContent:'center', 
-            alignItems:'center',
-            height: (!isDesktop) ? "60%" : "80%",
-            width: (!isDesktop) ? "97%" : "auto",
-            margin: (!isDesktop) ? 0 : 100,
-            marginTop: (!isDesktop) ? 0 : 100,
-            textAlign: "center",
-            border: "5px solid purple",
-            backgroundColor: "white"
-        },
-        title: {
-            marginTop: 20,
-            marginBottom: 20
-        },
-        question: {
-            height: (!isDesktop) ? 60 : 80,
-            marginTop: 20,
-            marginBottom: (!isDesktop) ? 15 : 10,
-            color: "purple",
-            fontSize: (!isDesktop) ? 15 : 30,
-            fontWeight: "bold"
-        },
-        submit: { 
-            // position: "absolute", 
-            // bottom: (!isDesktop) ? "40%" : "10%",
-            color: "white",
-            backgroundColor: "purple",
-            marginTop: 20
-        },
-        next: { 
-            // position: "absolute", 
-            // bottom: (!isDesktop) ? "40%" : "10%",
-            color: "white",
-            backgroundColor: "#d9b3ff",
-            marginTop: 20
-        },
-        questionSection: {
-            height: (!isDesktop) ? 200 : 400,
-            marginBottom: 100
-        },
-        questionSection2: {
+        questionSectionMain: {
             height: (!isDesktop) ? 400 : 400,
             marginBottom: "3%",
             paddingLeft: (!isDesktop) ? 10: 0
-        },
-        questionSection3: {
-            height: (!isDesktop) ? 200: 300
         },
         progress: {
             marginLeft: "3%",
             marginRight: "3%",
             width: "100%"
-        },
-        nextButtonActive: {
-            color: "blue"
-        },
-        nextButtonDisabled: {
-            color: "white"
         }
     }
 
-    const handleAnswer = () => {
-        switch(questionNum) {
-        case 0:
-            return (
-                <AnswerName 
-                handleAnswer={handleAllAnswers}
-                error={errValidation}
-                answer={answer}/>
-            )
-        case 1:
-            return (
-                <AnswerContact 
-                handleAnswer={handleAllAnswers}
-                error={errValidation}
-                answer={answer}/>
-            )
-        case 2:
-            return (
-                <AnswerFirstBirth 
-                handleAnswer={handleAllAnswers} 
-                error={errValidation}
-                answer={answer}/>
-
-            )
-        case 3:
-            return (
-                <AnswerDueDate 
-                handleAnswer={handleAllAnswers}
-                answer={answer}/>
-            )
-        case 4:
-            return (
-                <AnswerWhy 
-                handleAnswer={handleAllAnswers}
-                answer={answer}/>
-            )
-        case 5:
-            return (
-                <AnswerEnvision 
-                handleAnswer={handleAllAnswers}
-                answer={answer}/>
-            )
-        
-        case 6:
-            return (
-                <AnswerMidwifery 
-                handleAnswer={handleAllAnswers}
-                answer={answer}/>
-            )
-        case 7:
-            return (
-                <AnswerConcerns 
-                handleAnswer={handleAllAnswers}
-                answer={answer}/>
-            )
-        case 8:
-            return (
-                <AnswerRefer 
-                handleAnswer={handleAllAnswers}
-                answer={answer}/>
-            )
-        case 9: 
-            return (
-                <AnswerSelectDays 
-                checkSunday={checkSunday}
-                checkMonday={checkMonday}
-                checkTuesday={checkTuesday}
-                checkWednesday={checkWednesday}
-                checkThursday={checkThursday}
-                checkFriday={checkFriday}
-                checkSaturday={checkSaturday}
-                selectDays={answer.selectDays}/>
-            )
-        case 10:
-            return (
-                <AnswerSelectTime 
-                checkMorning={checkMorning}
-                checkAfternoon={checkAfternoon}
-                checkEvening={checkEvening}
-                selectTime={answer.selectTime}/>
-            )
-        case 11:
-            return (
-                <AnswerPreference 
-                handleAnswer={handleAllAnswers}
-                answer={answer}/>
-            )
-        default:
-            return (
-                <ConsultSummary
-                answer={answer}/>
-            )
-        }
-    }
-    
     return (
         <div>
             <Grid container direction="row" alignItems="center" justifyContent="center"  style={{ paddingLeft: 0, paddingRight: (!isDesktop) ? "4%" : 0 }}>
                 <Grid container direction="row" justifyContent="left">
+    {/* Close Button */}
                     <IconButton>
                         <CloseIcon onClick={props.closeForm} />
                     </IconButton>
-                        <LinearProgress variant="determinate" value={progress} style={style.progress} />
+    {/* Progress Bar */}
+                    <LinearProgress variant="determinate" value={progress} style={style.progress} />
                 </Grid>
+    {/* PrevQuestion */}
                 <Grid container direction="row" alignItems="center" justifyContent="center">
                     <Grid item md="1" xs="1">
-                        {(questionNum === 0) 
-                        ? <IconButton> 
-                            <ArrowBackIcon style={style.nextButtonDisabled}/>
-                        </IconButton>
-                        : <IconButton onClick={prevQuestion}> 
-                            <ArrowBackIcon style={style.nextButtonActive} />
-                         </IconButton>}
+                        <PrevQuestion 
+                        questionNum={questionNum}
+                        prevQuestion={prevQuestion}/>
                     </Grid>
-                    <Grid item md="10" xs="10" style={style.questionSection2}>
-                        <Typography style={style.question}>{QuestionData.data[questionNum].question}</Typography>
-                        <div style={style.questionSection3}>
-                            {handleAnswer()}
-                        </div>
+    {/* Question and Answer */}
+                    <Grid item md="10" xs="10" style={style.questionSectionMain}>
+                        <HandleQuestion 
+                        questionNum={questionNum}
+                        />
+                        <HandleAnswer 
+                        questionNum={questionNum}
+                        handleAnswer={handleAllAnswers}
+                        error={errValidation}
+                        answer={answer}
+                        checkSunday={checkSunday}
+                        checkMonday={checkMonday}
+                        checkTuesday={checkTuesday}
+                        checkWednesday={checkWednesday}
+                        checkThursday={checkThursday}
+                        checkFriday={checkFriday}
+                        checkSaturday={checkSaturday}
+                        selectDays={answer.selectDays}
+                        checkMorning={checkMorning}
+                        checkAfternoon={checkAfternoon}
+                        checkEvening={checkEvening}
+                        selectTime={answer.selectTime}
+                        />
+    {/* Next and Submit Button */}
                         <Grid item md="12" xs="12">
-                            {(questionNum === QuestionData.data.length - 1) 
-                            ? <Button onClick={sendEmail} style={style.submit}>Submit</Button> 
-                            : <Button onClick={nextQuestion} style={style.next}>Next</Button>}
+                            <SubmitConsult 
+                            questionNum={questionNum}
+                            sendEmail={sendEmail}
+                            nextQuestion={nextQuestion}/>
                         </Grid> 
                     </Grid>
+    {/* PrevQuestion */}
                     <Grid item md="1" xs="1">
-                        {(questionNum === QuestionData.data.length - 1) 
-                        ? <IconButton>
-                            <ArrowForwardIcon style={style.nextButtonDisabled}/>
-                        </IconButton>
-                        : <IconButton onClick={nextQuestion}>
-                            <ArrowForwardIcon style={style.nextButtonActive}/>
-                          </IconButton>}
+                        <NextQuestion 
+                        questionNum={questionNum}
+                        nextQuestion={nextQuestion}/>
                     </Grid>
                 </Grid>
             </Grid>

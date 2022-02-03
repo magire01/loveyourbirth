@@ -11,7 +11,7 @@ import PrevQuestion from "./PrevQuestion";
 import NextQuestion from "./NextQuestion";
 import SubmitConsult from "./SubmitConsult";
 
-const ContactForm = (props) => {
+const ConsultFormMain = (props) => {
     //Nav Rendering for Smartphone vs Laptop
     const [isDesktop, setDesktop] = useState(window.innerWidth > 1000);
     const updateMedia = () => {
@@ -301,4 +301,4 @@ const ContactForm = (props) => {
     )
 }
 
-export default ContactForm;
+export default ConsultFormMain;

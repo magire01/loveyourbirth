@@ -16,7 +16,7 @@ import Birth from './components/Birth';
 import Newborn from './components/Newborn';
 import Resources from './components/Resources';
 import Contact from './components/Contact';
-import ContactForm from './components/ConsultRequest/ContactForm';
+import ConsultFormMain from './components/ConsultRequest/ConsultFormMain';
 import MessageForm from './components/MessageForm';
  
 const App = () => {
@@ -266,7 +266,7 @@ const App = () => {
               aria-describedby="simple-modal-description"
               >
               <Card style={style.contactCard}>
-                <ContactForm closeForm={handleClose} successConsult={consultSnack}/>
+                <ConsultFormMain closeForm={handleClose} successConsult={consultSnack}/>
               </Card>
             </Modal>
         </Grid>
@@ -299,7 +299,7 @@ const App = () => {
               <SnackbarContent message="Consultation Request Sent Successfully!" style={style.success} />
           </Snackbar>
         </Grid>
-    {/* QUOTE */}
+{/* QUOTE */}
         <Grid item md="12" xs="12" className={"quoteMargin"}>
             <Typography style={style.quoteFont} className={"quoteFont"}>You are a midwife, assisting at someone else’s birth. Do good without show or fuss. Facilitate what is happening rather than what you think ought to be happening. If you must take the lead, lead so that the mother is helped, yet still free and in charge. When the baby is born, the mother will rightly say, 'We did it ourselves!'</Typography>
             <Typography style={style.authorFont} className={"authorFont"} style={{ fontWeight: "bold" }}>Tao Te Ching</Typography>

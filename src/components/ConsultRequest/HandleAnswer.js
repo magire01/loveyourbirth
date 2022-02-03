@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Typography } from "@material-ui/core";
 import '@fontsource/roboto';
 
 import AnswerName from "./Answers/AnswerName";
@@ -30,18 +29,8 @@ const HandleAnswer = (props) => {
     
     //Style
     const style = {
-        answerText: {
-            marginTop: (!isDesktop) ? 10 : 20,
-            marginBottom: (!isDesktop) ? 10 : 10,
-            color: "purple",
-            fontSize: (!isDesktop) ? 10 : 20,
-            fontWeight: "bold"
-        },
-        answerTextBold: {
-            marginTop: (!isDesktop) ? 10 : 20,
-            marginBottom: (!isDesktop) ? 10 : 10,
-            color: "purple",
-            fontSize: (!isDesktop) ? 10 : 20,
+        answerSection: {
+            height: (!isDesktop) ? 200: 300
         }
     }
 
@@ -141,7 +130,7 @@ const HandleAnswer = (props) => {
     }
     
     return (
-        <div style={style.questionSection3}>
+        <div style={style.answerSection}>
             {handleAnswer()}
         </div>
     )

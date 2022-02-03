@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import '@fontsource/roboto';
-
 import QuestionData from "../../utilities/questions.json";
 
 const HandleQuestion = (props) => {

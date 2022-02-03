@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Typography, IconButton } from "@material-ui/core";
-import '@fontsource/roboto';
-
+import {  IconButton } from "@material-ui/core";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-
-import QuestionData from "../../utilities/questions.json";
+import '@fontsource/roboto';
 
 const PrevQuestion = (props) => {
 

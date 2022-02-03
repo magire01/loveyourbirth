@@ -20,6 +20,7 @@ import ConsultFormMain from './components/ConsultRequest/ConsultFormMain';
 import MessageForm from './components/MessageForm';
 import ConsultSnackbar from './components/Snackbar/ConsultSnackbar';
 import MessageSnackbar from './components/Snackbar/MessageSnackbar';
+import Quote from './components/Sections/Quote';
  
 const App = () => {
 //Nav Rendering for Smartphone vs Laptop
@@ -142,13 +143,6 @@ const App = () => {
         fontStyle: "italic",
         padding: 4
       },
-      quoteFont: {
-        fontSize: (!isDesktop) ? 12 : 18
-      },
-      authorFont: {
-        fontSize: (!isDesktop) ? 12 : 18,
-        fontWeight: "bold"
-      },
       heart: {
         fontSize: 25
       }
@@ -258,8 +252,7 @@ const App = () => {
         </Grid>
 {/* QUOTE */}
         <Grid item md="12" xs="12" className={"quoteMargin"}>
-            <Typography style={style.quoteFont} className={"quoteFont"}>You are a midwife, assisting at someone else’s birth. Do good without show or fuss. Facilitate what is happening rather than what you think ought to be happening. If you must take the lead, lead so that the mother is helped, yet still free and in charge. When the baby is born, the mother will rightly say, 'We did it ourselves!'</Typography>
-            <Typography style={style.authorFont} className={"authorFont"} style={{ fontWeight: "bold" }}>Tao Te Ching</Typography>
+            <Quote />
         </Grid>
         <Grid item md="12" xs="12">
           <FavoriteIcon style={style.heart} className={"heartIcon"} />

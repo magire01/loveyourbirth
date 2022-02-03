@@ -59,7 +59,7 @@
          "question": "Do you prefer an in person or phone consultation?"
       },
       {
-         "id": 12,
+         "id": "default",
          "question": "Thank you for your submission. I will contact you to confirm an appointment!"
       }
     ]

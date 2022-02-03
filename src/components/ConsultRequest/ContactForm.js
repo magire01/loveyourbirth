@@ -130,7 +130,6 @@ const ContactForm = (props) => {
         }
     }
 
-
     //Checkbox - Select Days
     const checkSunday = () => {
         if(!answer.selectDays.sunday) {
@@ -140,7 +139,7 @@ const ContactForm = (props) => {
         }
     } 
     const checkMonday = () => {
-        if(!answer.selectDays.Monday) {
+        if(!answer.selectDays.monday) {
             setAnswer({ ...answer, selectDays:{ ...answer.selectDays, monday: true } })
         } else {
             setAnswer({ ...answer, selectDays: { ...answer.selectDays, monday: false } })
@@ -300,6 +299,13 @@ const ContactForm = (props) => {
 
     const handleAnswer = () => {
         switch(questionNum) {
+        case 0:
+            return (
+                <AnswerName 
+                handleAnswer={handleAllAnswers}
+                error={errValidation}
+                answer={answer}/>
+            )
         case 1:
             return (
                 <AnswerContact 
@@ -378,19 +384,10 @@ const ContactForm = (props) => {
                 handleAnswer={handleAllAnswers}
                 answer={answer}/>
             )
-        case 12:
+        default:
             return (
                 <ConsultSummary
                 answer={answer}/>
-            )
-        default:
-            return (
-                <>
-                    <AnswerName 
-                    handleAnswer={handleAllAnswers}
-                    error={errValidation}
-                    answer={answer}/>
-                </>
             )
         }
     }

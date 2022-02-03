@@ -132,18 +132,6 @@ const App = () => {
         borderRadius: 200,
         border: "3px outset #F7E0E3"
       },
-      messageCard: {
-        display: 'fixed',  
-        justifyContent:'center', 
-        alignItems:'center',
-        height: (!isDesktop) ? "80%" : "80%",
-        width: (!isDesktop) ? "96%" : "auto",
-        margin: (!isDesktop) ? "0.5%" : 100,
-        marginTop: (!isDesktop) ? 0 : 100,
-        textAlign: "center",
-        border: "5px solid pink",
-        overflowY: "auto"
-      },
       success: {
         backgroundColor: "#8cd98c",
         alignItems: "center",
@@ -186,7 +174,7 @@ const App = () => {
     const consultSnack = () => {
       setOpenSnack({ ...openSnack, consult: true })
     }
-    
+
   return (
     <div className="App">
 {/* APPBAR */}
@@ -256,16 +244,11 @@ const App = () => {
 {/* SEND MESSAGE */}
         <Grid item md="6" xs="6">
           <Button onClick={messageOpen} style={style.message}>Send Message</Button>
-          <Modal
-              open={openMessage}
-              onClose={messageClose}
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-              >
-              <Card style={style.messageCard}>
-                <MessageForm closeMessage={messageClose} successMessage={messageSnack}/>
-              </Card>
-          </Modal>
+          <MessageForm
+          openMessage={openMessage}
+          messageClose={messageClose}
+          closeMessage={messageClose} 
+          successMessage={messageSnack}/>
 {/* SNACKBARS */}
           <Snackbar
             open={openSnack.message}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Button, Typography, Card, IconButton } from "@material-ui/core";
+import { Grid, Button, Typography, IconButton, Modal, Card } from "@material-ui/core";
 import '@fontsource/roboto';
 import emailjs from 'emailjs-com';
 import CloseIcon from '@material-ui/icons/Close';
@@ -108,30 +108,51 @@ const MessageForm = (props) => {
         },
         container: {
             height: (!isDesktop) ? "15%" : "80%"
+        },
+        messageCard: {
+            display: 'fixed',  
+            justifyContent:'center', 
+            alignItems:'center',
+            height: (!isDesktop) ? "80%" : "80%",
+            width: (!isDesktop) ? "96%" : "auto",
+            margin: (!isDesktop) ? "0.5%" : 100,
+            marginTop: (!isDesktop) ? 0 : 100,
+            textAlign: "center",
+            border: "5px solid pink",
+            overflowY: "auto"
         }
     }
     
     return (
-        <Grid container alignItems="center" justifyContent="left">
-            <IconButton>
-                <CloseIcon onClick={props.closeMessage} />
-            </IconButton>
-            <Grid container alignItems="center" justifyContent="center">
-                <Grid item md="12" xs="12" style={style.container}>
-                    <Typography style={style.label}>Name</Typography>
-                    <input style={style.smallInput} onChange={handleMessageName}/>
-                    <Typography style={style.label}>Email</Typography>
-                    <input style={style.smallInput} onChange={handleMessageEmail}/>
-                    <Typography style={style.label}>Phone</Typography>
-                    <input style={style.smallInput} onChange={handleMessagePhone}/>
-                    <Typography style={style.label}>Message</Typography>
-                    <textarea style={style.largeInput} onChange={handleMessageText}></textarea>
+        <Modal
+            open={props.openMessage}
+            onClose={props.messageClose}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            >
+            <Card style={style.messageCard}>
+                <Grid container alignItems="center" justifyContent="left">
+                    <IconButton>
+                        <CloseIcon onClick={props.closeMessage} />
+                    </IconButton>
+                    <Grid container alignItems="center" justifyContent="center">
+                        <Grid item md="12" xs="12" style={style.container}>
+                            <Typography style={style.label}>Name</Typography>
+                            <input style={style.smallInput} onChange={handleMessageName}/>
+                            <Typography style={style.label}>Email</Typography>
+                            <input style={style.smallInput} onChange={handleMessageEmail}/>
+                            <Typography style={style.label}>Phone</Typography>
+                            <input style={style.smallInput} onChange={handleMessagePhone}/>
+                            <Typography style={style.label}>Message</Typography>
+                            <textarea style={style.largeInput} onChange={handleMessageText}></textarea>
+                        </Grid>
+                        <Grid item md="12" xs="12">
+                            <Button onClick={sendEmail} style={style.submit}>Send</Button>
+                        </Grid>     
+                    </Grid>
                 </Grid>
-                <Grid item md="12" xs="12">
-                    <Button onClick={sendEmail} style={style.submit}>Send</Button>
-                </Grid>     
-            </Grid>
-        </Grid>
+            </Card>
+        </Modal>
     )
 }
 

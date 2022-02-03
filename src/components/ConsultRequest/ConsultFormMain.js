@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, IconButton, LinearProgress } from "@material-ui/core";
+import { Grid, IconButton, LinearProgress, Modal, Card } from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
 import QuestionData from "../../utilities/questions.json";
 import emailjs from 'emailjs-com';
@@ -21,6 +21,7 @@ const ConsultFormMain = (props) => {
         window.addEventListener("resize", updateMedia);
         return () => window.removeEventListener("resize", updateMedia);
     });
+    
 //Questions
     //question number
     const [questionNum, setQuestionNum] = useState(0)
@@ -225,6 +226,40 @@ const ConsultFormMain = (props) => {
         });
         props.closeForm();
     };
+    //Resets Form on close
+    useEffect(() => {
+        setAnswer({
+            name: "",
+        city: "",
+        phone: "",
+        email: "",
+        contact: "",
+        firstBirth: "",
+        dueDate: "",
+        envision: "",
+        why: "",
+        midwifery: "",
+        concerns: "",
+        selectDays: {
+            sunday: false,
+            monday: false,
+            tuesday: false,
+            wednesday: false,
+            thursday: false,
+            friday: false,
+            saturday: false
+        },
+        selectTime: {
+            morning: false,
+            afternoon: false,
+            evening: false
+        },
+        refer: "",
+        preference: ""
+        })
+        setQuestionNum(0)
+        setProgress(point);
+    }, [props.openForm]);
     
 //Style
     const style = {
@@ -237,67 +272,85 @@ const ConsultFormMain = (props) => {
             marginLeft: "3%",
             marginRight: "3%",
             width: "100%"
-        }
+        },
+        contactCard: {
+            display: 'fixed',  
+            justifyContent:'center', 
+            alignItems:'center',
+            height: (!isDesktop) ? "80%" : "80%",
+            width: (!isDesktop) ? "96%" : "auto",
+            margin: (!isDesktop) ? "0.5%" : 100,
+            marginTop: (!isDesktop) ? 0 : 100,
+            textAlign: "center",
+            border: "5px solid purple",
+            overflowY: "auto"
+          }
     }
 
     return (
-        <div>
-            <Grid container direction="row" alignItems="center" justifyContent="center"  style={{ paddingLeft: 0, paddingRight: (!isDesktop) ? "4%" : 0 }}>
-                <Grid container direction="row" justifyContent="left">
-    {/* Close Button */}
-                    <IconButton>
-                        <CloseIcon onClick={props.closeForm} />
-                    </IconButton>
-    {/* Progress Bar */}
-                    <LinearProgress variant="determinate" value={progress} style={style.progress} />
-                </Grid>
-    {/* PrevQuestion */}
-                <Grid container direction="row" alignItems="center" justifyContent="center">
-                    <Grid item md="1" xs="1">
-                        <PrevQuestion 
-                        questionNum={questionNum}
-                        prevQuestion={prevQuestion}/>
+        <Modal
+        open={props.openForm}
+        onClose={props.handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description">
+            <Card style={style.contactCard}>
+                <Grid container direction="row" alignItems="center" justifyContent="center"  style={{ paddingLeft: 0, paddingRight: (!isDesktop) ? "4%" : 0 }}>
+                    <Grid container direction="row" justifyContent="left">
+{/* Close Button */}
+                        <IconButton>
+                            <CloseIcon onClick={props.closeForm} />
+                        </IconButton>
+{/* Progress Bar */}
+                        <LinearProgress variant="determinate" value={progress} style={style.progress} />
                     </Grid>
-    {/* Question and Answer */}
-                    <Grid item md="10" xs="10" style={style.questionSectionMain}>
-                        <HandleQuestion 
-                        questionNum={questionNum}
-                        />
-                        <HandleAnswer 
-                        questionNum={questionNum}
-                        handleAnswer={handleAllAnswers}
-                        error={errValidation}
-                        answer={answer}
-                        checkSunday={checkSunday}
-                        checkMonday={checkMonday}
-                        checkTuesday={checkTuesday}
-                        checkWednesday={checkWednesday}
-                        checkThursday={checkThursday}
-                        checkFriday={checkFriday}
-                        checkSaturday={checkSaturday}
-                        selectDays={answer.selectDays}
-                        checkMorning={checkMorning}
-                        checkAfternoon={checkAfternoon}
-                        checkEvening={checkEvening}
-                        selectTime={answer.selectTime}
-                        />
-    {/* Next and Submit Button */}
-                        <Grid item md="12" xs="12">
-                            <SubmitConsult 
+{/* PrevQuestion */}
+                    <Grid container direction="row" alignItems="center" justifyContent="center">
+                        <Grid item md="1" xs="1">
+                            <PrevQuestion 
                             questionNum={questionNum}
-                            sendEmail={sendEmail}
+                            prevQuestion={prevQuestion}/>
+                        </Grid>
+{/* Question and Answer */}
+                        <Grid item md="10" xs="10" style={style.questionSectionMain}>
+                            <HandleQuestion 
+                            questionNum={questionNum}
+                            />
+                            <HandleAnswer 
+                            questionNum={questionNum}
+                            handleAnswer={handleAllAnswers}
+                            error={errValidation}
+                            answer={answer}
+                            checkSunday={checkSunday}
+                            checkMonday={checkMonday}
+                            checkTuesday={checkTuesday}
+                            checkWednesday={checkWednesday}
+                            checkThursday={checkThursday}
+                            checkFriday={checkFriday}
+                            checkSaturday={checkSaturday}
+                            selectDays={answer.selectDays}
+                            checkMorning={checkMorning}
+                            checkAfternoon={checkAfternoon}
+                            checkEvening={checkEvening}
+                            selectTime={answer.selectTime}
+                            />
+{/* Next and Submit Button */}
+                            <Grid item md="12" xs="12">
+                                <SubmitConsult 
+                                questionNum={questionNum}
+                                sendEmail={sendEmail}
+                                nextQuestion={nextQuestion}/>
+                            </Grid> 
+                        </Grid>
+{/* PrevQuestion */}
+                        <Grid item md="1" xs="1">
+                            <NextQuestion 
+                            questionNum={questionNum}
                             nextQuestion={nextQuestion}/>
-                        </Grid> 
-                    </Grid>
-    {/* PrevQuestion */}
-                    <Grid item md="1" xs="1">
-                        <NextQuestion 
-                        questionNum={questionNum}
-                        nextQuestion={nextQuestion}/>
+                        </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
-        </div>
+            </Card>
+        </Modal>
     )
 }
 

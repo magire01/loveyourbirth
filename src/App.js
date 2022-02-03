@@ -60,16 +60,16 @@ const App = () => {
   const [openMessage, setOpenMessage] = useState(false);
 
     const handleOpen = () => {
-        setOpenForm(true);
+      setOpenForm(true);
       }
     const handleClose = () => {
-    setOpenForm(false);
+      setOpenForm(false);
     }
     const messageOpen = () => {
-        setOpenMessage(true)
+      setOpenMessage(true)
     }
     const messageClose = () => {
-        setOpenMessage(false)
+      setOpenMessage(false)
     }
 
     //mobile menu
@@ -132,18 +132,6 @@ const App = () => {
         borderRadius: 200,
         border: "3px outset #F7E0E3"
       },
-      contactCard: {
-        display: 'fixed',  
-        justifyContent:'center', 
-        alignItems:'center',
-        height: (!isDesktop) ? "80%" : "80%",
-        width: (!isDesktop) ? "96%" : "auto",
-        margin: (!isDesktop) ? "0.5%" : 100,
-        marginTop: (!isDesktop) ? 0 : 100,
-        textAlign: "center",
-        border: "5px solid purple",
-        overflowY: "auto"
-      },
       messageCard: {
         display: 'fixed',  
         justifyContent:'center', 
@@ -198,6 +186,7 @@ const App = () => {
     const consultSnack = () => {
       setOpenSnack({ ...openSnack, consult: true })
     }
+    
   return (
     <div className="App">
 {/* APPBAR */}
@@ -256,20 +245,15 @@ const App = () => {
         <Grid item md="12" xs="12" ref={HomeRef}>
             <img src={lybLogo} style={style.banner}/>
         </Grid>
-{/* MODALS */}
+{/* CONSULT FORM */}
         <Grid item md="6" xs="6">
           <Button onClick={handleOpen} style={style.newPatient}>Schedule a Consultation</Button>
-          <Modal
-              open={openForm}
-              onClose={handleClose}
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-              >
-              <Card style={style.contactCard}>
-                <ConsultFormMain closeForm={handleClose} successConsult={consultSnack}/>
-              </Card>
-            </Modal>
+            <ConsultFormMain 
+            openForm={openForm}
+            handleClose={handleClose} 
+            successConsult={consultSnack}/>
         </Grid>
+{/* SEND MESSAGE */}
         <Grid item md="6" xs="6">
           <Button onClick={messageOpen} style={style.message}>Send Message</Button>
           <Modal

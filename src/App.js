@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useRef, useEffect } from "react";
-import { Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, Modal, Card, Snackbar, SnackbarContent, colors, ListItemSecondaryAction, Divider } from "@material-ui/core";
+import { Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import EmailIcon from '@material-ui/icons/Email';
@@ -18,9 +18,21 @@ import Resources from './components/Resources';
 import Contact from './components/Contact';
 import ConsultFormMain from './components/ConsultRequest/ConsultFormMain';
 import MessageForm from './components/MessageForm';
+import ConsultSnackbar from './components/Snackbar/ConsultSnackbar';
+import MessageSnackbar from './components/Snackbar/MessageSnackbar';
  
 const App = () => {
-  //Scroll Nav
+//Nav Rendering for Smartphone vs Laptop
+  const [isDesktop, setDesktop] = useState(window.innerWidth > 1400);
+  const updateMedia = () => {
+    setDesktop(window.innerWidth > 1000);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
+  });
+
+//Handle Scroll Nav
   const scrollToRef = (ref) => window.scrollTo({
     behavior: "smooth",
     top: ref.current.offsetTop-62
@@ -33,7 +45,7 @@ const App = () => {
   const BirthRef = useRef();
   const NewbornRef = useRef();
   const ResourceRef = useRef();
-  
+
   const page = ["About", "Services", "Resources", "Contact"]
   const scroll = [HomeRef, AboutRef, ServicesRef, ResourceRef, ContactRef]
   const mobilePage = ["About", "Pregnancy", "Labor & Birth", "Postpartum & Newborn", "Resources", "Contact"]
@@ -45,17 +57,7 @@ const App = () => {
     menuClose();
   }
 
-  //Nav Rendering for Smartphone vs Laptop
-  const [isDesktop, setDesktop] = useState(window.innerWidth > 1400);
-  const updateMedia = () => {
-    setDesktop(window.innerWidth > 1000);
-  };
-  useEffect(() => {
-    window.addEventListener("resize", updateMedia);
-    return () => window.removeEventListener("resize", updateMedia);
-  });
-
-  //Open Form and Message Functions
+//Handle Open Form and Message
   const [openForm, setOpenForm] = useState(false);
   const [openMessage, setOpenMessage] = useState(false);
 
@@ -72,7 +74,7 @@ const App = () => {
       setOpenMessage(false)
     }
 
-    //mobile menu
+//mobile menu
     const [anchorEl, setAnchorEl] = useState(null);
     const menuOpen = (event) => {
       setAnchorEl(event.currentTarget);
@@ -81,7 +83,7 @@ const App = () => {
     setAnchorEl(null);
     };
 
-    //colors
+//colors
     const colorScheme = {
       navbar: "#A9D1EA",
       navbutton: "white",
@@ -90,7 +92,7 @@ const App = () => {
       message: "#FDB7C2",
       subheader: "#d9b3ff"
     }
-    //style
+//style
     const style = {
       banner: {
         width: (!isDesktop) ? "70%" : "32%",
@@ -132,11 +134,6 @@ const App = () => {
         borderRadius: 200,
         border: "3px outset #F7E0E3"
       },
-      success: {
-        backgroundColor: "#8cd98c",
-        alignItems: "center",
-        color: 'white'
-      },
       subheader: {
         fontSize: 20,
         backgroundColor: colorScheme.subheader,
@@ -157,7 +154,7 @@ const App = () => {
       }
     }
 
-  //snackbar
+//Handle Snackbars
     const [openSnack, setOpenSnack] = useState({
       message: false,
       consult: false
@@ -250,21 +247,14 @@ const App = () => {
           closeMessage={messageClose} 
           successMessage={messageSnack}/>
 {/* SNACKBARS */}
-          <Snackbar
-            open={openSnack.message}
-            onClose={closeMessageSnack}
-            autoHideDuration={5000}
-          >
-              <SnackbarContent message="Email Message Sent Successfully!" style={style.success}/>
-          </Snackbar>
-          <Snackbar
-            open={openSnack.consult}
-            onClose={closeConsultSnack}
-            message="Consultation Request Sent Successfully!"
-            autoHideDuration={5000}
-          >
-              <SnackbarContent message="Consultation Request Sent Successfully!" style={style.success} />
-          </Snackbar>
+          <MessageSnackbar
+            openMessageSnack={openSnack.message}
+            closeMessageSnack={closeMessageSnack}
+          />
+          <ConsultSnackbar
+            openConsultSnack={openSnack.consult}
+            closeConsultSnack={closeConsultSnack}
+          />
         </Grid>
 {/* QUOTE */}
         <Grid item md="12" xs="12" className={"quoteMargin"}>
@@ -275,24 +265,24 @@ const App = () => {
           <FavoriteIcon style={style.heart} className={"heartIcon"} />
         </Grid>
 {/* CONTENT  */}
-    {/* HOME */}
+  {/* HOME */}
           <Grid item md="12" xs="12">
             <Home />
           </Grid>
           <Grid item md="12" xs="12">
             <FavoriteIcon style={style.heart} className={"heartIcon"} />
           </Grid>
-    {/* ABOUT */}
+  {/* ABOUT */}
           <Grid item ref={AboutRef}>
             <Typography style={style.subheader}>Meet the Midwife</Typography>
             <About />
           </Grid>
-    {/* ASSISTANT */}
+  {/* ASSISTANT */}
           <Grid item>
             <Typography style={style.subheader}>Meet the Birth Assistant</Typography>
             <Assistant />
           </Grid>
-    {/* SERVICES */}
+  {/* SERVICES */}
           <Grid item md="12" xs="12" ref={ServicesRef}>
               <Typography style={style.subheader}>Services</Typography>
           </Grid>
@@ -313,14 +303,14 @@ const App = () => {
           <Grid item md="12" xs="12">
             <FavoriteIcon style={style.heart} className={"heartIcon"} />
           </Grid>
-    {/* RESOURCES */}
+  {/* RESOURCES */}
         <Grid item md="12" xs="12" style={style.page} ref={ResourceRef}  style={{ marginBottom: (!isDesktop) ? "5%" : "5%", marginLeft: 0, marginRight: 0}}>
           <Typography style={style.subheader}>Resources</Typography>
           <div style={{ paddingTop: (!isDesktop) ? 20 : 0 }}>
             <Resources />
           </div>
         </Grid>
-    {/* CONTACT */}
+  {/* CONTACT */}
         <Grid item md="12" xs="12" className={"contactView"} ref={ContactRef}>
           <Contact openMessage={messageOpen} openConsult={handleOpen}/>
         </Grid>

@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useRef, useEffect } from "react";
-import { Grid, Button, Typography, IconButton, AppBar, Toolbar, Snackbar, SnackbarContent, colors, ListItemSecondaryAction, Divider } from "@material-ui/core";
+import { Grid, Button, Typography, AppBar, Toolbar, Snackbar, SnackbarContent } from "@material-ui/core";
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import '@fontsource/roboto';
 import lybLogo from "./lybLogo3.png";
@@ -80,15 +80,6 @@ const App = () => {
     setAnchorEl(null);
     };
 
-    //colors
-    const colorScheme = {
-      navbar: "#A9D1EA",
-      navbutton: "white",
-      background1: "#E5COC8",
-      newPatient: "#d9b3ff",
-      message: "#FDB7C2",
-      subheader: "#d9b3ff"
-    }
     //style
     const style = {
       banner: {
@@ -116,7 +107,7 @@ const App = () => {
       },
       subheader: {
         fontSize: 20,
-        backgroundColor: colorScheme.subheader,
+        backgroundColor: "#d9b3ff",
         color: "white",
         fontWeight: "bold",
         fontStyle: "italic",
@@ -157,13 +148,13 @@ const App = () => {
       <AppBar position="fixed" elevation={5} style={{ height: (!isDesktop) ? 50 : 60, position: "fixed", backgroundColor: "#A9D1EA" }}>
         <Toolbar> 
           <Grid container alignItems="center" justifyContent="flex-start">
-  {/* TOOLBAR */}
+{/* TOOLBAR */}
             <ToolbarItem name="menu" menuOpen={(e) => menuOpen(e)} md={1} xs={1}/>
             <ToolbarItem name="alert" md={8} xs={5}/>
             <ToolbarItem name="home" md={1} xs={2} openPage={(e, number, isDesktop) => openPage(e, 0, isDesktop)}/>
             <ToolbarItem name="facebook" md={1} xs={2} />
             <ToolbarItem name="messageOpen" md={1} xs={2} messageOpen={() => messageOpen()}/>
-  {/* NAV MENU */}
+{/* NAV MENU */}
             <NavMenu openPage={(e, number, isDesktop) => openPage(e, number, isDesktop)} anchorEl={anchorEl} menuClose={() => menuClose} />
           </Grid>
         </Toolbar>
@@ -219,9 +210,7 @@ const App = () => {
         </Grid>
 {/* CONTENT  */}
     {/* HOME */}
-          <Grid item md="12" xs="12">
-            <Home />
-          </Grid>
+          <Home />
           <Grid item md="12" xs="12">
             <FavoriteIcon style={style.heart} className={"heartIcon"} />
           </Grid>

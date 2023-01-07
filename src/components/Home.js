@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Paper, Typography, CardMedia } from "@material-ui/core";
+import { Grid, Paper, Typography, CardMedia } from "@material-ui/core";
 import '@fontsource/roboto';
 import MidwifePic from "../midwife1.png";
 const Home = () => {
@@ -33,12 +33,14 @@ const Home = () => {
         }
     }
     return (
-        <Paper style={style.card} elevation={3}>
-            <CardMedia>
-                <img src={MidwifePic} style={style.picture}/>
-            </CardMedia>
-            <Typography style={style.missionFont}>My mission is to support physiologic pregnancy and birth by providing safe and evidence-based midwifery care in the home setting. Pregnancy and birth bring forth sacred and beautiful physiologic moments that should be protected through physical and emotional support. We will work together through informed consent and shared decision making so you can feel confident in the decisions about your pregnancy and birth. My hope is for you to feel supported, empowered, and to ultimately love your birth experience.</Typography>
-        </Paper>
+        <Grid item md="12" xs="12">
+            <Paper style={style.card} elevation={3}>
+                <CardMedia>
+                    <img src={MidwifePic} style={style.picture}/>
+                </CardMedia>
+                <Typography style={style.missionFont}>My mission is to support physiologic pregnancy and birth by providing safe and evidence-based midwifery care in the home setting. Pregnancy and birth bring forth sacred and beautiful physiologic moments that should be protected through physical and emotional support. We will work together through informed consent and shared decision making so you can feel confident in the decisions about your pregnancy and birth. My hope is for you to feel supported, empowered, and to ultimately love your birth experience.</Typography>
+            </Paper>
+        </Grid>
     )
 }
 

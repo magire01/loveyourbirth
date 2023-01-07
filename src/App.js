@@ -66,7 +66,7 @@ const App = () => {
     setAnchorEl(event.currentTarget);
   };
   const menuClose = () => {
-  setAnchorEl(null);
+    setAnchorEl(null);
   };
 
   //style

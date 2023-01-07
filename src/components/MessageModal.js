@@ -77,7 +77,7 @@ const MessageModal = ({ name, isConsult, openForm, handleOpen, handleClose, cons
             aria-describedby="simple-modal-description"
             >
                 <Card style={style.contactCard}>
-                    <ContactForm closeForm={handleClose} successConsult={consultSnack}/>
+                    <ContactForm closeForm={handleClose} consultSnack={consultSnack}/>
                 </Card>
             </Modal>
         </Grid>
@@ -93,7 +93,7 @@ const MessageModal = ({ name, isConsult, openForm, handleOpen, handleClose, cons
             aria-describedby="simple-modal-description"
             >
                 <Card style={style.messageCard}>
-                    <MessageForm closeMessage={messageClose} successMessage={messageSnack}/>
+                    <MessageForm messageClose={messageClose} messageSnack={messageSnack}/>
                 </Card>
             </Modal>
         </Grid>

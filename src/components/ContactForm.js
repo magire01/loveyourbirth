@@ -226,30 +226,31 @@ const ContactForm = (props) => {
     }
     const sendEmail = (e) => {
         e.preventDefault();
-        emailjs.send('service_sa2sv31', 'template_aldpnbc', 
-        { 
-            name: answer.name, 
-            city: answer.city, 
-            phone: answer.phone,
-            email: answer.email, 
-            contact: answer.contact,
-            firstBirth: answer.firstBirth,
-            dueDate: answer.dueDate,
-            envision: answer.envision,
-            why: answer.why,
-            midwifery: answer.midwifery,
-            concerns: answer.concerns,
-            refer: answer.refer,
-            days: Object.keys(selectDays).filter(key => selectDays[key]),
-            time: Object.keys(selectTime).filter(key => selectTime[key]),
-            preference: answer.consultPreference
-        }, 'user_VCNwVyQVStaLfnvdfDv4t')
-        .then((result) => {
-            console.log(result.text);
-            props.successConsult();
-        }, (error) => {
-            console.log(error.text);
-        });
+        // emailjs.send('*****', '*****', 
+        // { 
+        //     name: answer.name, 
+        //     city: answer.city, 
+        //     phone: answer.phone,
+        //     email: answer.email, 
+        //     contact: answer.contact,
+        //     firstBirth: answer.firstBirth,
+        //     dueDate: answer.dueDate,
+        //     envision: answer.envision,
+        //     why: answer.why,
+        //     midwifery: answer.midwifery,
+        //     concerns: answer.concerns,
+        //     refer: answer.refer,
+        //     days: Object.keys(selectDays).filter(key => selectDays[key]),
+        //     time: Object.keys(selectTime).filter(key => selectTime[key]),
+        //     preference: answer.consultPreference
+        // }, 'user_VCNwVyQVStaLfnvdfDv4t')
+        // .then((result) => {
+        //     console.log(result.text);
+        //     props.successConsult();
+        // }, (error) => {
+        //     console.log(error.text);
+        // });
+        props.consultSnack()
         props.closeForm();
     };
     

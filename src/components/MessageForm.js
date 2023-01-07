@@ -38,14 +38,15 @@ const MessageForm = (props) => {
 
     const sendEmail = (e) => {
         e.preventDefault();
-        emailjs.send('service_sa2sv31', 'template_66y7sf6', { name: message.name, email: message.email, phone: message.phone, text: message.text}, 'user_VCNwVyQVStaLfnvdfDv4t')
-        .then((result) => {
-            console.log(result.text);
-            props.successMessage();
-        }, (error) => {
-            console.log(error.text);
-        });
-        props.closeMessage();
+        // emailjs.send('*****', '*****', { name: message.name, email: message.email, phone: message.phone, text: message.text}, 'user_VCNwVyQVStaLfnvdfDv4t')
+        // .then((result) => {
+        //     console.log(result.text);
+        //     props.successMessage();
+        // }, (error) => {
+        //     console.log(error.text);
+        // });
+        props.messageSnack()
+        props.messageClose()
     };
     //Style
     const style = {

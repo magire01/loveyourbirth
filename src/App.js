@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useRef, useEffect } from "react";
-import { Grid, Button, Typography, AppBar, Toolbar, Snackbar, SnackbarContent } from "@material-ui/core";
+import { Grid, Button, Typography, AppBar, Toolbar } from "@material-ui/core";
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import '@fontsource/roboto';
 import lybLogo from "./lybLogo3.png";
@@ -15,6 +15,7 @@ import Contact from './components/Contact';
 import NavMenu from './components/NavMenu';
 import ToolbarItem from './components/ToolbarItem';
 import MessageModal from './components/MessageModal';
+import AlertSnackbar from './components/AlertSnackbar';
  
 const App = () => {
   //Scroll Nav
@@ -22,6 +23,7 @@ const App = () => {
     behavior: "smooth",
     top: ref.current.offsetTop-62
   })
+  
   const HomeRef = useRef()
   const ContactRef = useRef()
   const AboutRef = useRef()
@@ -36,12 +38,8 @@ const App = () => {
 
   const openPage = (e, number, isDesktop) => {
     e.preventDefault()
-    if (isDesktop) {
-      scrollToRef(scroll[number])
-    } else {
-      scrollToRef(mobileScroll[number])
-    }
-    menuClose();
+    scrollToRef(isDesktop ? scroll[number] : mobileScroll[number])
+    menuClose()
   }
 
   //Nav Rendering for Smartphone vs Laptop
@@ -57,91 +55,47 @@ const App = () => {
   //Open Form and Message Functions
   const [openForm, setOpenForm] = useState(false);
   const [openMessage, setOpenMessage] = useState(false);
+  const [openSnack, setOpenSnack] = useState({
+    message: null,
+    consult: null
+  })
 
-  const handleOpen = () => {
-    setOpenForm(true);
-  }
-  const handleClose = () => {
-    setOpenForm(false);
-  }
-  const messageOpen = () => {
-    setOpenMessage(true)
-  }
-  const messageClose = () => {
-    setOpenMessage(false)
-  }
+  //mobile menu
+  const [anchorEl, setAnchorEl] = useState(null);
+  const menuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const menuClose = () => {
+  setAnchorEl(null);
+  };
 
-    //mobile menu
-    const [anchorEl, setAnchorEl] = useState(null);
-    const menuOpen = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-    const menuClose = () => {
-    setAnchorEl(null);
-    };
+  //style
+  const style = {
+    banner: {
+      width: (!isDesktop) ? "70%" : "32%",
+      height: "auto",
+      marginTop: (!isDesktop) ? 40 : 15
+    },
+    subheader: {
+      fontSize: 20,
+      backgroundColor: "#d9b3ff",
+      color: "white",
+      fontWeight: "bold",
+      fontStyle: "italic",
+      padding: 4
+    },
+    quoteFont: {
+      fontSize: (!isDesktop) ? 12 : 18
+    },
+    authorFont: {
+      fontSize: (!isDesktop) ? 12 : 18,
+      fontWeight: "bold"
+    },
+    heart: {
+      fontSize: 25
+    }
+}
 
-    //style
-    const style = {
-      banner: {
-        width: (!isDesktop) ? "70%" : "32%",
-        height: "auto",
-        marginTop: (!isDesktop) ? 40 : 15
-      },
-      menuItem: {
-        backGroundColor: "#ff3399",
-        color: "white",
-        fontSize: 20,
-        fontWeight: "bold",
-        margin: 20
-      },
-      mobilemenuItem: {
-        backgroundColor: "#ff3399",
-        color: "white",
-        fontSize: 10,
-        fontWeight: "bold"
-      },
-      success: {
-        backgroundColor: "#8cd98c",
-        alignItems: "center",
-        color: 'white'
-      },
-      subheader: {
-        fontSize: 20,
-        backgroundColor: "#d9b3ff",
-        color: "white",
-        fontWeight: "bold",
-        fontStyle: "italic",
-        padding: 4
-      },
-      quoteFont: {
-        fontSize: (!isDesktop) ? 12 : 18
-      },
-      authorFont: {
-        fontSize: (!isDesktop) ? 12 : 18,
-        fontWeight: "bold"
-      },
-      heart: {
-        fontSize: 25
-      }
-    }
-
-  //snackbar
-    const [openSnack, setOpenSnack] = useState({
-      message: false,
-      consult: false
-    });
-    const closeMessageSnack = () => {
-      setOpenSnack({ ...openSnack, message: false })
-    }
-    const messageSnack = () => {
-      setOpenSnack({ ...openSnack, message: true })
-    }
-    const closeConsultSnack = () => {
-      setOpenSnack({ ...openSnack, consult: false })
-    }
-    const consultSnack = () => {
-      setOpenSnack({ ...openSnack, consult: true })
-    }
   return (
     <div className="App">
 {/* APPBAR */}
@@ -153,7 +107,7 @@ const App = () => {
             <ToolbarItem name="alert" md={8} xs={5}/>
             <ToolbarItem name="home" md={1} xs={2} openPage={(e, number, isDesktop) => openPage(e, 0, isDesktop)}/>
             <ToolbarItem name="facebook" md={1} xs={2} />
-            <ToolbarItem name="messageOpen" md={1} xs={2} messageOpen={() => messageOpen()}/>
+            <ToolbarItem name="messageOpen" md={1} xs={2} messageOpen={() => setOpenMessage(true)}/>
 {/* NAV MENU */}
             <NavMenu openPage={(e, number, isDesktop) => openPage(e, number, isDesktop)} anchorEl={anchorEl} menuClose={() => menuClose} />
           </Grid>
@@ -170,37 +124,29 @@ const App = () => {
           name="Schedule a Consultation" 
           isConsult={true} 
           openForm={openForm} 
-          handleOpen={() => handleOpen()} 
-          handleClose={() => handleClose()} 
-          consultSnack={consultSnack}
+          handleOpen={() => setOpenForm(true)} 
+          handleClose={() => setOpenForm(false)} 
+          consultSnack={() => setOpenSnack({ ...openSnack, consult: true })}
 
         />
         <MessageModal 
           name="Send Message" 
           isConsult={false} 
           openMessage={openMessage} 
-          messageOpen={() => messageOpen()} 
-          messageClose={() => messageClose()} 
-          messageSnack={messageSnack}
-
+          messageOpen={() => setOpenMessage(true)} 
+          messageClose={() => setOpenMessage(false)}
+          messageSnack={() => setOpenSnack({ ...openSnack, message: true})}
         />
 {/* SNACKBARS */}
-        <Snackbar
-          open={openSnack.message}
-          onClose={closeMessageSnack}
-          autoHideDuration={5000}
-        >
-            <SnackbarContent message="Email Message Sent Successfully!" style={style.success}/>
-        </Snackbar>
-        <Snackbar
-          open={openSnack.consult}
-          onClose={closeConsultSnack}
+        <AlertSnackbar 
+          open={openSnack.message} onClose={() => setOpenSnack({ ...openSnack, message: null })} autoHideDuration={5000} 
+          message="Email Message Sent Successfully!" 
+        />
+        <AlertSnackbar 
+          open={openSnack.consult} onClose={() => setOpenSnack({ ...openSnack, consult: null })} autoHideDuration={5000} 
           message="Consultation Request Sent Successfully!"
-          autoHideDuration={5000}
-        >
-            <SnackbarContent message="Consultation Request Sent Successfully!" style={style.success} />
-        </Snackbar>
-    {/* QUOTE */}
+        />
+{/* QUOTE */}
         <Grid item md="12" xs="12" className={"quoteMargin"}>
             <Typography style={style.quoteFont} className={"quoteFont"}>You are a midwife, assisting at someone else’s birth. Do good without show or fuss. Facilitate what is happening rather than what you think ought to be happening. If you must take the lead, lead so that the mother is helped, yet still free and in charge. When the baby is born, the mother will rightly say, 'We did it ourselves!'</Typography>
             <Typography style={style.authorFont} className={"authorFont"}>Tao Te Ching</Typography>
@@ -254,11 +200,11 @@ const App = () => {
         </Grid>
     {/* CONTACT */}
         <Grid item md="12" xs="12" className={"contactView"} ref={ContactRef}>
-          <Contact openMessage={messageOpen} openConsult={handleOpen}/>
+          <Contact openMessage={() => setOpenMessage(true)} openConsult={() => setOpenForm(true)}/>
         </Grid>
       </Grid>
     </div>
-  );
+  )
 }
 
 export default App;

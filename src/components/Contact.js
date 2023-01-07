@@ -78,7 +78,7 @@ const Contact = (props) => {
             ?
             <>
             <Grid item md="4" xs="12" style={style.emailSection}>
-                <button style={style.patientConsult} onClick={props.openConsult}>Schedule a Free Consultation</button>
+                <button style={style.patientConsult}>Not Accepting New Patients</button>
             </Grid>
             <Grid item md="4" xs="12">
                 <a href="https://clientcareeast.net/Account/LogOn?ReturnUrl=%2f" target="_blank" style={style.patientPortal}> Patient Portal Login </a>
@@ -102,7 +102,7 @@ const Contact = (props) => {
             :
             <>
             <Grid item md="4" xs="12" style={style.emailSection}>
-                <button style={style.patientConsult} onClick={props.openConsult}>Schedule a Free Consultation</button>
+                <button style={style.patientConsult}>Not Accepting New Patients</button>
             </Grid>
             <Grid item md="1" xs="4">
                 <IconButton onClick={props.openMessage}>

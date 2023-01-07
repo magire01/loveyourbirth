@@ -1,10 +1,6 @@
 import './App.css';
 import React, { useState, useRef, useEffect } from "react";
-import { Grid, Button, Menu, MenuItem, Typography, IconButton, AppBar, Toolbar, Modal, Card, Snackbar, SnackbarContent, colors, ListItemSecondaryAction, Divider } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import FacebookIcon from '@material-ui/icons/Facebook';
-import EmailIcon from '@material-ui/icons/Email';
-import HomeIcon from '@material-ui/icons/Home';
+import { Grid, Button, Typography, IconButton, AppBar, Toolbar, Snackbar, SnackbarContent, colors, ListItemSecondaryAction, Divider } from "@material-ui/core";
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import '@fontsource/roboto';
 import lybLogo from "./lybLogo3.png";
@@ -16,8 +12,9 @@ import Birth from './components/Birth';
 import Newborn from './components/Newborn';
 import Resources from './components/Resources';
 import Contact from './components/Contact';
-import ContactForm from './components/ContactForm';
-import MessageForm from './components/MessageForm';
+import NavMenu from './components/NavMenu';
+import ToolbarItem from './components/ToolbarItem';
+import MessageModal from './components/MessageModal';
  
 const App = () => {
   //Scroll Nav
@@ -34,14 +31,16 @@ const App = () => {
   const NewbornRef = useRef();
   const ResourceRef = useRef();
   
-  const page = ["About", "Services", "Resources", "Contact"]
   const scroll = [HomeRef, AboutRef, ServicesRef, ResourceRef, ContactRef]
-  const mobilePage = ["About", "Pregnancy", "Labor & Birth", "Postpartum & Newborn", "Resources", "Contact"]
   const mobileScroll = [HomeRef, AboutRef, PrenatalRef, BirthRef, NewbornRef, ResourceRef, ContactRef]
 
-  const openPage = (e, page) => {
-    e.preventDefault();
-    scrollToRef(page);
+  const openPage = (e, number, isDesktop) => {
+    e.preventDefault()
+    if (isDesktop) {
+      scrollToRef(scroll[number])
+    } else {
+      scrollToRef(mobileScroll[number])
+    }
     menuClose();
   }
 
@@ -59,18 +58,18 @@ const App = () => {
   const [openForm, setOpenForm] = useState(false);
   const [openMessage, setOpenMessage] = useState(false);
 
-    const handleOpen = () => {
-        setOpenForm(true);
-      }
-    const handleClose = () => {
+  const handleOpen = () => {
+    setOpenForm(true);
+  }
+  const handleClose = () => {
     setOpenForm(false);
-    }
-    const messageOpen = () => {
-        setOpenMessage(true)
-    }
-    const messageClose = () => {
-        setOpenMessage(false)
-    }
+  }
+  const messageOpen = () => {
+    setOpenMessage(true)
+  }
+  const messageClose = () => {
+    setOpenMessage(false)
+  }
 
     //mobile menu
     const [anchorEl, setAnchorEl] = useState(null);
@@ -109,52 +108,6 @@ const App = () => {
         color: "white",
         fontSize: 10,
         fontWeight: "bold"
-      },
-      newPatient: {
-        backgroundColor: colorScheme.newPatient,
-        color: "white",
-        width: (!isDesktop) ? 120 : "30%",
-        height: (!isDesktop) ? 35 : 50,
-        fontSize: (!isDesktop) ? 8 : 14,
-        fontWeight: "bold",
-        marginLeft: (!isDesktop) ? 10 : "40%",
-        borderRadius: 200,
-        border: "3px outset #E1F0FA"
-      },
-      message: {
-        backgroundColor: colorScheme.message,
-        color: "white",
-        width: (!isDesktop) ? 120 : "30%",
-        height: (!isDesktop) ? 35 : 50,
-        fontSize: (!isDesktop) ? 10 : 16,
-        fontWeight: "bold",
-        marginRight: (!isDesktop) ? 10 : "40%",
-        borderRadius: 200,
-        border: "3px outset #F7E0E3"
-      },
-      contactCard: {
-        display: 'fixed',  
-        justifyContent:'center', 
-        alignItems:'center',
-        height: (!isDesktop) ? "80%" : "80%",
-        width: (!isDesktop) ? "96%" : "auto",
-        margin: (!isDesktop) ? "0.5%" : 100,
-        marginTop: (!isDesktop) ? 0 : 100,
-        textAlign: "center",
-        border: "5px solid purple",
-        overflowY: "auto"
-      },
-      messageCard: {
-        display: 'fixed',  
-        justifyContent:'center', 
-        alignItems:'center',
-        height: (!isDesktop) ? "80%" : "80%",
-        width: (!isDesktop) ? "96%" : "auto",
-        margin: (!isDesktop) ? "0.5%" : 100,
-        marginTop: (!isDesktop) ? 0 : 100,
-        textAlign: "center",
-        border: "5px solid pink",
-        overflowY: "auto"
       },
       success: {
         backgroundColor: "#8cd98c",
@@ -204,49 +157,14 @@ const App = () => {
       <AppBar position="fixed" elevation={5} style={{ height: (!isDesktop) ? 50 : 60, position: "fixed", backgroundColor: "#A9D1EA" }}>
         <Toolbar> 
           <Grid container alignItems="center" justifyContent="flex-start">
-            <Grid item md={1} xs={1}>
-              <IconButton onClick={menuOpen}>
-                <MenuIcon className={"menuIcon"}/>
-              </IconButton>
-            </Grid>
-            <Grid item md={8} xs={5}> 
-              <Typography component="div" style={{ color: "white", fontWeight: "bold", fontSize: (!isDesktop) ? 10 : 15 }}>Currently Only Serving Kentucky</Typography>
-            </Grid>
-            <Grid item md={1} xs={2}>
-              <IconButton onClick={e => openPage(e, scroll[0])}>
-                <HomeIcon className={"iconFont"}/>
-              </IconButton>
-            </Grid>
-            <Grid item md={1} xs={2}>
-              <a href="https://www.facebook.com/Loveyourbirthmidwifery/" target="_blank" style={{ textDecoration: "none" }}>
-                <IconButton className={"topIcon"}>
-                  <FacebookIcon className={"iconFont"}/>
-                </IconButton>
-              </a>
-            </Grid>
-            <Grid item md={1} xs={2}>
-              <IconButton onClick={messageOpen} className={"topIcon"}>
-                <EmailIcon className={"iconFont"}/>
-              </IconButton>
-            </Grid>
+  {/* TOOLBAR */}
+            <ToolbarItem name="menu" menuOpen={(e) => menuOpen(e)} md={1} xs={1}/>
+            <ToolbarItem name="alert" md={8} xs={5}/>
+            <ToolbarItem name="home" md={1} xs={2} openPage={(e, number, isDesktop) => openPage(e, 0, isDesktop)}/>
+            <ToolbarItem name="facebook" md={1} xs={2} />
+            <ToolbarItem name="messageOpen" md={1} xs={2} messageOpen={() => messageOpen()}/>
   {/* NAV MENU */}
-            <Menu
-              id="simple-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={menuClose}
-              background="transparent"
-              style={{ opacity: 0.7 }}
-            >
-              {(!isDesktop) 
-              ? mobilePage.map((data, index) => (
-                <MenuItem style={style.mobilemenuItem} onClick={e => openPage(e, mobileScroll[index + 1])}>{data}</MenuItem>
-              ))
-              : page.map((data, index) => (
-                  <MenuItem style={style.menuItem} onClick={e => openPage(e, scroll[index + 1])}>{data}</MenuItem>
-              ))}
-            </Menu>
+            <NavMenu openPage={(e, number, isDesktop) => openPage(e, number, isDesktop)} anchorEl={anchorEl} menuClose={() => menuClose} />
           </Grid>
         </Toolbar>
       </AppBar>
@@ -257,52 +175,44 @@ const App = () => {
             <img src={lybLogo} style={style.banner}/>
         </Grid>
 {/* MODALS */}
-        <Grid item md="6" xs="6">
-          <Button onClick={handleOpen} style={style.newPatient}>Schedule a Consultation</Button>
-          <Modal
-              open={openForm}
-              onClose={handleClose}
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-              >
-              <Card style={style.contactCard}>
-                <ContactForm closeForm={handleClose} successConsult={consultSnack}/>
-              </Card>
-            </Modal>
-        </Grid>
-        <Grid item md="6" xs="6">
-          <Button onClick={messageOpen} style={style.message}>Send Message</Button>
-          <Modal
-              open={openMessage}
-              onClose={messageClose}
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-              >
-              <Card style={style.messageCard}>
-                <MessageForm closeMessage={messageClose} successMessage={messageSnack}/>
-              </Card>
-          </Modal>
+        <MessageModal 
+          name="Schedule a Consultation" 
+          isConsult={true} 
+          openForm={openForm} 
+          handleOpen={() => handleOpen()} 
+          handleClose={() => handleClose()} 
+          consultSnack={consultSnack}
+
+        />
+        <MessageModal 
+          name="Send Message" 
+          isConsult={false} 
+          openMessage={openMessage} 
+          messageOpen={() => messageOpen()} 
+          messageClose={() => messageClose()} 
+          messageSnack={messageSnack}
+
+        />
 {/* SNACKBARS */}
-          <Snackbar
-            open={openSnack.message}
-            onClose={closeMessageSnack}
-            autoHideDuration={5000}
-          >
-              <SnackbarContent message="Email Message Sent Successfully!" style={style.success}/>
-          </Snackbar>
-          <Snackbar
-            open={openSnack.consult}
-            onClose={closeConsultSnack}
-            message="Consultation Request Sent Successfully!"
-            autoHideDuration={5000}
-          >
-              <SnackbarContent message="Consultation Request Sent Successfully!" style={style.success} />
-          </Snackbar>
-        </Grid>
+        <Snackbar
+          open={openSnack.message}
+          onClose={closeMessageSnack}
+          autoHideDuration={5000}
+        >
+            <SnackbarContent message="Email Message Sent Successfully!" style={style.success}/>
+        </Snackbar>
+        <Snackbar
+          open={openSnack.consult}
+          onClose={closeConsultSnack}
+          message="Consultation Request Sent Successfully!"
+          autoHideDuration={5000}
+        >
+            <SnackbarContent message="Consultation Request Sent Successfully!" style={style.success} />
+        </Snackbar>
     {/* QUOTE */}
         <Grid item md="12" xs="12" className={"quoteMargin"}>
             <Typography style={style.quoteFont} className={"quoteFont"}>You are a midwife, assisting at someone else’s birth. Do good without show or fuss. Facilitate what is happening rather than what you think ought to be happening. If you must take the lead, lead so that the mother is helped, yet still free and in charge. When the baby is born, the mother will rightly say, 'We did it ourselves!'</Typography>
-            <Typography style={style.authorFont} className={"authorFont"} style={{ fontWeight: "bold" }}>Tao Te Ching</Typography>
+            <Typography style={style.authorFont} className={"authorFont"}>Tao Te Ching</Typography>
         </Grid>
         <Grid item md="12" xs="12">
           <FavoriteIcon style={style.heart} className={"heartIcon"} />
